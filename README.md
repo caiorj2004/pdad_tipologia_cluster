@@ -3,6 +3,8 @@
 Este projeto integra o esforço de inteligência territorial do **Agrotec-DF**, focado em mapear e analisar o ecossistema de agricultura familiar no Distrito Federal utilizando os microdados da **PDAD Rural 2022** (Pesquisa Distrital por Amostra de Domicílios).
 O objetivo principal desta modelagem é aplicar técnicas robustas de aprendizado de máquina não supervisionado e estatística espacial para identificar agrupamentos (clusters) de vulnerabilidade e infraestrutura nas Regiões Administrativas (RAs) do DF.
 
+---
+
 ## 🏗️ Estrutura do Repositório
 
 ```text
@@ -14,7 +16,7 @@ pdad_tipologia_cluster/
 │   └── regioes_administrativas.zip     # Shapefiles das fronteiras das RAs do DF
 │
 ├── modelo_4d_referencia.py             # Pipeline base com 4 dimensões de capital
-├── modelo_5d_expandido.py              # Pipeline expandido com dimensão Institucional
+├── modelo_5d_expandido.py              # Pipeline expandido com dimensão Social
 ├── requirements.txt                    # Dependências e versões do ecossistema
 └── README.md                           # Documentação principal
 
@@ -37,8 +39,6 @@ Concentra-se na extração de sinais de quatro capitais primários:
 2. **Modelo 5D (Expandido):**
 Integra uma quinta dimensão para avaliar o impacto de políticas públicas:
 * **Social/Institucional:** Recebimento de benefícios sociais, valores monetários de auxílios e incentivos à produção. *(Nota metodológica: Esta dimensão possui retenção forçada no pipeline de redução de dimensionalidade).*
-
-
 
 ---
 
