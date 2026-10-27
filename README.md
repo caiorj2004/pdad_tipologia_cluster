@@ -44,12 +44,17 @@ Integra uma quinta dimensão para avaliar o impacto de políticas públicas:
 
 ## 🔬 Metodologia Estatística e Espacial
 
-Para garantir a ausência de viés estocástico e a validade estrutural dos agrupamentos, o pipeline implementa as seguintes etapas automatizadas:
+Para garantir a ausência de viés estocástico, a validade estrutural dos agrupamentos e a precisão do diagnóstico local, o pipeline implementa as seguintes etapas automatizadas:
 
-* **Ponderação Populacional:** Expansão amostral dos domicílios respeitando o universo $N_h$ dos 21 estratos geográficos do IPEDF. Supressão de segmentos com $n < 5$ para evitar ruído.
-* **Extração de Sinais Analíticos (PCA + Monte Carlo):** Em vez de reter componentes principais por variância arbitrária, o algoritmo utiliza **Análise Paralela de Monte Carlo** (1.000 iterações iterativas), retendo apenas os eixos (autovalores) que superam o percentil 95% do ruído aleatório.
-* **Clusterização K-Means Dinâmica:** Agrupamento das Regiões Administrativas otimizado para $K=6$, baseado em métricas de validação intrínseca (Silhueta, Davies-Bouldin, Calinski-Harabasz).
-* **Autocorrelação Espacial Local (LISA):** Validação topológica utilizando matrizes de contiguidade *Queen* (fronteiras reais via Geopandas/PySAL), com correção rigorosa de múltiplos testes **FDR (False Discovery Rate)** de Benjamini-Hochberg ($\alpha = 0.05$) para controle de falsos positivos espaciais.
+- **Ponderação Populacional:** Expansão amostral dos domicílios respeitando o universo populacional dos 21 estratos geográficos do IPEDF. Supressão de segmentos com n < 5 para evitar ruído.
+
+- **Extração de Sinais Analíticos (PCA + Monte Carlo):** O algoritmo utiliza **Análise Paralela de Monte Carlo** (1.000 iterações), retendo apenas os eixos que superam o percentil 95% do ruído aleatório. A etapa inclui a extração automatizada das **cargas fatoriais (loadings)** para quantificar o peso matemático exato de cada ativo na formação da riqueza e infraestrutura rural.
+
+- **Clusterização K-Means Dinâmica:** Agrupamento das Regiões Administrativas otimizado para K=6, baseado em métricas de validação intrínseca (Silhueta, Davies-Bouldin, Calinski-Harabasz) e validado via testes de permutação nula.
+
+- **Matriz de Sensibilidade Espacial (LISA):** Em vez de depender de uma única matriz, o modelo testa a estabilidade territorial cruzando múltiplas matrizes de vizinhança (Contiguidade *Queen* vs. Proximidade *k-NN*), níveis de significância (Correção restritiva **FDR** de Benjamini-Hochberg vs. Análise Exploratória) e variáveis (Sintética vs. Bruta). Essa abordagem mitiga o Problema da Unidade de Área Modificável (MAUP) e diferencia blocos estruturais de áreas de fricção rururbana.
+
+- **Diagnóstico Socioterritorial (Gaps):** Cálculo do desempenho relativo (déficits e vantagens) de cada Região Administrativa em comparação à média do seu próprio Cluster Dominante, com geração de Mapas de Calor (Heatmaps) para identificar gargalos intra-regionais específicos e direcionar políticas públicas.
 
 ---
 
