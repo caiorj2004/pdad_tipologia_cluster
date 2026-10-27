@@ -33,6 +33,7 @@ import matplotlib.patches as mpatches
 import matplotlib as mpl
 import libpysal
 import esda
+from libpysal.weights import KNN
 
 warnings.filterwarnings('ignore')
 
@@ -77,7 +78,6 @@ def limpar_nome_ra_base(texto):
 def main():
     print("🚀 Executando Fase 1: Saneamento, Tratamento de Pesos e Agregação Territorial...\n")
 
-    # Validação de arquivos locais
     for p in [PATH_DOM, PATH_MOR, ARQUIVO_ZIP_SHP]:
         if not p.exists():
             raise FileNotFoundError(f"Arquivo não encontrado: {p}. Garanta que os dados estão na pasta 'dados/'.")
@@ -221,6 +221,9 @@ def main():
 
     print(f"\n✅ FASE 1 CONCLUÍDA: Matriz A de Referência gerada com {len(df_matriz_A)} segmentos territoriais válidos.")
 
+    # ==============================================================================
+    # ETAPA 4 — PCA POR DIMENSÃO (ANÁLISE PARALELA DE MONTE CARLO CORRIGIDA & ISOLAMENTO)
+    # ==============================================================================
     print("\n🚀 Executando Etapa 4 — PCA por Dimensão (Análise Paralela de Monte Carlo Corrigida)...\n")
     DIMENSOES_REF = {
         "D1_Financeiro_Ativos": ["log_renda_domiciliar_pc", "possui_automovel", "possui_motocicleta", "possui_geladeira", "possui_freezer", "possui_lavadora", "possui_secadora", "possui_tv", "possui_ar_condicionado", "possui_microondas"],
@@ -242,6 +245,7 @@ def main():
     df_A_mc = df_matriz_A.copy()
     df_A_mc["ra_norm"] = df_A_mc[RA].map(limpar_nome_ra_base)
     resumo_pca_dual = []
+    cargas_fatoriais = [] 
 
     for dim, vars_list in DIMENSOES_REF.items():
         valid_cols = [v for v in vars_list if v in df_matriz_A.columns and df_matriz_A[v].notna().sum() >= 3 and df_matriz_A[v].dropna().nunique() > 1]
@@ -255,11 +259,17 @@ def main():
         if k_mc == 0: k_mc = 1
         k_kai = max(1, int(np.sum(eigen_obs >= 1.0)))
 
-        scores_mc = PCA(n_components=k_mc).fit_transform(X_A_std)
+        pca_mc_model = PCA(n_components=k_mc).fit(X_A_std)
+        scores_mc = pca_mc_model.transform(X_A_std)
+
         for j in range(k_mc):
             col_name = f"{dim}_MC_PC{j+1}"
             df_A_mc[col_name] = scores_mc[:, j]
             df_componentes_mc[col_name] = scores_mc[:, j]
+            
+            for idx, var_name in enumerate(valid_cols):
+                carga = pca_mc_model.components_[j, idx]
+                cargas_fatoriais.append({"Dimensão": dim, "Componente": f"PC{j+1}", "Variável": var_name, "Carga Fatorial (Loading)": round(carga, 4), "Influência Absoluta": round(abs(carga), 4)})
 
         pca_full = PCA().fit(X_A_std)
         for j in range(len(eigen_obs)):
@@ -270,6 +280,15 @@ def main():
     print("=" * 110)
     print(pd.DataFrame(resumo_pca_dual).to_string(index=False))
 
+    df_cargas = pd.DataFrame(cargas_fatoriais).sort_values(by=["Dimensão", "Componente", "Influência Absoluta"], ascending=[True, True, False])
+    print("\n" + "=" * 110)
+    print("🧬 COMPOSIÇÃO DOS COMPONENTES RETIDOS (CARGAS FATORIAIS / LOADINGS)")
+    print("=" * 110)
+    print(df_cargas.to_string(index=False))
+
+    # ==============================================================================
+    # ETAPA 5 — BENCHMARKING DE K
+    # ==============================================================================
     print("\n🚀 Executando Etapa 5 — Benchmarking Aberto de K (2 a 10) com Espaço Purificado...\n")
     X_pca = df_componentes_mc.apply(pd.to_numeric).to_numpy()
     N, p = X_pca.shape
@@ -312,6 +331,9 @@ def main():
         sil_real, med_nula, p_val = executar_teste_referencia_nula(X_pca, k_test, n_permutacoes=1000)
         print(f"📊 RESULTADOS PARA K = {k_test} (p-valor: {p_val:.4f} | Silhueta Observada: {sil_real:.4f})")
 
+    # ==============================================================================
+    # ETAPA 6 — CLUSTERIZAÇÃO FINAL
+    # ==============================================================================
     print("\n🚀 Executando Etapa 6 — K-Means Final (K=6) e Cruzamento Populacional...\n")
     kmeans_final = KMeans(n_clusters=6, n_init=50, random_state=42).fit(X_pca)
     df_A_mc["Cluster_K6"] = kmeans_final.labels_
@@ -321,35 +343,12 @@ def main():
     print("📌 Domicílios Expandidos por Cluster (K=6) e Tipologia Original:")
     print(tabela_cruzada_tipologia.to_string())
 
-    print("\n🚀 Executando Etapa 7 — Análise Espacial Local (LISA)...\n")
-    df_ra_espacial = df_A_mc.groupby('ra_norm').agg({"D4_Tecnologico_Conectividade_MC_PC1": "mean", col_peso_dom: "sum"}).reset_index()
-    VIZINHOS_DF = {"planaltina": ["sobradinho", "sobradinho ii", "paranoa", "fercal"], "sobradinho": ["planaltina", "sobradinho ii", "fercal", "paranoa", "varjao", "itapoa", "lago norte"], "sobradinho ii": ["sobradinho", "fercal", "brazlandia"], "fercal": ["sobradinho", "sobradinho ii", "planaltina", "brazlandia"], "paranoa": ["planaltina", "sobradinho", "itapoa", "sao sebastiao", "jardim botanico", "lago norte"], "itapoa": ["paranoa", "sobradinho"], "sao sebastiao": ["paranoa", "jardim botanico", "santa maria"], "jardim botanico": ["sao sebastiao", "paranoa", "lago sul", "santa maria"], "brazlandia": ["sobradinho ii", "fercal", "ceilandia", "taguatinga"], "ceilandia": ["brazlandia", "sol nascente por do sol", "samambaia", "taguatinga"], "sol nascente por do sol": ["ceilandia", "samambaia", "taguatinga"], "samambaia": ["ceilandia", "sol nascente por do sol", "taguatinga", "riacho fundo ii", "recanto das emas"], "recanto das emas": ["samambaia", "riacho fundo ii", "gama", "santa maria"], "gama": ["recanto das emas", "riacho fundo ii", "park way", "santa maria"], "santa maria": ["gama", "park way", "jardim botanico", "sao sebastiao", "recanto das emas"], "riacho fundo ii": ["samambaia", "recanto das emas", "gama", "riacho fundo", "park way"], "riacho fundo": ["riacho fundo ii", "park way", "nucleo bandeirante", "guara", "taguatinga"], "park way": ["gama", "santa maria", "jardim botanico", "lago sul", "nucleo bandeirante", "riacho fundo", "riacho fundo ii", "guara"], "nucleo bandeirante": ["riacho fundo", "park way", "guara", "candangolandia"], "guara": ["riacho fundo", "park way", "nucleo bandeirante", "candangolandia", "sia", "taguatinga", "aguas claras", "cruzeiro", "plano piloto"], "taguatinga": ["ceilandia", "sol nascente por do sol", "samambaia", "riacho fundo", "guara", "aguas claras", "vicente pires", "brazlandia"], "aguas claras": ["taguatinga", "guara", "vicente pires"], "vicente pires": ["taguatinga", "aguas claras"], "lago sul": ["park way", "jardim botanico", "plano piloto", "cruzeiro", "lago norte", "candangolandia"], "lago norte": ["sobradinho", "paranoa", "plano piloto", "lago sul"], "plano piloto": ["guara", "cruzeiro", "lago sul", "lago norte", "sobradinho", "varjao", "sia"], "cruzeiro": ["guara", "plano piloto", "lago sul", "sra"], "varjao": ["sobradinho", "plano piloto"], "sia": ["guara", "plano piloto"], "candangolandia": ["nucleo bandeirante", "guara", "lago sul"]}
-    
+    # ==============================================================================
+    # ETAPA 7 — ANÁLISE ESPACIAL LOCAL (LISA) E SENSIBILIDADE
+    # ==============================================================================
+    print("\n🚀 Executando Etapa 7 (Baseline e Testes Metodológicos de Sensibilidade)...\n")
+    df_ra_espacial = df_A_mc.groupby('ra_norm').agg({"D4_Tecnologico_Conectividade_MC_PC1": "mean", "internet_domiciliar": "mean", col_peso_dom: "sum"}).reset_index()
     RAs_presentes = df_ra_espacial['ra_norm'].tolist()
-    adj_dict = {ra: [v for v in VIZINHOS_DF.get(ra, []) if v in RAs_presentes] or [RAs_presentes[0]] for ra in RAs_presentes}
-    w = libpysal.weights.W(adj_dict)
-    w.transform = 'R'
-    lm = esda.moran.Moran_Local(df_ra_espacial["D4_Tecnologico_Conectividade_MC_PC1"].fillna(0).to_numpy(), w, permutations=999, seed=42)
-    rejeita, _, _, _ = multipletests(lm.p_sim, alpha=0.05, method='fdr_bh')
-    df_ra_espacial["LISA_Significativo"] = rejeita
-    df_ra_espacial["LISA_Q"] = lm.q
-    
-    print(f"  - Hotspots (Q3 + Sig): {np.sum((lm.q == 3) & rejeita)}")
-    print(f"  - Coldspots (Q1 + Sig): {np.sum((lm.q == 1) & rejeita)}")
-
-    print("\n🚀 Detalhamento Espacial (LISA cruzado com Tipologia)...")
-    df_lisa_sig = df_ra_espacial[df_ra_espacial["LISA_Significativo"] == True][["ra_norm", "LISA_Q"]]
-    if not df_lisa_sig.empty:
-        mapa_quadrantes = {1: "Q1 (Alto-Alto)", 2: "Q2 (Baixo-Alto)", 3: "Q3 (Baixo-Baixo)", 4: "Q4 (Alto-Baixo)"}
-        df_lisa_detalhe = df_A_mc.merge(df_lisa_sig, on="ra_norm", how="inner")
-        df_lisa_detalhe["Tipo_LISA"] = df_lisa_detalhe["LISA_Q"].map(mapa_quadrantes)
-        print(df_lisa_detalhe.pivot_table(index="Tipo_LISA", columns="tipologia_original", values=col_peso_dom, aggfunc="sum", fill_value=0).to_string())
-
-    print("\n🚀 Gerando Gráficos e Mapas (Feche a janela de cada gráfico para continuar)...\n")
-    sns.set_theme(style="whitegrid")
-    tabela_cruzada_tipologia.plot(kind='bar', stacked=True, figsize=(12, 7), colormap='viridis', edgecolor='black')
-    plt.title('Composição dos Clusters (4D) por Tipologia Original', fontsize=16, fontweight='bold', pad=15)
-    plt.tight_layout(); plt.show()
 
     if not PASTA_SHP.exists():
         with zipfile.ZipFile(ARQUIVO_ZIP_SHP, 'r') as zip_ref: zip_ref.extractall(PASTA_SHP)
@@ -357,6 +356,67 @@ def main():
     gdf_df = gpd.read_file(list(PASTA_SHP.glob("**/*.shp"))[0])
     col_nome_ra = next((col for col in gdf_df.columns if col.lower() in ['ra', 'nome', 'ra_nome', 'nome_ra', 'regiao', 'nm_ra']), gdf_df.columns[0])
     gdf_df['ra_norm'] = gdf_df[col_nome_ra].apply(limpar_nome_ra_base).replace({'nacleo bandeirante': 'nucleo bandeirante'})
+
+    dict_centroids = gdf_df.set_index('ra_norm')['geometry'].centroid.to_dict()
+    df_ra_espacial['geometry'] = df_ra_espacial['ra_norm'].map(dict_centroids)
+    gdf_ra_espacial = gpd.GeoDataFrame(df_ra_espacial, geometry='geometry')
+
+    VIZINHOS_DF = {"planaltina": ["sobradinho", "sobradinho ii", "paranoa", "fercal"], "sobradinho": ["planaltina", "sobradinho ii", "fercal", "paranoa", "varjao", "itapoa", "lago norte"], "sobradinho ii": ["sobradinho", "fercal", "brazlandia"], "fercal": ["sobradinho", "sobradinho ii", "planaltina", "brazlandia"], "paranoa": ["planaltina", "sobradinho", "itapoa", "sao sebastiao", "jardim botanico", "lago norte"], "itapoa": ["paranoa", "sobradinho"], "sao sebastiao": ["paranoa", "jardim botanico", "santa maria"], "jardim botanico": ["sao sebastiao", "paranoa", "lago sul", "santa maria"], "brazlandia": ["sobradinho ii", "fercal", "ceilandia", "taguatinga"], "ceilandia": ["brazlandia", "sol nascente por do sol", "samambaia", "taguatinga"], "sol nascente por do sol": ["ceilandia", "samambaia", "taguatinga"], "samambaia": ["ceilandia", "sol nascente por do sol", "taguatinga", "riacho fundo ii", "recanto das emas"], "recanto das emas": ["samambaia", "riacho fundo ii", "gama", "santa maria"], "gama": ["recanto das emas", "riacho fundo ii", "park way", "santa maria"], "santa maria": ["gama", "park way", "jardim botanico", "sao sebastiao", "recanto das emas"], "riacho fundo ii": ["samambaia", "recanto das emas", "gama", "riacho fundo", "park way"], "riacho fundo": ["riacho fundo ii", "park way", "nucleo bandeirante", "guara", "taguatinga"], "park way": ["gama", "santa maria", "jardim botanico", "lago sul", "nucleo bandeirante", "riacho fundo", "riacho fundo ii", "guara"], "nucleo bandeirante": ["riacho fundo", "park way", "guara", "candangolandia"], "guara": ["riacho fundo", "park way", "nucleo bandeirante", "candangolandia", "sia", "taguatinga", "aguas claras", "cruzeiro", "plano piloto"], "taguatinga": ["ceilandia", "sol nascente por do sol", "samambaia", "riacho fundo", "guara", "aguas claras", "vicente pires", "brazlandia"], "aguas claras": ["taguatinga", "guara", "vicente pires"], "vicente pires": ["taguatinga", "aguas claras"], "lago sul": ["park way", "jardim botanico", "plano piloto", "cruzeiro", "lago norte", "candangolandia"], "lago norte": ["sobradinho", "paranoa", "plano piloto", "lago sul"], "plano piloto": ["guara", "cruzeiro", "lago sul", "lago norte", "sobradinho", "varjao", "sia"], "cruzeiro": ["guara", "plano piloto", "lago sul", "sra"], "varjao": ["sobradinho", "plano piloto"], "sia": ["guara", "plano piloto"], "candangolandia": ["nucleo bandeirante", "guara", "lago sul"]}
+    adj_dict = {ra: [v for v in VIZINHOS_DF.get(ra, []) if v in RAs_presentes] for ra in RAs_presentes}
+    for k in adj_dict:
+        if not adj_dict[k]: adj_dict[k] = [RAs_presentes[0]]
+
+    W_Queen = libpysal.weights.W(adj_dict, id_order=RAs_presentes)
+    W_Queen.transform = 'R'
+    W_KNN = KNN.from_dataframe(gdf_ra_espacial, k=4)
+    W_KNN.transform = 'R'
+
+    cenarios = [
+        {"nome": "BASELINE DO TCC (Matriz Queen, Índice PCA D4, Significância FDR estrita)", "w": W_Queen, "var": "D4_Tecnologico_Conectividade_MC_PC1", "fdr": True, "is_baseline": True},
+        {"nome": "SENSIBILIDADE DE VIZINHANÇA (Matriz k-NN, Índice PCA D4, Significância FDR estrita)", "w": W_KNN, "var": "D4_Tecnologico_Conectividade_MC_PC1", "fdr": True, "is_baseline": False},
+        {"nome": "ANÁLISE EXPLORATÓRIA (Matriz Queen, Índice PCA D4, Significância p<0.05 sem FDR)", "w": W_Queen, "var": "D4_Tecnologico_Conectividade_MC_PC1", "fdr": False, "is_baseline": False},
+        {"nome": "ISOLAMENTO DE INFRAESTRUTURA BRUTA (Matriz Queen, Internet Domiciliar Bruta, Significância FDR estrita)", "w": W_Queen, "var": "internet_domiciliar", "fdr": True, "is_baseline": False},
+        {"nome": "FRICÇÃO RURURBANA MÚLTIPLA (Matriz k-NN, Índice PCA D4, Significância p<0.05 sem FDR)", "w": W_KNN, "var": "D4_Tecnologico_Conectividade_MC_PC1", "fdr": False, "is_baseline": False}
+    ]
+
+    mapa_quadrantes = {1: "Q1 (Alto-Alto): Polo de Alta Conectividade", 2: "Q2 (Baixo-Alto): Outlier Tecnológico", 3: "Q3 (Baixo-Baixo): Polo de Exclusão Digital", 4: "Q4 (Alto-Baixo): Outlier Tecnológico"}
+
+    for cenario in cenarios:
+        print("=" * 100)
+        print(f"📌 {cenario['nome']}")
+        print("=" * 100)
+        y_temp = gdf_ra_espacial[cenario["var"]].fillna(0).to_numpy()
+        lm = esda.moran.Moran_Local(y_temp, cenario["w"], permutations=999, seed=42)
+
+        if cenario["fdr"]:
+            rejeita, _, _, _ = multipletests(lm.p_sim, alpha=0.05, method='fdr_bh')
+            mask = rejeita
+        else: mask = lm.p_sim < 0.05
+
+        if cenario["is_baseline"]:
+            df_ra_espacial["LISA_Q"] = lm.q
+            df_ra_espacial["LISA_Significativo"] = mask
+
+        df_sig = gdf_ra_espacial[mask].copy()
+        if df_sig.empty:
+            print("⚠️ Nenhum polo espacial alcançou significância estatística neste cenário (0 spots).\n")
+        else:
+            df_sig["Quadrante"] = lm.q[mask]
+            df_sig["Quadrante"] = df_sig["Quadrante"].map(mapa_quadrantes)
+            df_sig["p-Valor (Simulado)"] = lm.p_sim[mask]
+            tab_ex = df_sig[['ra_norm', 'Quadrante', 'p-Valor (Simulado)']].copy()
+            tab_ex['ra_norm'] = tab_ex['ra_norm'].str.title()
+            tab_ex.rename(columns={'ra_norm': 'Região Administrativa (RA)'}, inplace=True)
+            print(tab_ex.to_string(index=False) + "\n")
+
+    # ==============================================================================
+    # ETAPA EXTRA — VISUALIZAÇÃO GRÁFICA
+    # ==============================================================================
+    print("\n🚀 Gerando Gráficos e Mapas (Feche a janela de cada gráfico para continuar)...\n")
+    sns.set_theme(style="whitegrid")
+    tabela_cruzada_tipologia.plot(kind='bar', stacked=True, figsize=(12, 7), colormap='viridis', edgecolor='black')
+    plt.title('Composição dos Clusters (4D) por Tipologia Original', fontsize=16, fontweight='bold', pad=15)
+    plt.tight_layout(); plt.show()
     
     dom_cluster_ra = df_A_mc.groupby(['ra_norm', 'Cluster_K6'])[col_peso_dom].sum().reset_index().sort_values(col_peso_dom, ascending=False).drop_duplicates('ra_norm')
     gdf_mapa = gdf_df.merge(dom_cluster_ra[['ra_norm', 'Cluster_K6']], on='ra_norm', how='left')
@@ -370,6 +430,93 @@ def main():
     ax.legend(handles=[mpatches.Patch(color=cmap_viridis(idx / (len(clusters_unicos) - 1)) if len(clusters_unicos) > 1 else cmap_viridis(0), label=f'Cluster {int(c)}') for idx, c in enumerate(clusters_unicos)], title='Cluster Predominante', bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.title('Tipologia Territorial 4D: Cluster Dominante por RA', fontsize=18, fontweight='bold', pad=20)
     ax.set_axis_off(); plt.tight_layout(); plt.show()
+
+    # ==============================================================================
+    # ETAPA 8 — PERFILAMENTO SOCIOTERRITORIAL: COMPARAÇÃO RA vs CLUSTERS
+    # ==============================================================================
+    print("\n🚀 Executando Etapa 8 — Diagnóstico de Perfil e Dificuldades por RA...\n")
+    variaveis_diagnostico = ["renda_domiciliar_pc", "escolaridade_adulto", "internet_banda_larga_fixa", "possui_computador", "agua_rede", "solucao_sanitaria_estruturada", "rua_pavimentada"]
+
+    def media_ponderada(df, col_valores, col_pesos):
+        df_clean = df[[col_valores, col_pesos]].dropna()
+        if df_clean.empty or df_clean[col_pesos].sum() == 0: return np.nan
+        return np.average(df_clean[col_valores], weights=df_clean[col_pesos])
+
+    perfil_clusters = {}
+    for cluster in sorted(df_A_mc["Cluster_K6"].dropna().unique()):
+        df_c = df_A_mc[df_A_mc["Cluster_K6"] == cluster]
+        medias_c = {"Cluster_K6": cluster}
+        for var in variaveis_diagnostico: medias_c[var] = media_ponderada(df_c, var, col_peso_dom)
+        perfil_clusters[cluster] = medias_c
+    df_perfil_clusters = pd.DataFrame(list(perfil_clusters.values())).set_index("Cluster_K6")
+
+    perfil_ras = {}
+    ras_unicas = df_A_mc["ra_norm"].dropna().unique()
+    for ra in ras_unicas:
+        df_r = df_A_mc[df_A_mc["ra_norm"] == ra]
+        medias_r = {"ra_norm": ra}
+        for var in variaveis_diagnostico: medias_r[var] = media_ponderada(df_r, var, col_peso_dom)
+        perfil_ras[ra] = medias_r
+    df_perfil_ras = pd.DataFrame(list(perfil_ras.values()))
+
+    print("-" * 115)
+    print("📊 TABELA 1: PERFIL MÉDIO DOS CLUSTERS (Valores Absolutos)")
+    print("-" * 115)
+    df_clusters_view = df_perfil_clusters.copy()
+    df_clusters_view.columns = [c.replace('_', ' ').title() for c in df_clusters_view.columns]
+    print(df_clusters_view.round(4).to_string())
+    print("\n")
+
+    print("-" * 115)
+    print("📊 TABELA 2: PERFIL MÉDIO DAS REGIÕES ADMINISTRATIVAS (Valores Absolutos)")
+    print("-" * 115)
+    df_ras_view = df_perfil_ras.copy()
+    df_ras_view['ra_norm'] = df_ras_view['ra_norm'].str.title()
+    df_ras_view.rename(columns={'ra_norm': 'Região Administrativa'}, inplace=True)
+    df_ras_view.rename(columns={c: c.replace('_', ' ').title() for c in variaveis_diagnostico}, inplace=True)
+    df_ras_view = df_ras_view.sort_values(by='Região Administrativa').reset_index(drop=True)
+    print(df_ras_view.round(4).to_string(index=False))
+    print("\n")
+
+    df_diagnostico = df_perfil_ras.merge(dom_cluster_ra[['ra_norm', 'Cluster_K6']], on='ra_norm', how='inner')
+    gaps_list = []
+    for _, row in df_diagnostico.iterrows():
+        gap_dict = {'Região Administrativa': row['ra_norm'].title(), 'Cluster Dominante': int(row['Cluster_K6'])}
+        for var in variaveis_diagnostico:
+            val_ra, val_cluster = row[var], df_perfil_clusters.loc[row['Cluster_K6'], var]
+            gap_dict[var] = (val_ra / val_cluster) - 1 if (pd.notna(val_ra) and pd.notna(val_cluster) and val_cluster > 0) else np.nan
+        gaps_list.append(gap_dict)
+    df_gaps = pd.DataFrame(gaps_list).set_index('Região Administrativa')
+
+    print("-" * 115)
+    print("📋 DIAGNÓSTICO DE VULNERABILIDADES LOCAIS (Gaps Negativos em relação ao Cluster)")
+    print("-" * 115)
+    for ra in df_gaps.index:
+        deficits = df_gaps.loc[ra, variaveis_diagnostico].dropna()
+        deficits = deficits[deficits < -0.05].sort_values(ascending=True)
+        cluster_alvo = df_gaps.loc[ra, 'Cluster Dominante']
+        if deficits.empty: print(f"📍 {ra} (Cluster {cluster_alvo}): Desempenho equilibrado ou superior à média do seu grupo.")
+        else:
+            print(f"📍 {ra} (Cluster {cluster_alvo}): Apresenta deficiências relativas em:")
+            for var, gap in deficits.items(): print(f"   - {var}: {gap*100:.1f}% abaixo do esperado para o Cluster {cluster_alvo}")
+    
+    print("\n🚀 Gerando Mapa de Calor de Desempenho Relativo...\n")
+    df_heatmap = df_gaps.drop(columns=['Cluster Dominante']).copy()
+    df_heatmap.columns = [c.replace('_', ' ').title() for c in df_heatmap.columns]
+    df_heatmap['Cluster_Sort'] = df_gaps['Cluster Dominante']
+    df_heatmap = df_heatmap.sort_values(by=['Cluster_Sort', df_heatmap.columns[0]]).drop(columns=['Cluster_Sort'])
+
+    plt.figure(figsize=(14, 10))
+    ax = sns.heatmap(df_heatmap * 100, cmap="RdYlGn", center=0, annot=True, fmt=".0f", cbar_kws={'label': 'Gap em Relação ao Cluster (%)'}, linewidths=0.5, vmin=-100, vmax=100)
+    plt.title('Diagnóstico Socioterritorial: Desempenho da RA vs. Média do seu Cluster', fontsize=16, fontweight='bold', pad=20)
+    plt.xlabel('Variáveis de Infraestrutura, Conectividade e Capital Humano', fontsize=12, fontweight='bold')
+    plt.ylabel('Região Administrativa', fontsize=12, fontweight='bold')
+    plt.xticks(rotation=45, ha='right')
+    for t in ax.texts:
+        if t.get_text() != "": t.set_text(t.get_text() + "%")
+    plt.tight_layout(); plt.show()
+
+    print("✅ Análise de Perfilamento Socioterritorial concluída!")
 
 if __name__ == "__main__":
     main()
