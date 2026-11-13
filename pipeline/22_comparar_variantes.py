@@ -72,7 +72,7 @@ def linha_variante(d):
     for k_, v_ in st.items():
         if k_ not in ('K', 'n_segmentos'): r[k_] = v_
     r['extras'] = cfg.get('extras', '')
-    for fn in ('nulos_24_resumo.csv', 'multinivel_moran_resumo.csv'):
+    for fn in ('nulos_24_resumo.csv', 'multinivel_moran_resumo.csv', 'decomposicao_domiciliar_26_resumo.csv'):
         if (d / fn).exists():
             for k_, v_ in pd.read_csv(d / fn).iloc[0].to_dict().items(): r[k_] = v_
     f6b = d / 'stress_S6b_resumo.csv'

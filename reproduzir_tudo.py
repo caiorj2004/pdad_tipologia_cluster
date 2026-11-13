@@ -16,7 +16,7 @@ Opções úteis:
 
 Etapas por variante (rodam em resultados/<variante>/, na ordem):
     03 modelo | 16 bootstrap, nulos, encolhimento | 18 variância, AMI, join count | 19 validação externa | 21 testes de estresse | 23 deixa-uma-RA-fora refazendo o PCA
-    24 nulos do bootstrap, metades e atribuição domiciliar | 25 multinível, Moran ajustado, validação ordenada
+    24 nulos do bootstrap, metades e atribuição domiciliar | 25 multinível por segmento, Moran ajustado, validação ordenada | 26 decomposição mista no nível do domicílio (logit)
 Ao final: 22 consolida todas as variantes em comparacao_variantes.{csv,md}.
 """
 import argparse, os, subprocess, sys, time, shutil
@@ -26,7 +26,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent; PIPE = RAIZ / 'pipeline'
 ETAPAS = [('03', '03_analise_cluster_4d.py'), ('16', '16_robustez_amostral_e_pesos.py'), ('18', '18_variancia_ami_espacial.py'),
           ('19', '19_validacao_externa.py'), ('21', '21_stress_estrutural.py'), ('23', '23_deixa_uma_RA_refazendo_pca.py'),
-          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py')]
+          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py'), ('26', '26_decomposicao_domiciliar_mista.py')]
 FIGURAS_TCC = ['04_comparacao_metodos.py', '05_ward_dendrograma.py', '06_ward_bateria.py', '07_estabilidade_cruzada.py', '08_variaveis_apoio.py',
                '09_kruskal_wallis_escores.py', '10_tabelas_e_figuras.py', '11_mapas_indicadores.py', '12_robustez_tandem.py', '13_ra_grupos_componentes.py',
                '20_figuras_perfil_validacao.py']

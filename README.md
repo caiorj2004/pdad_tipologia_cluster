@@ -60,6 +60,7 @@ Flags do modelo (`V2`): `ctx` (IVS-DF e escala da RA saem da matriz), `agua` e `
 | `21_stress_estrutural.py` | testes de estresse S1–S10 (sementes, tamanho × extremidade, Wilson, aparado, arquétipos, deixa-um-fora, algoritmos, corte de n, puxão da RA, eixos) |
 | `24_nulos_bootstrap_metades_territorial.py` | nulo do ARI do bootstrap, replicabilidade por metades de domicílios e nulo de atribuição domiciliar dentro do estrato (AMI de RA/subpopulação) |
 | `25_multinivel_moran_ajustado_validacao_ordenada.py` | MixedLM (subpopulação fixa, RA aleatória), Moran I ajustado por composição e validação externa ordenada |
+| `26_decomposicao_domiciliar_mista.py` | decomposição no nível do domicílio como a avaliação especifica: logit misto (binários) e MixedLM (renda), efeito fixo de subpopulação + RA + RA×subpopulação aleatórios |
 | `22_comparar_variantes.py` | consolidação das variantes |
 
 ## Dados
