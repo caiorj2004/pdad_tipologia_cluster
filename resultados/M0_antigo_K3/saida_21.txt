@@ -1,0 +1,55 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 6,
+ "S1_pct_sementes_no_otimo": 0.025,
+ "S1_ARI_medio_semente_unica": 0.562,
+ "S1_ARI_min_semente_unica": 0.289,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.22,
+ "S2_spearman_n_dist_Kfinal": -0.43,
+ "S2_p_Kfinal": 0.002,
+ "S2_spearman_n_dist_global": -0.393,
+ "S2_p_global": 0.005,
+ "S2_dist_med_peq": 4.364,
+ "S2_dist_med_grande": 2.283,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 0.929,
+ "S4_aparado6_pct_n<20": 1.0,
+ "S4_aparado10_ARI": 0.447,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.654,
+ "S5_pct_peso>0.8_Kfinal": 0.224,
+ "S5_ARI_argmax_vs_kmeans": 0.456,
+ "S5_var_explicada_Kfinal": 0.681,
+ "S6_ARI_medio_sem_uma_RA": 0.848,
+ "S6_ARI_min_sem_uma_RA": 0.378,
+ "S6_RA_critica": "Ceilândia",
+ "S6_ARI_medio_sem_uma_subpop": 0.699,
+ "S6_ARI_min_sem_uma_subpop": 0.539,
+ "S7_ARI_medio_outros_algoritmos": 0.415,
+ "S7_ARI_min_outros_algoritmos": 0.003,
+ "S7_ARI_Ward": 0.716,
+ "S7_ARI_GMM_completo": 0.36,
+ "S7_ARI_KMeans_peso_integral": 0.532,
+ "S8_ARI_n>=10": 0.602,
+ "S8_ARI_n>=20": 0.581,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.526,
+ "S9_frac_esperada_RA": 0.326,
+ "S9_p_RA": 0.018,
+ "S9_frac_mesmo_grupo_subpop": 0.37,
+ "S9_frac_esperada_subpop": 0.327,
+ "S9_p_subpop": 0.059,
+ "S10_eta2_max": 0.531,
+ "S10_eixo_dominante": "D4_Tecnologico_Conectividade_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.511
+}
+: 0.017982017982017984
+S9_frac_mesmo_grupo_subpop: 0.3698630136986301
+S9_frac_esperada_subpop: 0.3271301369863014
+S9_p_subpop: 0.058941058941058944
+S10_eta2_max: 0.5314055525126692
+S10_eixo_dominante: D4_Tecnologico_Conectividade_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5105705450896164

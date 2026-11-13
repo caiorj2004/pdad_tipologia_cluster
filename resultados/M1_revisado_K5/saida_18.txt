@@ -1,0 +1,64 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+1. DECOMPOSIÇÃO DE VARIANCIA (R2 de ANOVA; ICC de modelo misto com intercepto aleatório de RA, subpopulação como efeito fixo)
+    nivel                                  variavel  R2_RA  R2_sub  R2_RA+sub  ICC_RA_dado_sub  R2_segmento(RAxsub)  residual
+ segmento               D1_Financeiro_Ativos_MC_PC1  0.817   0.022      0.821            0.653                  NaN       NaN
+ segmento                 D2_Humano_Trabalho_MC_PC1  0.732   0.022      0.751            0.497                  NaN       NaN
+ segmento D3_Fisico_Habitacional_Territorial_MC_PC1  0.563   0.032      0.603            0.176                  NaN       NaN
+ segmento D3_Fisico_Habitacional_Territorial_MC_PC2  0.542   0.209      0.725            0.252                  NaN       NaN
+ segmento       D4_Tecnologico_Conectividade_MC_PC1  0.761   0.065      0.765            0.512                  NaN       NaN
+domicilio                       internet_domiciliar  0.019   0.002      0.020              NaN                0.031     0.969
+domicilio                 internet_banda_larga_fixa  0.027   0.006      0.031              NaN                0.055     0.945
+domicilio                         possui_computador  0.059   0.006      0.059              NaN                0.073     0.927
+domicilio                                 agua_rede  0.181   0.021      0.197              NaN                0.323     0.677
+domicilio             solucao_sanitaria_estruturada  0.252   0.014      0.253              NaN                0.286     0.714
+domicilio                           rua_pavimentada  0.166   0.015      0.184              NaN                0.265     0.735
+domicilio                              log_renda_hh  0.021   0.001      0.022              NaN                0.027     0.973
+domicilio                          possui_automovel  0.022   0.003      0.023              NaN                0.037     0.963
+domicilio                        comodos_por_pessoa  0.022   0.008      0.027              NaN                0.034     0.966
+Obs.: com 49 segmentos e 24 RAs o R2 de RA é inflado (muitos parâmetros); o R2 ajustado e o ICC devem ser lidos junto.
+
+2. AMI DOS GRUPOS COM RA E SUBPOPULAÇÃO
+    nivel       rotulo   AMI  AMI_nulo_medio  p_perm
+ segmento           RA 0.119          -0.002   0.003
+ segmento subpopulação 0.143           0.002   0.003
+domicilio           RA 0.507           0.000   0.005
+domicilio subpopulação 0.258           0.000   0.005
+
+3. JOIN COUNT (grupo dominante por RA; Queen; 9999 permutações de rótulos)
+ RAs  vinculos_queen  vinculos_mesmo_grupo  esperado_nulo  p_perm
+  23              42                    11          8.298   0.168
+Grupo dominante por RA:
+ra_norm
+aguas claras               3
+brazlandia                 1
+ceilandia                  0
+fercal                     4
+gama                       3
+itapoa                     0
+lago norte                 3
+nucleo bandeirante         1
+paranoa                    4
+park way                   3
+planaltina                 0
+recanto das emas           4
+riacho fundo               3
+riacho fundo ii            3
+samambaia                  2
+santa maria                1
+sao sebastiao              2
+scia estrutural            4
+sobradinho                 2
+sobradinho ii              3
+sol nascente por do sol    4
+taguatinga                 3
+vicente pires              2

@@ -1,0 +1,55 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 6,
+ "S1_pct_sementes_no_otimo": 0.095,
+ "S1_ARI_medio_semente_unica": 0.607,
+ "S1_ARI_min_semente_unica": 0.317,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.73,
+ "S2_spearman_n_dist_Kfinal": -0.473,
+ "S2_p_Kfinal": 0.001,
+ "S2_spearman_n_dist_global": -0.387,
+ "S2_p_global": 0.006,
+ "S2_dist_med_peq": 4.45,
+ "S2_dist_med_grande": 1.985,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 0.843,
+ "S4_aparado6_pct_n<20": 1.0,
+ "S4_aparado10_ARI": 0.813,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.651,
+ "S5_pct_peso>0.8_Kfinal": 0.204,
+ "S5_ARI_argmax_vs_kmeans": 0.57,
+ "S5_var_explicada_Kfinal": 0.693,
+ "S6_ARI_medio_sem_uma_RA": 0.807,
+ "S6_ARI_min_sem_uma_RA": 0.393,
+ "S6_RA_critica": "Ceilândia",
+ "S6_ARI_medio_sem_uma_subpop": 0.751,
+ "S6_ARI_min_sem_uma_subpop": 0.566,
+ "S7_ARI_medio_outros_algoritmos": 0.449,
+ "S7_ARI_min_outros_algoritmos": -0.002,
+ "S7_ARI_Ward": 0.367,
+ "S7_ARI_GMM_completo": 0.376,
+ "S7_ARI_KMeans_peso_integral": 0.506,
+ "S8_ARI_n>=10": 0.725,
+ "S8_ARI_n>=20": 0.705,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.605,
+ "S9_frac_esperada_RA": 0.327,
+ "S9_p_RA": 0.003,
+ "S9_frac_mesmo_grupo_subpop": 0.349,
+ "S9_frac_esperada_subpop": 0.328,
+ "S9_p_subpop": 0.193,
+ "S10_eta2_max": 0.608,
+ "S10_eixo_dominante": "D3_Fisico_Habitacional_Territorial_MC_PC2",
+ "S10_pct_var_1o_eixo_da_matriz": 0.515
+}
+2997002997002997
+S9_frac_mesmo_grupo_subpop: 0.3493150684931507
+S9_frac_esperada_subpop: 0.3278219178082192
+S9_p_subpop: 0.1928071928071928
+S10_eta2_max: 0.6077850950349591
+S10_eixo_dominante: D3_Fisico_Habitacional_Territorial_MC_PC2
+S10_pct_var_1o_eixo_da_matriz: 0.5154244585017478

@@ -1,0 +1,1 @@
+variante=A_so_dur V2=dur K=3 WINSOR_P=0.99 COMP=ilr N_BOOT=100 NINIT_BOOT=20
