@@ -58,6 +58,8 @@ Flags do modelo (`V2`): `ctx` (IVS-DF e escala da RA saem da matriz), `agua` e `
 | `19_validacao_externa.py` | EBIA, CadÚnico, benefícios, escritura, outorga |
 | `20_figuras_perfil_validacao.py` | figuras de perfis e validação |
 | `21_stress_estrutural.py` | testes de estresse S1–S10 (sementes, tamanho × extremidade, Wilson, aparado, arquétipos, deixa-um-fora, algoritmos, corte de n, puxão da RA, eixos) |
+| `24_nulos_bootstrap_metades_territorial.py` | nulo do ARI do bootstrap, replicabilidade por metades de domicílios e nulo de atribuição domiciliar dentro do estrato (AMI de RA/subpopulação) |
+| `25_multinivel_moran_ajustado_validacao_ordenada.py` | MixedLM (subpopulação fixa, RA aleatória), Moran I ajustado por composição e validação externa ordenada |
 | `22_comparar_variantes.py` | consolidação das variantes |
 
 ## Dados
@@ -76,3 +78,6 @@ Fonte dos dados: IPEDF, PDAD Rural 2022 (https://www.ipe.df.gov.br/).
 * O K-Means aparado e a análise de arquétipos são implementações próprias, não os pacotes `tclust` e `archetypes` do R.
 * Na validação deixa-uma-RA-fora, o PCA é mantido fixo (só o K-Means é refeito).
 * Os resultados dependem da versão das bibliotecas; as diferenças esperadas são pequenas (ordem de rótulos), mas não foram medidas.
+
+
+Auditoria contra a avaliação: `docs/auditoria_pipeline_vs_avaliacao.md`. A coluna opcional `extras` de `pipeline/variantes.tsv` aceita `BOOT_NIVEL=estrato;BOOT_RETENCAO=regra`, `AGUA_ESCADA=...`, `ESGOTO_ESCADA=...`.
