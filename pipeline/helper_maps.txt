@@ -1,0 +1,36 @@
+def numerar_ras(ras):
+    """Número de cada RA (ordem alfabética do nome sem acento), igual em todos os mapas."""
+    return {r: i + 1 for i, r in enumerate(sorted(set(ras)))}
+
+def rotular_numeros(ax, g, num, col="ra_norm", fs=10, dmin=0.055):
+    """Desenha o número de cada RA no seu ponto interno. Números que ficariam sobrepostos (RAs pequenas do
+    centro do DF) são afastados uns dos outros e ligados ao ponto de origem por uma linha."""
+    import numpy as np
+    g = g[g[col].isin(num)]
+    if g.empty: return
+    x0, y0, x1, y1 = g.total_bounds
+    W = max(x1 - x0, 1e-9); H = max(y1 - y0, 1e-9)
+    ref = max(W, 0.6 * H) if W >= H else H
+    nomes = list(g[col]); org = []
+    for geom in g.geometry:
+        p = geom.representative_point(); org.append((p.x, p.y))
+    org = np.array(org); pos = org.copy(); d0 = dmin * ref
+    rng = np.random.default_rng(1)
+    for _ in range(400):
+        mov = np.zeros_like(pos)
+        for i in range(len(pos)):
+            for j in range(i + 1, len(pos)):
+                v = pos[i] - pos[j]; dist = np.hypot(*v)
+                if dist < d0:
+                    if dist < 1e-12: v = rng.normal(size=2); dist = np.hypot(*v)
+                    push = (d0 - dist) / 2 * v / dist; mov[i] += push; mov[j] -= push
+        pos += mov + 0.02 * (org - pos)
+    for n_, o, p in zip(nomes, org, pos):
+        if np.hypot(*(p - o)) > 0.5 * d0:
+            ax.plot([o[0], p[0]], [o[1], p[1]], color="black", lw=.6, zorder=5)
+            ax.plot(o[0], o[1], "o", color="black", ms=2.2, zorder=5)
+        ax.text(p[0], p[1], str(num[n_]), fontsize=fs, ha="center", va="center", fontweight="bold", zorder=6,
+                bbox=dict(boxstyle="circle,pad=0.18", fc="white", ec="black", lw=.6))
+
+NUM_RA=numerar_ras(d.k)
+gg['ra_norm']=gg['k']

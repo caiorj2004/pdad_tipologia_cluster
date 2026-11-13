@@ -10,7 +10,7 @@ fig, axs = plt.subplots(2, 4, figsize=(13, 6.2), sharey=True)
 for ax, (v, t) in zip(axs.ravel(), rot.items()):
     for g in range(3):
         r = p[(p.grupo == g) & (p.variavel == v)].iloc[0]
-        ax.errorbar(r.estimativa * 100, g, xerr=[[ (r.estimativa - r.ic_inf) * 100], [(r.ic_sup - r.estimativa) * 100]], fmt='o', color=COR[g], ecolor='gray', capsize=3, ms=7)
+        ax.errorbar(r.estimativa * 100, g, xerr=[[max(0, (r.estimativa - r.ic_inf) * 100)], [max(0, (r.ic_sup - r.estimativa) * 100)]], fmt='o', color=COR[g], ecolor='gray', capsize=3, ms=7)
     ax.set_title(t, fontsize=9); ax.set_yticks(range(3)); ax.set_yticklabels(NOM, fontsize=8); ax.invert_yaxis(); ax.set_xlim(0, 100); ax.grid(axis='x', alpha=.3); ax.set_xlabel('% dos domicílios', fontsize=8)
 plt.tight_layout(); plt.savefig('figuras/perfil_grupos_ic.png', dpi=200); plt.close()
 v = pd.read_csv('validacao_externa.csv')
@@ -19,6 +19,6 @@ fig, axs = plt.subplots(2, 3, figsize=(13, 6), sharey=True)
 for ax, (k, t) in zip(axs.ravel(), rot2.items()):
     for g in range(3):
         r = v[(v.grupo == g) & (v.variavel == k)].iloc[0]
-        ax.errorbar(r.estimativa_pct, g, xerr=[[r.estimativa_pct - r.ic_inf], [r.ic_sup - r.estimativa_pct]], fmt='o', color=COR[g], ecolor='gray', capsize=3, ms=7)
+        ax.errorbar(r.estimativa_pct, g, xerr=[[max(0, r.estimativa_pct - r.ic_inf)], [max(0, r.ic_sup - r.estimativa_pct)]], fmt='o', color=COR[g], ecolor='gray', capsize=3, ms=7)
     ax.set_title(t, fontsize=9); ax.set_yticks(range(3)); ax.set_yticklabels(NOM, fontsize=8); ax.invert_yaxis(); ax.grid(axis='x', alpha=.3); ax.set_xlabel('% dos domicílios', fontsize=8)
 plt.tight_layout(); plt.savefig('figuras/validacao_externa.png', dpi=200); plt.close()
