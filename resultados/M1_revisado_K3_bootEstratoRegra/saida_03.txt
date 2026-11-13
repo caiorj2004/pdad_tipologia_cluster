@@ -1,0 +1,116 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+==============================================================================================================
+RETENÇÃO DE COMPONENTES (MONTE CARLO vs. KAISER)
+==============================================================================================================
+                          dimensao  componente  eigenvalue_obs  eigenvalue_mc_p95  retido_mc  retido_kaiser  variancia_explicada_pct  variancia_acumulada_pct
+                  D1_Bens_Duraveis           1          3.0702             1.8789       True           True                    38.38                    38.38
+                  D1_Bens_Duraveis           2          1.4619             1.5407      False           True                    18.27                    56.65
+                  D1_Bens_Duraveis           3          1.0842             1.3209      False           True                    13.55                    70.20
+                  D1_Bens_Duraveis           4          0.7394             1.1478      False          False                     9.24                    79.45
+                  D1_Bens_Duraveis           5          0.5862             0.9865      False          False                     7.33                    86.77
+                  D1_Bens_Duraveis           6          0.4640             0.8573      False          False                     5.80                    92.57
+                  D1_Bens_Duraveis           7          0.3386             0.7222      False          False                     4.23                    96.81
+                  D1_Bens_Duraveis           8          0.2556             0.5867      False          False                     3.19                   100.00
+                D2_Humano_Trabalho           1          2.1487             1.5366       True           True                    53.72                    53.72
+                D2_Humano_Trabalho           2          1.1368             1.1991      False           True                    28.42                    82.14
+                D2_Humano_Trabalho           3          0.5369             0.9951      False          False                    13.42                    95.56
+                D2_Humano_Trabalho           4          0.1776             0.8376      False          False                     4.44                   100.00
+D3_Fisico_Habitacional_Territorial           1          4.7978             2.2746       True           True                    34.27                    34.27
+D3_Fisico_Habitacional_Territorial           2          2.6403             1.9276       True           True                    18.86                    53.13
+D3_Fisico_Habitacional_Territorial           3          1.4141             1.6765      False           True                    10.10                    63.23
+D3_Fisico_Habitacional_Territorial           4          1.0483             1.4969      False           True                     7.49                    70.72
+D3_Fisico_Habitacional_Territorial           5          0.9056             1.3428      False          False                     6.47                    77.19
+D3_Fisico_Habitacional_Territorial           6          0.7613             1.2021      False          False                     5.44                    82.62
+D3_Fisico_Habitacional_Territorial           7          0.5524             1.0714      False          False                     3.95                    86.57
+D3_Fisico_Habitacional_Territorial           8          0.4774             0.9592      False          False                     3.41                    89.98
+D3_Fisico_Habitacional_Territorial           9          0.4089             0.8493      False          False                     2.92                    92.90
+D3_Fisico_Habitacional_Territorial          10          0.3506             0.7429      False          False                     2.50                    95.40
+D3_Fisico_Habitacional_Territorial          11          0.2610             0.6481      False          False                     1.86                    97.27
+D3_Fisico_Habitacional_Territorial          12          0.1714             0.5518      False          False                     1.22                    98.49
+D3_Fisico_Habitacional_Territorial          13          0.1527             0.4602      False          False                     1.09                    99.58
+D3_Fisico_Habitacional_Territorial          14          0.0584             0.3650      False          False                     0.42                   100.00
+      D4_Tecnologico_Conectividade           1          3.0556             1.5366       True           True                    76.39                    76.39
+      D4_Tecnologico_Conectividade           2          0.4675             1.1991      False          False                    11.69                    88.08
+      D4_Tecnologico_Conectividade           3          0.3837             0.9951      False          False                     9.59                    97.67
+      D4_Tecnologico_Conectividade           4          0.0932             0.8376      False          False                     2.33                   100.00
+
+==============================================================================================================
+CARGAS FATORIAIS DOS COMPONENTES RETIDOS
+==============================================================================================================
+                          Dimensão Componente                      Variável  Carga Fatorial (Loading)  Influência Absoluta
+                  D1_Bens_Duraveis        PC1             possui_microondas                    0.4995               0.4995
+                  D1_Bens_Duraveis        PC1        possui_ar_condicionado                    0.4382               0.4382
+                  D1_Bens_Duraveis        PC1               possui_lavadora                    0.4174               0.4174
+                  D1_Bens_Duraveis        PC1              possui_automovel                    0.3808               0.3808
+                  D1_Bens_Duraveis        PC1                     possui_tv                    0.3773               0.3773
+                  D1_Bens_Duraveis        PC1                possui_freezer                    0.2053               0.2053
+                  D1_Bens_Duraveis        PC1               log_renda_media                   -0.1658               0.1658
+                  D1_Bens_Duraveis        PC1            possui_motocicleta                   -0.1651               0.1651
+                D2_Humano_Trabalho        PC1         contribui_previdencia                    0.6367               0.6367
+                D2_Humano_Trabalho        PC1                 trabalhou_30d                    0.5395               0.5395
+                D2_Humano_Trabalho        PC1           escolaridade_adulto                    0.4956               0.4956
+                D2_Humano_Trabalho        PC1                      tem_ctps                    0.2407               0.2407
+D3_Fisico_Habitacional_Territorial        PC1               rua_pavimentada                    0.3904               0.3904
+D3_Fisico_Habitacional_Territorial        PC1     destino_com_coleta_direta                    0.3704               0.3704
+D3_Fisico_Habitacional_Territorial        PC1                      drenagem                    0.3664               0.3664
+D3_Fisico_Habitacional_Territorial        PC1            iluminacao_publica                    0.3575               0.3575
+D3_Fisico_Habitacional_Territorial        PC1               esgoto_ilr_tipo                    0.3334               0.3334
+D3_Fisico_Habitacional_Territorial        PC1          esgoto_ilr_adequacao                    0.3019               0.3019
+D3_Fisico_Habitacional_Territorial        PC1                 agua_ilr_tipo                    0.2731               0.2731
+D3_Fisico_Habitacional_Territorial        PC1                  ponto_onibus                    0.2714               0.2714
+D3_Fisico_Habitacional_Territorial        PC1 acesso_energetico_estruturado                    0.2065               0.2065
+D3_Fisico_Habitacional_Territorial        PC1            agua_ilr_adequacao                    0.1694               0.1694
+D3_Fisico_Habitacional_Territorial        PC1                    caixa_agua                   -0.1494               0.1494
+D3_Fisico_Habitacional_Territorial        PC1            comodos_por_pessoa                   -0.0569               0.0569
+D3_Fisico_Habitacional_Territorial        PC1          banheiros_por_pessoa                   -0.0287               0.0287
+D3_Fisico_Habitacional_Territorial        PC1                captacao_chuva                    0.0050               0.0050
+D3_Fisico_Habitacional_Territorial        PC2            comodos_por_pessoa                    0.5637               0.5637
+D3_Fisico_Habitacional_Territorial        PC2          banheiros_por_pessoa                    0.5354               0.5354
+D3_Fisico_Habitacional_Territorial        PC2 acesso_energetico_estruturado                    0.4089               0.4089
+D3_Fisico_Habitacional_Territorial        PC2                captacao_chuva                    0.2741               0.2741
+D3_Fisico_Habitacional_Territorial        PC2          esgoto_ilr_adequacao                    0.2475               0.2475
+D3_Fisico_Habitacional_Territorial        PC2                 agua_ilr_tipo                   -0.1325               0.1325
+D3_Fisico_Habitacional_Territorial        PC2                  ponto_onibus                   -0.1280               0.1280
+D3_Fisico_Habitacional_Territorial        PC2            iluminacao_publica                    0.1216               0.1216
+D3_Fisico_Habitacional_Territorial        PC2               esgoto_ilr_tipo                   -0.1106               0.1106
+D3_Fisico_Habitacional_Territorial        PC2                      drenagem                   -0.1102               0.1102
+D3_Fisico_Habitacional_Territorial        PC2                    caixa_agua                    0.1033               0.1033
+D3_Fisico_Habitacional_Territorial        PC2            agua_ilr_adequacao                    0.0667               0.0667
+D3_Fisico_Habitacional_Territorial        PC2               rua_pavimentada                   -0.0481               0.0481
+D3_Fisico_Habitacional_Territorial        PC2     destino_com_coleta_direta                    0.0390               0.0390
+      D4_Tecnologico_Conectividade        PC1     internet_banda_larga_fixa                    0.5238               0.5238
+      D4_Tecnologico_Conectividade        PC1           internet_domiciliar                    0.5179               0.5179
+      D4_Tecnologico_Conectividade        PC1                internet_movel                    0.4790               0.4790
+      D4_Tecnologico_Conectividade        PC1             possui_computador                    0.4775               0.4775
+
+Etapa 5 — Benchmark de K. Matriz de agrupamento: 49 segmentos x 5 componentes:
+  - D1_Bens_Duraveis_MC_PC1
+  - D2_Humano_Trabalho_MC_PC1
+  - D3_Fisico_Habitacional_Territorial_MC_PC1
+  - D3_Fisico_Habitacional_Territorial_MC_PC2
+  - D4_Tecnologico_Conectividade_MC_PC1
+
+==============================================================================================================
+BENCHMARK DE K
+==============================================================================================================
+ K  Silhouette  Calinski_Harabasz  Davies_Bouldin  Gap_Statistic     BIC  Menor_cluster_(segmentos)
+ 2      0.3267              28.79          1.1396         0.8355  982.97                         19
+ 3      0.2529              21.90          1.2534         0.8406  995.99                          8
+ 4      0.2237              18.44          1.3155         0.8019  997.14                         11
+ 5      0.2121              16.88          1.3406         0.8015 1012.67                          4
+ 6      0.1921              15.82          1.3472         0.7696 1014.30                          4
+ 7      0.2358              16.49          1.1531         0.8224 1049.32                          3
+ 8      0.2389              15.58          1.0189         0.7956 1010.40                          1
+
+Etapa 5.1/5.2 — Silhueta contra dois nulos + estabilidade por subamostragem...
+
