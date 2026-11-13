@@ -1,0 +1,1 @@
+variante=M0_antigo_K5_bootEstratoRegra V2= K=5 WINSOR_P=0.99 COMP=ilr N_BOOT=200 NINIT_BOOT=30 extras=BOOT_NIVEL=estrato;BOOT_RETENCAO=regra

@@ -1,0 +1,1 @@
+variante=E_agua_cisterna_precaria V2=ctx,agua,esgoto,renda,dur K=3 WINSOR_P=0.99 COMP=ilr N_BOOT=100 NINIT_BOOT=20 extras=AGUA_ESCADA=cisterna_prec
