@@ -1,0 +1,65 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 1, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 5
+ARI reprodução da referência: 1.0
+
+Coligação no bootstrap por classe (núcleo/fronteira):
+           mean  median   min   max  count
+Classe                                    
+Fronteira  0.53    0.56  0.24  0.61     25
+Núcleo     0.77    0.72  0.51  0.97     24
+Spearman com o escore de co-associação por subamostras: 0.94
+
+(a) BOOTSTRAP POR DOMICÍLIOS (200 réplicas, K=3, n_init=30)
+ARI vs. partição de referência: média 0.381 | mediana 0.338 | p5 0.197 | p95 0.698 | min 0.146
+Silhueta nas réplicas: média 0.239 (referência 0.253)
+
+Coligação média com o próprio grupo, por grupo (e por tamanho de amostra):
+           mean   min   max
+grupo_ref                  
+0          0.66  0.40  0.74
+1          0.53  0.24  0.61
+2          0.95  0.90  0.97
+       mean   min  count
+n_cat                   
+5-9    0.66  0.51      6
+10-14  0.61  0.55      2
+15+    0.60  0.24     23
+
+Segmentos com coligação < 0,60:
+                                         segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+Sol Nascente/Pôr do Sol | Características Urbanas          1         41                    0.24
+       Recanto das Emas | Agricultura Empresarial          1         28                    0.39
+              Ceilândia | Agricultura Empresarial          0        195                    0.40
+                      SCIA | Agricultura Familiar          1         50                    0.43
+          Vicente Pires | Características Urbanas          1        358                    0.45
+                 Park Way | Assentamento/Agrovila          1         49                    0.48
+                Paranoá | Características Urbanas          1         95                    0.50
+  Sol Nascente/Pôr do Sol | Assentamento/Agrovila          1         31                    0.51
+             Taguatinga | Agricultura Empresarial          0          8                    0.51
+                   Gama | Agricultura Empresarial          1        250                    0.51
+                   Fercal | Assentamento/Agrovila          1         29                    0.53
+              Samambaia | Agricultura Empresarial          1         12                    0.55
+                Brazlândia | Agricultura Familiar          1        191                    0.56
+                 Samambaia | Agricultura Familiar          1          6                    0.56
+                 Ceilândia | Agricultura Familiar          1        121                    0.56
+             Lago Norte | Características Urbanas          0         51                    0.57
+                    Fercal | Agricultura Familiar          1         50                    0.58
+                Planaltina | Agricultura Familiar          1        270                    0.58
+                Paranoá | Agricultura Empresarial          1         97                    0.58
+                   Paranoá | Agricultura Familiar          1        205                    0.59
+               Brazlândia | Assentamento/Agrovila          1         48                    0.59
+             Sobradinho II | Agricultura Familiar          1         22                    0.60
+          Sobradinho II | Agricultura Empresarial          1         35                    0.60
+
+ARI médio do bootstrap por K (referência de cada K = partição de 49 segmentos com n_init=50):
+  K=2: ARI médio 0.677 (200 réplicas)
