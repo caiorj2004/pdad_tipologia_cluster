@@ -71,6 +71,10 @@ def linha_variante(d):
     st = pd.read_csv(d / 'stress_resumo.csv').iloc[0].to_dict()
     for k_, v_ in st.items():
         if k_ not in ('K', 'n_segmentos'): r[k_] = v_
+    r['extras'] = cfg.get('extras', '')
+    for fn in ('nulos_24_resumo.csv', 'multinivel_moran_resumo.csv'):
+        if (d / fn).exists():
+            for k_, v_ in pd.read_csv(d / fn).iloc[0].to_dict().items(): r[k_] = v_
     f6b = d / 'stress_S6b_resumo.csv'
     if f6b.exists():
         for k_, v_ in pd.read_csv(f6b).iloc[0].to_dict().items(): r[k_] = v_
@@ -82,7 +86,7 @@ for d in sorted(RES.iterdir()):
         try: linhas.append(linha_variante(d))
         except Exception as e: print('ERRO', d.name, repr(e), file=sys.stderr)
 df = pd.DataFrame(linhas)
-ordem = ['M0_antigo_K5', 'M0_antigo_K3', 'M1_revisado_K3', 'M1_revisado_K5']
+ordem = ['M0_antigo_K5', 'M0_antigo_K3', 'M0_antigo_K4', 'M1_revisado_K3', 'M1_revisado_K5', 'M1_revisado_K4']
 df['__o'] = df.variante.map(lambda v: ordem.index(v) if v in ordem else 99); df = df.sort_values(['__o', 'variante']).drop(columns='__o')
 df.to_csv(RES / 'comparacao_variantes.csv', index=False)
 def fmt(x):

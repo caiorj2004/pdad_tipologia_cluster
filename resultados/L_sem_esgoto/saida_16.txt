@@ -105,3 +105,25 @@ renda_domiciliar_pc               876.18  969.95  1072.88  601.60  839.75  849.7
 rua_pavimentada                     0.05    0.46     0.16    0.02    0.33    0.06     0.84     0.73     0.29
 solucao_sanitaria_estruturada       0.29    0.84     0.67    0.24    0.75    0.47     0.89     0.88     0.85
 trabalhou_30d                       0.49    0.49     0.41    0.40    0.45    0.39     0.62     0.51     0.46
+
+(c) ESTABILIDADE (ARI por subamostras de 80%) vs. NULO DE COVARIANCIA (100 conjuntos nulos)
+  K=3: observado 0.657 | nulo média 0.687 (p95 0.886) | p = 0.594
+  K=4: observado 0.543 | nulo média 0.648 (p95 0.814) | p = 0.851
+  K=5: observado 0.485 | nulo média 0.608 (p95 0.766) | p = 0.871
+
+(d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.747; mudam: 5
+     Fercal | Agricultura Empresarial n=7: G0 -> G2
+     Fercal | Assentamento/Agrovila n=29: G2 -> G0
+     Paranoá | Características Urbanas n=95: G2 -> G0
+     Sol Nascente/Pôr do Sol | Assentamento/Agrovila n=31: G2 -> G0
+     Vicente Pires | Características Urbanas n=358: G2 -> G0
+
+(e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 18
+Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 36.1
+                                    segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+            Fercal | Agricultura Empresarial          0          7                    0.85
+Núcleo Bandeirante | Características Urbanas          1          5                    0.70
+      Riacho Fundo | Características Urbanas          1          5                    0.71
+            Samambaia | Agricultura Familiar          2          6                    0.57
+        Taguatinga | Agricultura Empresarial          1          8                    0.51
+      Águas Claras | Características Urbanas          1          5                    0.65

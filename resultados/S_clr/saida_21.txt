@@ -1,0 +1,55 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 5,
+ "S1_pct_sementes_no_otimo": 0.055,
+ "S1_ARI_medio_semente_unica": 0.531,
+ "S1_ARI_min_semente_unica": 0.199,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.56,
+ "S2_spearman_n_dist_Kfinal": -0.501,
+ "S2_p_Kfinal": 0.0,
+ "S2_spearman_n_dist_global": -0.335,
+ "S2_p_global": 0.019,
+ "S2_dist_med_peq": 4.112,
+ "S2_dist_med_grande": 2.033,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 0.815,
+ "S4_aparado6_pct_n<20": 0.5,
+ "S4_aparado10_ARI": 0.667,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.645,
+ "S5_pct_peso>0.8_Kfinal": 0.184,
+ "S5_ARI_argmax_vs_kmeans": 0.551,
+ "S5_var_explicada_Kfinal": 0.698,
+ "S6_ARI_medio_sem_uma_RA": 0.737,
+ "S6_ARI_min_sem_uma_RA": 0.323,
+ "S6_RA_critica": "Gama",
+ "S6_ARI_medio_sem_uma_subpop": 0.564,
+ "S6_ARI_min_sem_uma_subpop": 0.276,
+ "S7_ARI_medio_outros_algoritmos": 0.571,
+ "S7_ARI_min_outros_algoritmos": 0.045,
+ "S7_ARI_Ward": 0.732,
+ "S7_ARI_GMM_completo": 0.387,
+ "S7_ARI_KMeans_peso_integral": 0.63,
+ "S8_ARI_n>=10": 0.343,
+ "S8_ARI_n>=20": 0.316,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.447,
+ "S9_frac_esperada_RA": 0.372,
+ "S9_p_RA": 0.2,
+ "S9_frac_mesmo_grupo_subpop": 0.459,
+ "S9_frac_esperada_subpop": 0.369,
+ "S9_p_subpop": 0.008,
+ "S10_eta2_max": 0.631,
+ "S10_eixo_dominante": "D3_Fisico_Habitacional_Territorial_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.532
+}
+98001998001998
+S9_frac_mesmo_grupo_subpop: 0.4589041095890411
+S9_frac_esperada_subpop: 0.3686404109589041
+S9_p_subpop: 0.007992007992007992
+S10_eta2_max: 0.6311035392369385
+S10_eixo_dominante: D3_Fisico_Habitacional_Territorial_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5322866226981168

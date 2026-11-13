@@ -101,3 +101,37 @@ renda_domiciliar_pc               929.65  855.27  1204.17  780.95  783.73  674.8
 rua_pavimentada                     0.55    0.06     0.23    0.38    0.03    0.16     0.77    0.11     0.42
 solucao_sanitaria_estruturada       0.86    0.45     0.72    0.73    0.29    0.65     0.89    0.54     0.84
 trabalhou_30d                       0.46    0.46     0.44    0.42    0.43    0.34     0.50    0.48     0.47
+
+(c) ESTABILIDADE (ARI por subamostras de 80%) vs. NULO DE COVARIANCIA (100 conjuntos nulos)
+  K=3: observado 0.633 | nulo média 0.688 (p95 0.866) | p = 0.634
+  K=4: observado 0.450 | nulo média 0.658 (p95 0.821) | p = 0.960
+  K=5: observado 0.523 | nulo média 0.618 (p95 0.785) | p = 0.842
+
+(d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.300; mudam: 17
+     Ceilândia | Agricultura Empresarial n=195: G2 -> G0
+     Fercal | Agricultura Empresarial n=7: G1 -> G2
+     Fercal | Agricultura Familiar n=50: G1 -> G2
+     Fercal | Assentamento/Agrovila n=29: G1 -> G2
+     Lago Norte | Características Urbanas n=51: G2 -> G0
+     Paranoá | Agricultura Empresarial n=97: G1 -> G2
+     Paranoá | Agricultura Familiar n=205: G1 -> G2
+     Planaltina | Agricultura Empresarial n=194: G1 -> G2
+     Recanto das Emas | Agricultura Familiar n=49: G1 -> G2
+     Riacho Fundo II | Assentamento/Agrovila n=69: G2 -> G0
+     SCIA | Agricultura Familiar n=50: G1 -> G2
+     Samambaia | Agricultura Familiar n=6: G1 -> G2
+     Sobradinho | Agricultura Empresarial n=79: G2 -> G0
+     Sobradinho II | Características Urbanas n=182: G2 -> G0
+     Sol Nascente/Pôr do Sol | Assentamento/Agrovila n=31: G1 -> G2
+     Sol Nascente/Pôr do Sol | Características Urbanas n=41: G0 -> G2
+     Taguatinga | Agricultura Empresarial n=8: G2 -> G0
+
+(e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 8
+Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 13.1
+                                    segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+            Fercal | Agricultura Empresarial          1          7                    0.79
+Núcleo Bandeirante | Características Urbanas          0          5                    0.77
+      Riacho Fundo | Características Urbanas          0          5                    0.78
+            Samambaia | Agricultura Familiar          1          6                    0.65
+        Taguatinga | Agricultura Empresarial          2          8                    0.62
+      Águas Claras | Características Urbanas          0          5                    0.57

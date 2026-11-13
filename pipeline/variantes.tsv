@@ -1,4 +1,4 @@
-# nome	V2 (flags ligadas)	K	WINSOR_P	COMP	N_BOOT	NINIT_BOOT	manter_figuras
+# nome	V2 (flags ligadas)	K	WINSOR_P	COMP	N_BOOT	NINIT_BOOT	manter_figuras	extras (VAR=valor;VAR=valor, opcional)
 M0_antigo_K5	nenhuma	5	0.99	ilr	200	30	1
 M0_antigo_K3	nenhuma	3	0.99	ilr	200	30	0
 M1_revisado_K3	ctx,agua,esgoto,renda,dur	3	0.99	ilr	200	30	1
@@ -18,3 +18,11 @@ S_winsor100	ctx,agua,esgoto,renda,dur	3	1.0	ilr	100	20	0
 S_clr	ctx,agua,esgoto,renda,dur	3	0.99	clr	100	20	0
 M0_antigo_K5_b500n50	nenhuma	5	0.99	ilr	500	50	0
 M1_revisado_K3_b500n50	ctx,agua,esgoto,renda,dur	3	0.99	ilr	500	50	0
+M0_antigo_K4	nenhuma	4	0.99	ilr	200	30	0	
+M1_revisado_K4	ctx,agua,esgoto,renda,dur	4	0.99	ilr	200	30	0	
+M0_antigo_K5_bootEstratoRegra	nenhuma	5	0.99	ilr	200	30	0	BOOT_NIVEL=estrato;BOOT_RETENCAO=regra
+M1_revisado_K3_bootEstratoRegra	ctx,agua,esgoto,renda,dur	3	0.99	ilr	200	30	0	BOOT_NIVEL=estrato;BOOT_RETENCAO=regra
+E_agua_cisterna_precaria	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	AGUA_ESCADA=cisterna_prec
+E_agua_nascente_individual	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	AGUA_ESCADA=nascente_ind
+E_agua_gambiarra_na_rede	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	AGUA_ESCADA=gambiarra_rede
+E_esgoto_rudimentar_individual	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	ESGOTO_ESCADA=rudimentar_ind

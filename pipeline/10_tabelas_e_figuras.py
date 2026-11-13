@@ -13,7 +13,7 @@ def fp(p): return '$<0{,}001$' if p<0.001 else f"{p:.3f}".replace('.',',')
 # ---------- escores por grupo
 d=pd.read_csv('segmentos_completo.csv'); kw=pd.read_csv('kw_todas.csv')
 comp=kw[kw.tipo=='comp']
-names={'D1_Financeiro_Ativos_MC_PC1':'D1 PC1 (bens duráveis)','D2_Humano_Trabalho_MC_PC1':'D2 PC1 (formalização e escolaridade)','D3_Fisico_Habitacional_Territorial_MC_PC1':'D3 PC1 (infraestrutura pública)','D3_Fisico_Habitacional_Territorial_MC_PC2':'D3 PC2 (condição da moradia)','D4_Tecnologico_Conectividade_MC_PC1':'D4 PC1 (conectividade)'}
+names={'D1_Bens_Duraveis_MC_PC1':'D1 PC1 (bens duráveis)','D2_Humano_Trabalho_MC_PC1':'D2 PC1 (formalização e escolaridade)','D3_Fisico_Habitacional_Territorial_MC_PC1':'D3 PC1 (infraestrutura pública)','D3_Fisico_Habitacional_Territorial_MC_PC2':'D3 PC2 (condição da moradia)','D4_Tecnologico_Conectividade_MC_PC1':'D4 PC1 (conectividade)'}
 m=d.groupby('Cluster_K3')[list(names)].mean(); sd=d[list(names)].std()
 t=r"""\begin{table}[htbp]
 \centering

@@ -1,0 +1,1 @@
+variante=M1_revisado_K3_b500n50 V2=ctx,agua,esgoto,renda,dur K=3 WINSOR_P=0.99 COMP=ilr N_BOOT=500 NINIT_BOOT=50

@@ -18,7 +18,7 @@ def fix(x):
     return x
 g['k']=g[col].map(fix).map(nrm).replace({'scia':'scia estrutural','sol nascente e por do sol':'sol nascente por do sol'}); d['k']=d.ra_norm.map(nrm)
 print('sem shape:',sorted(set(d.k)-set(g.k))); 
-comp={'D1_Financeiro_Ativos_MC_PC1':'D1 PC1 — bens duráveis','D2_Humano_Trabalho_MC_PC1':'D2 PC1 — formalização e escolaridade','D3_Fisico_Habitacional_Territorial_MC_PC1':'D3 PC1 — infraestrutura pública','D3_Fisico_Habitacional_Territorial_MC_PC2':'D3 PC2 — condição da moradia','D4_Tecnologico_Conectividade_MC_PC1':'D4 PC1 — conectividade'}
+comp={'D1_Bens_Duraveis_MC_PC1':'D1 PC1 — bens duráveis','D2_Humano_Trabalho_MC_PC1':'D2 PC1 — formalização e escolaridade','D3_Fisico_Habitacional_Territorial_MC_PC1':'D3 PC1 — infraestrutura pública','D3_Fisico_Habitacional_Territorial_MC_PC2':'D3 PC2 — condição da moradia','D4_Tecnologico_Conectividade_MC_PC1':'D4 PC1 — conectividade'}
 var={'renda_domiciliar_pc':'Renda per capita (R$)','escolaridade_adulto':'Escolaridade (anos)','agua_rede':'Água da rede (%)','solucao_sanitaria_estruturada':'Solução sanitária (%)','rua_pavimentada':'Rua pavimentada (%)','internet_banda_larga_fixa':'Banda larga fixa (%)','possui_computador':'Computador (%)','ivs_df':'IVS-DF'}
 pct={'agua_rede','solucao_sanitaria_estruturada','rua_pavimentada','internet_banda_larga_fixa','possui_computador'}
 cols=list(comp)+list(var)

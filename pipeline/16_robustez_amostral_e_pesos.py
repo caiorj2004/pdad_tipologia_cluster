@@ -15,6 +15,8 @@ from sklearn.metrics import adjusted_rand_score, silhouette_score
 
 B = int(os.environ.get('N_BOOT', 500)); SEED = 42
 NINIT = int(os.environ.get('NINIT_BOOT', 10))   # inicializações do K-Means em cada réplica (10 = rápido; 50 = igual à referência, separa ótimo local de incerteza amostral)
+BOOT_NIVEL = os.environ.get('BOOT_NIVEL', 'segmento')        # 'segmento' (domicílios reamostrados dentro de cada segmento; tamanho do segmento fixo) | 'estrato' (dentro de cada estrato amostral, como na avaliação; o tamanho do segmento varia)
+BOOT_RETENCAO = os.environ.get('BOOT_RETENCAO', 'fixa')      # 'fixa' (nº de componentes da referência) | 'regra' (refaz a análise paralela de Monte Carlo em cada réplica)
 src = open(os.environ.get('TCC_03', '03_analise_cluster_4d.py'), encoding='utf-8').read()
 # reaproveita configuração e Fase 1 do programa 03 (variáveis, pesos e matriz de 49 segmentos), sem rodar as etapas seguintes
 exec(compile(src[:src.index('def monte_carlo_parallel_analysis')], '03_fase1', 'exec'))
@@ -27,12 +29,22 @@ K = K_FINAL
 ncomp = {d: sum(c.startswith(d + '_MC_PC') for c in ref.columns) for d in DIMENSOES_REF}
 print('componentes por dimensão:', ncomp, '| total', sum(ncomp.values()))
 
-def pca_matriz(M):
-    """M: DataFrame com as 49 linhas e as variáveis; devolve a matriz de escores (mesma regra do programa 03)."""
+_mc_cache = {}
+def _mc_p95(n, p, it=300, seed=SEED):
+    if (n, p) not in _mc_cache:
+        rs = np.random.RandomState(seed); sim = np.zeros((it, p))
+        for i in range(it): sim[i] = np.linalg.eigvalsh(np.corrcoef(rs.normal(size=(n, p)), rowvar=False))[::-1]
+        _mc_cache[(n, p)] = np.percentile(sim, 95, axis=0)
+    return _mc_cache[(n, p)]
+def pca_matriz(M, regra=False):
+    """M: DataFrame com as 49 linhas e as variáveis; devolve a matriz de escores. regra=True redecide o nº de componentes pela análise paralela (95%) em cada chamada."""
     Z = []
     for d, vs in DIMENSOES_REF.items():
         X = StandardScaler().fit_transform(M[vs].apply(pd.to_numeric, errors='coerce').fillna(0))
-        Z.append(PCA(n_components=ncomp[d]).fit_transform(X))
+        if regra:
+            eig = np.linalg.eigvalsh(np.corrcoef(X, rowvar=False))[::-1]; k = max(1, int((eig > _mc_p95(len(X), len(vs))).sum()))
+        else: k = ncomp[d]
+        Z.append(PCA(n_components=k).fit_transform(X))
     return np.hstack(Z)
 
 # confere a reprodução da partição de referência
@@ -47,6 +59,18 @@ seg_id = df_dom.groupby(CHAVES, dropna=False).ngroup().to_numpy()
 hh_pos = {h: i for i, h in enumerate(df_dom[ID])}
 mor_hh = df_mor[ID].map(hh_pos).to_numpy()
 idx_por_seg = [np.where(seg_id == s)[0] for s in range(seg_id.max() + 1)]
+if BOOT_NIVEL == 'estrato':
+    _est = df_dom[ESTRATO].to_numpy(); idx_grupos = [np.where(_est == e)[0] for e in np.unique(_est)]
+    _segs_do_grupo = [np.unique(seg_id[ix]) for ix in idx_grupos]
+else: idx_grupos = idx_por_seg; _segs_do_grupo = [np.array([s]) for s in range(len(idx_por_seg))]
+def sorteio(rng):
+    m = np.zeros(len(df_dom))
+    for ix, ss in zip(idx_grupos, _segs_do_grupo):
+        while True:                                   # redesenha se algum segmento ficar sem nenhum domicílio sorteado
+            c = np.bincount(rng.integers(0, len(ix), len(ix)), minlength=len(ix))
+            if all(c[seg_id[ix] == sg].sum() > 0 for sg in ss): break
+        m[ix] = c
+    return m
 df_dom_s = df_dom[CHAVES + VAR_DOM + ['peso_dom_corrigido']].copy(); df_mor_s = df_mor[CHAVES + VAR_MOR + [PESO_MOR]].copy()   # só as colunas usadas
 coassoc = np.zeros((49, 49)); aris = []; sil = []; Zs = []
 PERF = ['renda_domiciliar_pc', 'escolaridade_adulto', 'internet_banda_larga_fixa', 'possui_computador', 'agua_rede', 'solucao_sanitaria_estruturada', 'rua_pavimentada', 'trabalhou_30d', 'contribui_previdencia', 'possui_automovel', 'ivs_df']
@@ -57,18 +81,18 @@ def perfil_grupos(M, lab, w, K):
         m = lab == g
         if m.any(): out[g] = [np.average(M.loc[m, p].fillna(0), weights=w[m]) for p in PERF]
     return out
-perfs = []; ARI_BOOT_N = []
+perfs = []; ARI_BOOT_N = []; Ms_boot = []; labs_al = []
+_cols_modelo = [v for vs in DIMENSOES_REF.values() for v in vs]
 for b in range(B):
-    m = np.zeros(len(df_dom))
-    for idx in idx_por_seg:
-        m[idx] = np.bincount(rng.integers(0, len(idx), len(idx)), minlength=len(idx))
+    m = sorteio(rng)
     d = df_dom_s.copy(); d['w_b'] = d['peso_dom_corrigido'] * m
     o = df_mor_s.copy(); o['w_b'] = o[PESO_MOR] * m[mor_hh]
     md = media_ponderada_vetorizada(d, CHAVES, VAR_DOM, 'w_b'); mo = media_ponderada_vetorizada(o, CHAVES, VAR_MOR, 'w_b')
     md['log_renda_domiciliar_pc'] = np.where(md['renda_domiciliar_pc'] >= 0, np.log1p(md['renda_domiciliar_pc']), np.nan)
     M = df_matriz_A[CHAVES + ['amostra_n']].merge(md, on=CHAVES, how='left').merge(mo, on=CHAVES, how='left')
     M = derivar_variaveis_modelo(M)
-    Z = pca_matriz(M); Zs.append(Z)
+    Z = pca_matriz(M, regra=(BOOT_RETENCAO == 'regra')); Zs.append(Z)
+    Ms_boot.append(M[_cols_modelo].to_numpy(float))
     lab = KMeans(K, n_init=NINIT, random_state=b).fit(Z).labels_
     ct = pd.crosstab(lab_ref, lab).reindex(index=range(K), columns=range(K), fill_value=0).to_numpy()
     r_, c_ = linear_sum_assignment(-ct); mp = {c: r for r, c in zip(r_, c_)}
@@ -77,9 +101,11 @@ for b in range(B):
         if pn not in M.columns: M[pn] = df_matriz_A[pn].to_numpy()   # variáveis só descritivas (ex. ivs_df) vêm da matriz original
     wb = d.groupby(CHAVES, sort=False)['w_b'].sum().reindex(pd.MultiIndex.from_frame(df_matriz_A[CHAVES])).to_numpy()
     perfs.append(perfil_grupos(M, lab_al, np.where(np.isnan(wb), 0, wb) + 1e-9, K))
-    aris.append(adjusted_rand_score(lab_ref, lab)); sil.append(silhouette_score(Z, lab))
+    labs_al.append(lab_al); aris.append(adjusted_rand_score(lab_ref, lab)); sil.append(silhouette_score(Z, lab))
     coassoc += (lab[:, None] == lab[None, :])
 coassoc /= B
+np.save('boot_labels_alinhados.npy', np.array(labs_al)); np.save('boot_ari.npy', np.array(aris)); np.save('boot_matrizes.npy', np.array(Ms_boot))
+open('boot_matrizes_colunas.txt', 'w', encoding='utf-8').write('\n'.join(_cols_modelo))
 res = []
 for i in range(49):
     mates = [j for j in range(49) if lab_ref[j] == lab_ref[i] and j != i]
@@ -96,7 +122,7 @@ if _cf.exists():
     print('Spearman com o escore de co-associação por subamostras:', round(res[['junto_do_proprio_grupo', 'Escore_subamostras']].corr(method='spearman').iloc[0, 1], 2))
 res.to_csv('robustez_amostral_segmentos.csv', index=False)
 aris = np.array(aris)
-print(f'\n(a) BOOTSTRAP POR DOMICÍLIOS ({B} réplicas, K={K}, n_init={NINIT})')
+print(f'\n(a) BOOTSTRAP POR DOMICÍLIOS ({B} réplicas, K={K}, n_init={NINIT}, nível={BOOT_NIVEL}, retenção={BOOT_RETENCAO})')
 print(f'ARI vs. partição de referência: média {aris.mean():.3f} | mediana {np.median(aris):.3f} | p5 {np.percentile(aris,5):.3f} | p95 {np.percentile(aris,95):.3f} | min {aris.min():.3f}')
 print(f'Silhueta nas réplicas: média {np.mean(sil):.3f} (referência {silhouette_score(Z0, lab_ref):.3f})')
 print('\nColigação média com o próprio grupo, por grupo (e por tamanho de amostra):')
@@ -183,6 +209,31 @@ ct = pd.crosstab(lab_ref, lab_s).reindex(index=range(K), columns=range(K), fill_
 lab_s_al = np.array([mp[l] for l in lab_s]); mud = np.where(lab_s_al != lab_ref)[0]
 print(f'\n(d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = {np.mean(lams):.2f} (segmentos com n<10: {np.mean(np.array(lams)[:, n_h < 10]):.2f}); ARI vs. referência {adjusted_rand_score(lab_ref, lab_s):.3f}; mudam: {len(mud)}')
 for i in mud: print('    ', df_matriz_A.loc[i, RA], '|', df_matriz_A.loc[i, SUB], f'n={int(n_h[i])}: G{lab_ref[i]} -> G{lab_s_al[i]}')
+
+# ---------------- (d2) encolhimento conforme a especificação da avaliação: tamanho efetivo de Kish e média da SUBPOPULAÇÃO (método dos momentos)
+def kish_stats(col, base, wcol):
+    b = base[CHAVES + [col, wcol]].dropna(subset=[col]); b = b[b[wcol] > 0].copy()
+    b['wx'] = b[wcol] * b[col]; g = b.groupby(CHAVES)
+    sw, sw2, swx = g[wcol].sum(), g[wcol].apply(lambda x: (x ** 2).sum()), g['wx'].sum()
+    mean = swx / sw; b = b.join(mean.rename('m'), on=CHAVES); b['wv'] = b[wcol] * (b[col] - b['m']) ** 2
+    s2 = b.groupby(CHAVES)['wv'].sum() / sw; neff = sw ** 2 / sw2
+    idx = pd.MultiIndex.from_frame(M1[CHAVES])
+    return mean.reindex(idx).to_numpy(), s2.reindex(idx).to_numpy(), neff.reindex(idx).to_numpy()
+M2 = df_matriz_A.copy(); sub_arr = M2[SUB].to_numpy(); lams2 = []
+for v in vars_enc:
+    base = df_dom if v in df_dom.columns else df_mor; wcol = 'peso_dom_corrigido' if v in df_dom.columns else PESO_MOR
+    p_hat, s2, neff = kish_stats(v, base, wcol)
+    ok = ~np.isnan(p_hat) & ~np.isnan(neff); s2 = np.where(np.isnan(s2), np.nanmean(s2), s2); se2 = s2 / np.where(ok, neff, np.nan)
+    m_sub = np.array([np.average(p_hat[ok & (sub_arr == u)], weights=neff[ok & (sub_arr == u)]) if (ok & (sub_arr == u)).any() else np.nan for u in sub_arr])
+    S = ok.sum(); tau2 = max(np.nansum((p_hat - m_sub) ** 2) / max(S - len(np.unique(sub_arr)), 1) - np.nanmean(se2), 1e-9)
+    lam = np.where(ok, tau2 / (tau2 + se2), 1.0); lams2.append(lam)
+    M2[v] = np.where(ok, lam * p_hat + (1 - lam) * m_sub, M2[v].to_numpy(float))
+M2 = derivar_variaveis_modelo(M2)
+lab_s2 = KMeans(K, n_init=50, random_state=SEED).fit(pca_matriz(M2)).labels_
+ct = pd.crosstab(lab_ref, lab_s2).reindex(index=range(K), columns=range(K), fill_value=0).to_numpy(); r_, c_ = linear_sum_assignment(-ct); mp = {c: r for r, c in zip(r_, c_)}
+lab_s2_al = np.array([mp[l] for l in lab_s2]); mud2 = np.where(lab_s2_al != lab_ref)[0]
+print(f'\n(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = {np.mean(lams2):.2f} (segmentos com n<10: {np.mean(np.array(lams2)[:, n_h < 10]):.2f}); ARI vs. referência {adjusted_rand_score(lab_ref, lab_s2):.3f}; mudam: {len(mud2)}')
+for i in mud2: print('    ', df_matriz_A.loc[i, RA], '|', df_matriz_A.loc[i, SUB], f'n={int(n_h[i])}: G{lab_ref[i]} -> G{lab_s2_al[i]}')
 
 # ---------------- (e) regra principal: n<10 = 'não classificável'; coligação no bootstrap < 0,60 = 'fronteira'
 res['nao_classificavel'] = res['amostra_n'] < 10

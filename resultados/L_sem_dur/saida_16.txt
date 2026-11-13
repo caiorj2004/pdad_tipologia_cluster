@@ -1,0 +1,125 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 1, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 5
+ARI reprodução da referência: 1.0
+
+Coligação no bootstrap por classe (núcleo/fronteira):
+           mean  median   min  max  count
+Classe                                   
+Fronteira  0.48    0.49  0.34  0.6     10
+Núcleo     0.68    0.64  0.51  0.9     39
+Spearman com o escore de co-associação por subamostras: 0.89
+
+(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20)
+ARI vs. partição de referência: média 0.380 | mediana 0.313 | p5 0.212 | p95 0.667 | min 0.177
+Silhueta nas réplicas: média 0.239 (referência 0.245)
+
+Coligação média com o próprio grupo, por grupo (e por tamanho de amostra):
+           mean   min   max
+grupo_ref                  
+0          0.57  0.38  0.64
+1          0.63  0.44  0.71
+2          0.83  0.34  0.90
+       mean   min  count
+n_cat                   
+5-9    0.64  0.52      6
+10-14  0.60  0.56      2
+15+    0.60  0.34     23
+
+Segmentos com coligação < 0,60:
+                                         segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+Sol Nascente/Pôr do Sol | Características Urbanas          2         41                    0.34
+       Recanto das Emas | Agricultura Empresarial          0         28                    0.38
+                      SCIA | Agricultura Familiar          0         50                    0.41
+                 Park Way | Assentamento/Agrovila          1         49                    0.44
+              Ceilândia | Agricultura Empresarial          1        195                    0.44
+                   Gama | Agricultura Empresarial          0        250                    0.51
+             Taguatinga | Agricultura Empresarial          1          8                    0.52
+  Sol Nascente/Pôr do Sol | Assentamento/Agrovila          0         31                    0.54
+                   Fercal | Assentamento/Agrovila          0         29                    0.55
+                 Ceilândia | Agricultura Familiar          0        121                    0.55
+          Vicente Pires | Características Urbanas          0        358                    0.55
+                Brazlândia | Agricultura Familiar          0        191                    0.56
+                Paranoá | Características Urbanas          0         95                    0.56
+              Samambaia | Agricultura Empresarial          0         12                    0.56
+                Planaltina | Agricultura Familiar          0        270                    0.58
+     Núcleo Bandeirante | Características Urbanas          1          5                    0.58
+             Lago Norte | Características Urbanas          1         51                    0.60
+
+ARI médio do bootstrap por K (referência de cada K = partição de 49 segmentos com n_init=50):
+  K=2: ARI médio 0.664 (200 réplicas)
+  K=3: ARI médio 0.380 (200 réplicas)
+  K=4: ARI médio 0.384 (200 réplicas)
+  K=5: ARI médio 0.395 (200 réplicas)
+  K=6: ARI médio 0.366 (200 réplicas)
+
+(b) K-MEANS PONDERADO (mesmos 6 escores, K={K}, n_init=50)
+- sem peso (referência): ARI 1.000; tamanhos [22, 18, 9]; segmentos que mudam de grupo: 0
+- raiz do peso: ARI 0.576; tamanhos [21, 16, 12]; segmentos que mudam de grupo: 8
+     Ceilândia | Agricultura Empresarial (ref G1, domicílios exp. 2370)
+     Fercal | Assentamento/Agrovila (ref G0, domicílios exp. 60)
+     Paranoá | Características Urbanas (ref G0, domicílios exp. 2295)
+     Park Way | Assentamento/Agrovila (ref G1, domicílios exp. 106)
+     Sol Nascente/Pôr do Sol | Assentamento/Agrovila (ref G0, domicílios exp. 182)
+     Sol Nascente/Pôr do Sol | Características Urbanas (ref G2, domicílios exp. 681)
+     Taguatinga | Agricultura Empresarial (ref G1, domicílios exp. 97)
+     Vicente Pires | Características Urbanas (ref G0, domicílios exp. 5233)
+- peso integral: ARI 0.576; tamanhos [21, 16, 12]; segmentos que mudam de grupo: 8
+     Ceilândia | Agricultura Empresarial (ref G1, domicílios exp. 2370)
+     Fercal | Assentamento/Agrovila (ref G0, domicílios exp. 60)
+     Paranoá | Características Urbanas (ref G0, domicílios exp. 2295)
+     Park Way | Assentamento/Agrovila (ref G1, domicílios exp. 106)
+     Sol Nascente/Pôr do Sol | Assentamento/Agrovila (ref G0, domicílios exp. 182)
+     Sol Nascente/Pôr do Sol | Características Urbanas (ref G2, domicílios exp. 681)
+     Taguatinga | Agricultura Empresarial (ref G1, domicílios exp. 97)
+     Vicente Pires | Características Urbanas (ref G0, domicílios exp. 5233)
+
+Domicílios expandidos por grupo de referência (%):
+0    48.4
+1    28.1
+2    23.5
+
+PERFIS DOS GRUPOS COM IC 95% (bootstrap de domicílios; média ponderada por domicílios expandidos)
+                              estimativa                  ic_inf                   ic_sup                  
+grupo                                  0       1       2       0       1       2        0        1        2
+variavel                                                                                                   
+agua_rede                           0.27    0.50    0.13    0.10    0.38    0.07     0.39     0.71     1.00
+contribui_previdencia               0.27    0.36    0.26    0.25    0.31    0.18     0.31     0.38     0.56
+escolaridade_adulto                 8.06    9.72    8.09    7.89    8.77    7.37     8.96     9.99    11.46
+internet_banda_larga_fixa           0.68    0.81    0.65    0.64    0.75    0.41     0.77     0.85     0.97
+ivs_df                              0.41    0.33    0.50    0.36    0.32    0.21     0.46     0.40     0.50
+possui_automovel                    0.64    0.72    0.61    0.60    0.67    0.31     0.73     0.75     0.97
+possui_computador                   0.34    0.49    0.25    0.27    0.42    0.20     0.43     0.53     0.95
+renda_domiciliar_pc              1073.72  969.08  876.18  846.96  837.85  562.10  1522.90  1159.07  1539.06
+rua_pavimentada                     0.16    0.45    0.05    0.06    0.27    0.02     0.27     0.73     0.90
+solucao_sanitaria_estruturada       0.67    0.84    0.29    0.46    0.74    0.25     0.81     0.88     0.89
+trabalhou_30d                       0.41    0.48    0.49    0.40    0.44    0.36     0.46     0.50     0.68
+
+(c) ESTABILIDADE (ARI por subamostras de 80%) vs. NULO DE COVARIANCIA (100 conjuntos nulos)
+  K=3: observado 0.614 | nulo média 0.690 (p95 0.890) | p = 0.743
+  K=4: observado 0.525 | nulo média 0.647 (p95 0.827) | p = 0.851
+  K=5: observado 0.528 | nulo média 0.610 (p95 0.775) | p = 0.812
+
+(d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.826; mudam: 3
+     Fercal | Agricultura Empresarial n=7: G2 -> G0
+     Recanto das Emas | Agricultura Empresarial n=28: G0 -> G1
+     Sol Nascente/Pôr do Sol | Características Urbanas n=41: G2 -> G0
+
+(e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 15
+Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 40.8
+                                    segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+            Fercal | Agricultura Empresarial          2          7                    0.85
+Núcleo Bandeirante | Características Urbanas          1          5                    0.58
+      Riacho Fundo | Características Urbanas          1          5                    0.64
+            Samambaia | Agricultura Familiar          0          6                    0.61
+        Taguatinga | Agricultura Empresarial          1          8                    0.52
+      Águas Claras | Características Urbanas          1          5                    0.62

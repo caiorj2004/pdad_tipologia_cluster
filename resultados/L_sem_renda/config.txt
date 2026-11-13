@@ -1,0 +1,1 @@
+variante=L_sem_renda V2=ctx,agua,esgoto,dur K=3 WINSOR_P=0.99 COMP=ilr N_BOOT=100 NINIT_BOOT=20

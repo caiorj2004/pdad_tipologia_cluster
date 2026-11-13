@@ -229,12 +229,17 @@ df_dom["caixa_agua"] = parse_binaria(df_dom["B14_6_abast_de_agua_neste_domicilio
 df_dom["solucao_sanitaria_estruturada"] = combine_max(df_dom, ["B15_1_esgot_sanitario_rede_geral_caesb", "B15_2_esgot_sanitario_fossa_septica", "B15_5_esgot_sanitario_bacia_de_evapotranspiracao"], parse_binaria)
 # [V2] escadas de serviço (hierarquia: vale a melhor fonte declarada; B14 e B15 aceitam várias respostas)
 def _sim(col): return parse_binaria(df_dom[col]).fillna(0.0).astype(bool)
-_rede_a, _poco_a = _sim("B14_1_abast_de_agua_rede_geral_caesb"), _sim("B14_2_abast_de_agua_poco_artesiano") | _sim("B14_3_abast_de_agua_poco_cisterna")
+# Definições alternativas da escada (teste de sensibilidade; padrão = "base"): AGUA_ESCADA = base | cisterna_prec | nascente_ind | gambiarra_rede (combináveis por vírgula)
+_AE = set(os.environ.get("AGUA_ESCADA", "base").split(","))
+_rede_a = _sim("B14_1_abast_de_agua_rede_geral_caesb") | (_sim("B14_5_abast_de_agua_gambiarra") if "gambiarra_rede" in _AE else False)
+_poco_a = (_sim("B14_2_abast_de_agua_poco_artesiano") | (_sim("B14_3_abast_de_agua_poco_cisterna") if "cisterna_prec" not in _AE else False)
+           | (_sim("B14_4_abast_de_agua_captacao_agua_em_corrego_nascente_canal") if "nascente_ind" in _AE else False))
 _nivel_agua = np.where(_rede_a, "rede", np.where(_poco_a, "ind", "prec"))
 _ok_agua = parse_binaria(df_dom["B14_1_abast_de_agua_rede_geral_caesb"]).notna() | parse_binaria(df_dom["B14_2_abast_de_agua_poco_artesiano"]).notna()
 for k in ("rede", "ind", "prec"): df_dom[f"agua_nivel_{k}"] = np.where(_ok_agua, (_nivel_agua == k).astype(float), np.nan)
 _rede_e = _sim("B15_1_esgot_sanitario_rede_geral_caesb")
 _sept_e = _sim("B15_2_esgot_sanitario_fossa_septica") | _sim("B15_5_esgot_sanitario_bacia_de_evapotranspiracao")
+if "rudimentar_ind" in os.environ.get("ESGOTO_ESCADA", "base").split(","): _sept_e = _sept_e | _sim("B15_3_esgot_sanitario_fossa_rudimentar")   # Duarte et al. (2019): fossa absorvente/rudimentar como solução adequada
 _nivel_esg = np.where(_rede_e, "rede", np.where(_sept_e, "ind", "prec"))
 _ok_esg = parse_binaria(df_dom["B15_1_esgot_sanitario_rede_geral_caesb"]).notna() | parse_binaria(df_dom["B15_2_esgot_sanitario_fossa_septica"]).notna()
 for k in ("rede", "ind", "prec"): df_dom[f"esgoto_nivel_{k}"] = np.where(_ok_esg, (_nivel_esg == k).astype(float), np.nan)
@@ -339,7 +344,7 @@ D3_VARS = (["comodos_por_pessoa", "banheiros_por_pessoa"]
            + ["acesso_energetico_estruturado", "destino_com_coleta_direta", "rua_pavimentada", "iluminacao_publica", "drenagem", "ponto_onibus"]
            + ([] if "ctx" in V2 else ["qtd_estabelecimentos"]) + (["pct_estabelecimentos"] if USAR_PCT_ESTAB else []))
 DIMENSOES_REF = {
-    "D1_Financeiro_Ativos": D1_VARS,
+    "D1_Bens_Duraveis": D1_VARS,
     "D2_Humano_Trabalho": D2_VARS,
     "D3_Fisico_Habitacional_Territorial": D3_VARS,
     "D4_Tecnologico_Conectividade": ["internet_domiciliar", "internet_banda_larga_fixa", "internet_movel", "possui_computador"],
