@@ -1,0 +1,5 @@
+a01subpopulacao,n_removidos,ARI_vs_ref_restantes,n_componentes_novo,n_componentes_ref,tamanhos
+Agricultura Empresarial,13,0.7042761463163318,5,5,"[15, 12, 9]"
+Agricultura Familiar,12,0.6323617969408647,5,5,"[16, 15, 6]"
+Assentamento/Agrovila,8,0.7262719023353408,5,5,"[16, 14, 11]"
+Características Urbanas,16,0.6423220376805127,6,5,"[12, 11, 10]"

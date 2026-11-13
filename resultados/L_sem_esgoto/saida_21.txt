@@ -1,0 +1,56 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 5,
+ "S1_pct_sementes_no_otimo": 0.07,
+ "S1_ARI_medio_semente_unica": 0.611,
+ "S1_ARI_min_semente_unica": 0.191,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.32,
+ "S2_spearman_n_dist_Kfinal": -0.563,
+ "S2_p_Kfinal": 0.0,
+ "S2_spearman_n_dist_global": -0.372,
+ "S2_p_global": 0.009,
+ "S2_dist_med_peq": 4.16,
+ "S2_dist_med_grande": 2.063,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 0.76,
+ "S4_aparado6_pct_n<20": 0.5,
+ "S4_aparado10_ARI": 0.701,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.647,
+ "S5_pct_peso>0.8_Kfinal": 0.224,
+ "S5_ARI_argmax_vs_kmeans": 0.337,
+ "S5_var_explicada_Kfinal": 0.697,
+ "S6_ARI_medio_sem_uma_RA": 0.84,
+ "S6_ARI_min_sem_uma_RA": 0.3,
+ "S6_RA_critica": "Gama",
+ "S6_ARI_medio_sem_uma_subpop": 0.495,
+ "S6_ARI_min_sem_uma_subpop": 0.262,
+ "S7_ARI_medio_outros_algoritmos": 0.594,
+ "S7_ARI_min_outros_algoritmos": 0.046,
+ "S7_ARI_Ward": 0.803,
+ "S7_ARI_GMM_completo": 0.481,
+ "S7_ARI_KMeans_peso_integral": 0.536,
+ "S8_ARI_n>=10": 0.854,
+ "S8_ARI_n>=20": 0.436,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.447,
+ "S9_frac_esperada_RA": 0.362,
+ "S9_p_RA": 0.171,
+ "S9_frac_mesmo_grupo_subpop": 0.442,
+ "S9_frac_esperada_subpop": 0.361,
+ "S9_p_subpop": 0.011,
+ "S10_eta2_max": 0.627,
+ "S10_eixo_dominante": "D1_Financeiro_Ativos_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.549
+}
+5
+S9_p_RA: 0.17082917082917082
+S9_frac_mesmo_grupo_subpop: 0.4417808219178082
+S9_frac_esperada_subpop: 0.36078767123287675
+S9_p_subpop: 0.01098901098901099
+S10_eta2_max: 0.6272212178753105
+S10_eixo_dominante: D1_Financeiro_Ativos_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5487749065612946

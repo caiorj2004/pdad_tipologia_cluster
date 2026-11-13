@@ -1,0 +1,41 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+                  a01ra  n_removidos  ARI_vs_ref_restantes  n_componentes_novo  n_componentes_ref     tamanhos
+             Brazlândia            3                 0.471                   6                  6  [21, 17, 8]
+              Ceilândia            2                 0.519                   6                  6  [22, 17, 8]
+                 Fercal            3                 0.535                   6                  6  [20, 18, 8]
+                   Gama            3                 0.830                   6                  6 [20, 13, 13]
+                 Itapoã            1                 0.499                   6                  6  [21, 18, 9]
+             Lago Norte            1                 1.000                   6                  6 [19, 15, 14]
+     Núcleo Bandeirante            1                 0.480                   6                  6  [22, 17, 9]
+                Paranoá            4                 0.812                   6                  6 [17, 15, 13]
+               Park Way            2                 0.514                   6                  6  [22, 16, 9]
+             Planaltina            4                 1.000                   6                  6 [16, 16, 13]
+       Recanto das Emas            2                 1.000                   6                  6 [18, 16, 13]
+           Riacho Fundo            2                 0.462                   6                  6  [22, 16, 9]
+        Riacho Fundo II            2                 1.000                   6                  6 [19, 14, 14]
+                   SCIA            1                 1.000                   6                  6 [18, 16, 14]
+              Samambaia            3                 0.773                   6                  6 [20, 14, 12]
+            Santa Maria            1                 0.480                   6                  6  [22, 17, 9]
+             Sobradinho            2                 1.000                   6                  6 [18, 15, 14]
+          Sobradinho II            3                 0.484                   6                  6  [20, 17, 9]
+Sol Nascente/Pôr do Sol            2                 0.515                   6                  6  [21, 18, 8]
+          São Sebastião            3                 1.000                   6                  6 [16, 16, 14]
+             Taguatinga            2                 1.000                   6                  6 [19, 14, 14]
+          Vicente Pires            1                 1.000                   6                  6 [18, 16, 14]
+           Águas Claras            1                 0.480                   6                  6  [22, 17, 9]
+        a01subpopulacao  n_removidos  ARI_vs_ref_restantes  n_componentes_novo  n_componentes_ref     tamanhos
+Agricultura Empresarial           13                 1.000                   5                  6  [15, 13, 8]
+   Agricultura Familiar           12                 0.630                   6                  6  [16, 15, 6]
+  Assentamento/Agrovila            8                 0.618                   6                  6  [19, 14, 8]
+Características Urbanas           16                 0.621                   6                  6 [12, 11, 10]
+{'S6b_ARI_medio_sem_uma_RA': np.float64(0.732856077622952), 'S6b_ARI_min_sem_uma_RA': np.float64(0.46228911865552347), 'S6b_RA_critica': 'Riacho Fundo', 'S6b_pct_RAs_ARI<0.5': 0.30434782608695654, 'S6b_n_componentes_varia': False, 'S6b_ARI_medio_sem_uma_subpop': np.float64(0.7172089875770874), 'S6b_ARI_min_sem_uma_subpop': np.float64(0.6181987495011307)}

@@ -1,0 +1,50 @@
+Segmento,Cluster_ref,n_amostra,Escore_subamostras,Escore_cenarios,Classe
+Paranoá — Assentamento,0,41,0.92,1.0,Núcleo
+Park Way — Agr. Familiar,0,141,0.92,1.0,Núcleo
+Brazlândia — Moradia e Lazer,0,277,0.91,1.0,Núcleo
+Riacho Fundo — Agr. Familiar,0,222,0.91,1.0,Núcleo
+Gama — Moradia e Lazer,0,212,0.9,1.0,Núcleo
+Núcleo Bandeirante — Moradia e Lazer,0,5,0.9,1.0,Núcleo
+Riacho Fundo — Moradia e Lazer,0,5,0.9,1.0,Núcleo
+Santa Maria — Agr. Empresarial,0,46,0.9,1.0,Núcleo
+Riacho Fundo II — Moradia e Lazer,0,71,0.88,1.0,Núcleo
+Águas Claras — Moradia e Lazer,0,5,0.86,1.0,Núcleo
+Taguatinga — Moradia e Lazer,0,11,0.85,1.0,Núcleo
+Recanto das Emas — Agr. Empresarial,0,28,0.76,1.0,Núcleo
+Sol Nascente/Pôr do Sol — Moradia e Lazer,0,41,0.67,1.0,Fronteira
+Paranoá — Moradia e Lazer,1,95,0.84,0.99,Núcleo
+Sol Nascente/Pôr do Sol — Assentamento,1,31,0.84,0.99,Núcleo
+Vicente Pires — Moradia e Lazer,1,358,0.84,0.99,Núcleo
+Fercal — Assentamento,1,29,0.83,0.99,Núcleo
+São Sebastião — Moradia e Lazer,1,305,0.83,0.99,Núcleo
+Paranoá — Agr. Empresarial,1,97,0.82,0.99,Núcleo
+Paranoá — Agr. Familiar,1,205,0.82,0.99,Núcleo
+Planaltina — Moradia e Lazer,1,32,0.82,0.99,Núcleo
+Planaltina — Agr. Empresarial,1,194,0.81,0.99,Núcleo
+Sobradinho — Moradia e Lazer,1,152,0.81,0.99,Núcleo
+São Sebastião — Assentamento,1,237,0.81,0.99,Núcleo
+Fercal — Agr. Empresarial,1,7,0.8,0.99,Núcleo
+São Sebastião — Agr. Empresarial,1,218,0.8,0.99,Núcleo
+Fercal — Agr. Familiar,1,50,0.79,0.99,Núcleo
+Recanto das Emas — Agr. Familiar,1,49,0.79,0.99,Núcleo
+Planaltina — Assentamento,1,124,0.77,0.99,Núcleo
+Samambaia — Moradia e Lazer,1,19,0.77,0.99,Núcleo
+Samambaia — Agr. Familiar,1,6,0.59,0.99,Fronteira
+SCIA — Agr. Familiar,1,50,0.54,0.75,Fronteira
+Brazlândia — Agr. Familiar,2,191,0.8,0.94,Núcleo
+Sobradinho II — Agr. Empresarial,2,35,0.8,0.94,Núcleo
+Ceilândia — Agr. Empresarial,2,195,0.79,0.94,Núcleo
+Ceilândia — Agr. Familiar,2,121,0.79,0.94,Núcleo
+Itapoã — Agr. Empresarial,2,41,0.79,0.94,Núcleo
+Park Way — Assentamento,2,49,0.79,0.94,Núcleo
+Sobradinho II — Agr. Familiar,2,22,0.79,0.94,Núcleo
+Brazlândia — Assentamento,2,48,0.78,0.94,Núcleo
+Gama — Agr. Familiar,2,81,0.74,0.94,Fronteira
+Lago Norte — Moradia e Lazer,2,51,0.73,0.94,Fronteira
+Planaltina — Agr. Familiar,2,270,0.69,0.94,Fronteira
+Samambaia — Agr. Empresarial,2,12,0.69,0.94,Fronteira
+Taguatinga — Agr. Empresarial,2,8,0.68,0.94,Fronteira
+Gama — Agr. Empresarial,2,250,0.61,0.8,Fronteira
+Riacho Fundo II — Assentamento,2,69,0.5,0.8,Fronteira
+Sobradinho II — Moradia e Lazer,2,182,0.5,0.8,Fronteira
+Sobradinho — Agr. Empresarial,2,79,0.44,0.8,Fronteira

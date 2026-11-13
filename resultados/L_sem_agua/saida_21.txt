@@ -1,0 +1,55 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 5,
+ "S1_pct_sementes_no_otimo": 0.02,
+ "S1_ARI_medio_semente_unica": 0.546,
+ "S1_ARI_min_semente_unica": 0.253,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.2,
+ "S2_spearman_n_dist_Kfinal": -0.53,
+ "S2_p_Kfinal": 0.0,
+ "S2_spearman_n_dist_global": -0.304,
+ "S2_p_global": 0.034,
+ "S2_dist_med_peq": 4.282,
+ "S2_dist_med_grande": 2.038,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 0.393,
+ "S4_aparado6_pct_n<20": 0.0,
+ "S4_aparado10_ARI": 0.371,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.652,
+ "S5_pct_peso>0.8_Kfinal": 0.224,
+ "S5_ARI_argmax_vs_kmeans": 0.658,
+ "S5_var_explicada_Kfinal": 0.704,
+ "S6_ARI_medio_sem_uma_RA": 0.755,
+ "S6_ARI_min_sem_uma_RA": 0.272,
+ "S6_RA_critica": "Park Way",
+ "S6_ARI_medio_sem_uma_subpop": 0.866,
+ "S6_ARI_min_sem_uma_subpop": 0.7,
+ "S7_ARI_medio_outros_algoritmos": 0.348,
+ "S7_ARI_min_outros_algoritmos": 0.033,
+ "S7_ARI_Ward": 0.512,
+ "S7_ARI_GMM_completo": 0.261,
+ "S7_ARI_KMeans_peso_integral": 0.532,
+ "S8_ARI_n>=10": 0.659,
+ "S8_ARI_n>=20": 0.641,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.526,
+ "S9_frac_esperada_RA": 0.325,
+ "S9_p_RA": 0.015,
+ "S9_frac_mesmo_grupo_subpop": 0.349,
+ "S9_frac_esperada_subpop": 0.326,
+ "S9_p_subpop": 0.161,
+ "S10_eta2_max": 0.653,
+ "S10_eixo_dominante": "D3_Fisico_Habitacional_Territorial_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.539
+}
+85014985014986
+S9_frac_mesmo_grupo_subpop: 0.3493150684931507
+S9_frac_esperada_subpop: 0.3264897260273973
+S9_p_subpop: 0.16083916083916083
+S10_eta2_max: 0.6528951506647843
+S10_eixo_dominante: D3_Fisico_Habitacional_Territorial_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5389806273847371
