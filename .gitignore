@@ -3,3 +3,4 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 resultados_teste/
+dados/gold_reproduzido/

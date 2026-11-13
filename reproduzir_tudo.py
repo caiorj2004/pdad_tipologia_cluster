@@ -75,12 +75,19 @@ def saneamento():
     env = os.environ.copy(); env.update(PDADR_SILVER=str(silver), PDADR_OUT_DIR=str(out), PDADR_EXPORTAR='1', MPLBACKEND='Agg', PYTHONIOENCODING='utf-8')
     rc, dt = rodar('01_saneamento_pdadr_2022.py', out, env, out / 'saida_01.txt'); print(f'[saneamento] programa 01: rc={rc} ({dt:.0f}s)')
     if rc != 0: return False
-    import pandas as pd
+    import pandas as pd, numpy as np
     ok = True
     for nome in ('pdadr_domicilios.xlsx', 'pdadr_moradores.xlsx'):
-        a = pd.read_excel(out / nome); b = pd.read_excel(RAIZ / 'dados' / 'gold' / nome)
-        igual = a.shape == b.shape and list(a.columns) == list(b.columns) and a.astype(str).reset_index(drop=True).equals(b.astype(str).reset_index(drop=True))
-        print(f'[saneamento] {nome}: {"IDÊNTICO" if igual else "DIFERENTE"} ao dados/gold/ (formas {a.shape} e {b.shape})'); ok &= igual
+        a = pd.read_excel(out / nome); b = pd.read_excel(RAIZ / 'dados' / 'gold' / nome); dif = []
+        for c in b.columns:
+            if c not in a.columns: dif.append(c + ' (ausente)'); continue
+            x, y = a[c], b[c]
+            if pd.api.types.is_numeric_dtype(x) and pd.api.types.is_numeric_dtype(y): eq = np.isclose(x.astype(float), y.astype(float), equal_nan=True, rtol=1e-9, atol=1e-9).all()
+            else: eq = ((x.isna() & y.isna()) | (x.astype(str) == y.astype(str))).all()
+            if not eq: dif.append(c)
+        extras = [c for c in a.columns if c not in b.columns]
+        print(f'[saneamento] {nome}: colunas diferentes nas comuns: {dif or "nenhuma"} | colunas só na reprodução: {extras or "nenhuma"}'); ok &= not dif
+    print('[saneamento] Diferenças esperadas (docs/reproducao_saneamento.md): grafia de RA em E23_1/I08, 1 rótulo em I04_1_1 e 2 colunas de transparência de renda.')
     return ok
 
 def main():
