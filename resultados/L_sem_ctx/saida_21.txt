@@ -1,0 +1,55 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 6,
+ "S1_pct_sementes_no_otimo": 0.075,
+ "S1_ARI_medio_semente_unica": 0.601,
+ "S1_ARI_min_semente_unica": 0.337,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.49,
+ "S2_spearman_n_dist_Kfinal": -0.458,
+ "S2_p_Kfinal": 0.001,
+ "S2_spearman_n_dist_global": -0.405,
+ "S2_p_global": 0.004,
+ "S2_dist_med_peq": 4.324,
+ "S2_dist_med_grande": 2.098,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 1.0,
+ "S4_aparado6_pct_n<20": 1.0,
+ "S4_aparado10_ARI": 0.62,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.654,
+ "S5_pct_peso>0.8_Kfinal": 0.224,
+ "S5_ARI_argmax_vs_kmeans": 0.494,
+ "S5_var_explicada_Kfinal": 0.684,
+ "S6_ARI_medio_sem_uma_RA": 0.75,
+ "S6_ARI_min_sem_uma_RA": 0.42,
+ "S6_RA_critica": "Riacho Fundo",
+ "S6_ARI_medio_sem_uma_subpop": 0.787,
+ "S6_ARI_min_sem_uma_subpop": 0.551,
+ "S7_ARI_medio_outros_algoritmos": 0.508,
+ "S7_ARI_min_outros_algoritmos": 0.082,
+ "S7_ARI_Ward": 0.456,
+ "S7_ARI_GMM_completo": 0.44,
+ "S7_ARI_KMeans_peso_integral": 0.634,
+ "S8_ARI_n>=10": 0.411,
+ "S8_ARI_n>=20": 0.667,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.553,
+ "S9_frac_esperada_RA": 0.324,
+ "S9_p_RA": 0.005,
+ "S9_frac_mesmo_grupo_subpop": 0.38,
+ "S9_frac_esperada_subpop": 0.324,
+ "S9_p_subpop": 0.029,
+ "S10_eta2_max": 0.59,
+ "S10_eixo_dominante": "D1_Financeiro_Ativos_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.525
+}
+995004995004995
+S9_frac_mesmo_grupo_subpop: 0.3801369863013699
+S9_frac_esperada_subpop: 0.3240821917808219
+S9_p_subpop: 0.028971028971028972
+S10_eta2_max: 0.5898663203043336
+S10_eixo_dominante: D1_Financeiro_Ativos_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5254566619166938

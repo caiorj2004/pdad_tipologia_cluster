@@ -128,3 +128,38 @@ renda_domiciliar_pc              1285.00  887.59  850.81  1002.37  906.16  858.7
 rua_pavimentada                     0.20    0.74    0.04     0.34    0.20    0.08    0.11    0.02    0.23    0.00     0.29     1.00    0.08     0.56     0.70
 solucao_sanitaria_estruturada       0.64    0.89    0.41     0.82    0.72    0.58    0.56    0.23    0.67    0.17     0.87     1.00    0.49     0.86     1.00
 trabalhou_30d                       0.41    0.44    0.46     0.50    0.42    0.38    0.31    0.44    0.38    0.24     0.47     0.75    0.50     0.54     0.70
+
+(c) ESTABILIDADE (ARI por subamostras de 80%) vs. NULO DE COVARIANCIA (100 conjuntos nulos)
+  K=3: observado 0.631 | nulo média 0.690 (p95 0.883) | p = 0.673
+  K=4: observado 0.514 | nulo média 0.650 (p95 0.821) | p = 0.911
+  K=5: observado 0.505 | nulo média 0.614 (p95 0.781) | p = 0.871
+
+(d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.428; mudam: 18
+     Brazlândia | Características Urbanas n=277: G1 -> G4
+     Fercal | Agricultura Empresarial n=7: G4 -> G0
+     Fercal | Agricultura Familiar n=50: G4 -> G0
+     Fercal | Assentamento/Agrovila n=29: G2 -> G0
+     Gama | Agricultura Empresarial n=250: G4 -> G0
+     Núcleo Bandeirante | Características Urbanas n=5: G1 -> G4
+     Paranoá | Agricultura Empresarial n=97: G4 -> G0
+     Paranoá | Agricultura Familiar n=205: G4 -> G0
+     Paranoá | Assentamento/Agrovila n=41: G3 -> G4
+     Paranoá | Características Urbanas n=95: G2 -> G0
+     Park Way | Agricultura Familiar n=141: G3 -> G4
+     Recanto das Emas | Agricultura Familiar n=49: G4 -> G0
+     Riacho Fundo | Agricultura Familiar n=222: G3 -> G1
+     Riacho Fundo II | Assentamento/Agrovila n=69: G3 -> G1
+     Riacho Fundo II | Características Urbanas n=71: G3 -> G1
+     Taguatinga | Agricultura Empresarial n=8: G3 -> G1
+     Taguatinga | Características Urbanas n=11: G3 -> G1
+     Águas Claras | Características Urbanas n=5: G3 -> G1
+
+(e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 25
+Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 38.7
+                                    segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+            Fercal | Agricultura Empresarial          4          7                    0.23
+Núcleo Bandeirante | Características Urbanas          1          5                    0.61
+      Riacho Fundo | Características Urbanas          1          5                    0.63
+            Samambaia | Agricultura Familiar          0          6                    0.43
+        Taguatinga | Agricultura Empresarial          3          8                    0.33
+      Águas Claras | Características Urbanas          3          5                    0.37

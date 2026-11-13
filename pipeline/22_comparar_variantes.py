@@ -71,6 +71,9 @@ def linha_variante(d):
     st = pd.read_csv(d / 'stress_resumo.csv').iloc[0].to_dict()
     for k_, v_ in st.items():
         if k_ not in ('K', 'n_segmentos'): r[k_] = v_
+    f6b = d / 'stress_S6b_resumo.csv'
+    if f6b.exists():
+        for k_, v_ in pd.read_csv(f6b).iloc[0].to_dict().items(): r[k_] = v_
     return r
 
 linhas = []
