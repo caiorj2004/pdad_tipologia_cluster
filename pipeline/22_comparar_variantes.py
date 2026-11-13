@@ -40,7 +40,7 @@ def linha_variante(d):
     t16 = (d / 'saida_16.txt').read_text(encoding='utf-8')
     m = re.search(r'ARI vs\. partição de referência: média ([\d.]+) \| mediana ([\d.]+) \| p5 ([\d.]+) \| p95 ([\d.]+) \| min ([\d.]+)', t16)
     if m: r['boot_ARI_medio'], r['boot_ARI_mediana'], r['boot_ARI_p5'], r['boot_ARI_p95'], r['boot_ARI_min'] = map(float, m.groups())
-    for k, v in re.findall(r'K=(\d): ARI médio ([\d.]+) \(200 réplicas\)', t16): r[f'boot_ARI_K{k}'] = float(v)
+    for k, v in re.findall(r'K=(\d): ARI médio ([\d.]+) \(\d+ réplicas\)', t16): r[f'boot_ARI_K{k}'] = float(v)
     m = re.search(r'ENCOLHIMENTO.*?ARI vs\. referência ([\d.]+); mudam: (\d+)', t16)
     if m: r['encolhimento_ARI'], r['encolhimento_mudam'] = float(m.group(1)), int(m.group(2))
     m = re.search(r'K=%d: observado ([\d.]+) \| nulo média ([\d.]+) \(p95 ([\d.]+)\) \| p = ([\d.]+)' % K, t16)
