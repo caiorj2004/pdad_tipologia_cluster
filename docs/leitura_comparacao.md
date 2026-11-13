@@ -12,7 +12,7 @@ Bootstrap: 200 réplicas e 30 inicializações para M0_antigo_K5, M0_antigo_K3, 
 | Spearman tamanho × distância ao centro = −0,45 (4 variáveis, 49 segmentos) | −0,42 (matriz completa) |
 
 ## 2. O que vale em todas as variantes (não depende de qual modelo vença)
-1. **Nenhuma variante com K=3 supera o nulo de covariância** (p de 0,14 a 0,88). Só aparecem K significativos em partes das variantes do tipo "uma mudança por vez" e no modelo antigo (K=7, p=0,016); o modelo revisado não tem nenhum (menor p = 0,13, em K=8).
+1. **Nenhuma variante com K=3 supera o nulo de covariância** (p de 0,14 a 0,88). Algum K entre 2 e 8 fica significativo (p < 0,05) no modelo antigo (K=7, p=0,016), em `A_so_agua`, `A_so_dur`, `A_so_esgoto`, `A_so_renda` e em `L_sem_ctx`; o modelo revisado não tem nenhum (menor p = 0,13, em K=8).
 2. **Segmentos pequenos são mais extremos em todas as variantes**: Spearman entre n e distância ao centro de −0,42 a −0,56, e Mann-Whitney (n < 20 mais distantes) com p < 0,001 em todas. Não foi resolvido por nenhuma mudança de matriz testada.
 3. **Validação externa**: CadÚnico difere entre grupos (Kruskal-Wallis entre segmentos, p < 0,05) e o IVS-DF (fora da matriz nas variantes `ctx`) ordena os grupos (p < 0,01) em todas as variantes. A insegurança alimentar moderada ou grave difere (p < 0,05) em todas, exceto em `L_sem_agua` (p = 0,060). A escritura registrada raramente difere (p < 0,05 em 3 de 19).
 4. **A winsorização da renda não altera nada**: `S_winsor95` e `S_winsor100` produzem a mesma partição de `M1_revisado_K3` (bootstrap 0,384 e 0,385 contra 0,381).
