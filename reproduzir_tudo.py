@@ -9,7 +9,7 @@
 Opções úteis:
     --paralelo N          variantes simultâneas (padrão 2)
     --variantes a,b,c     roda só estas variantes (nomes em pipeline/variantes.tsv)
-    --pular-existentes    não refaz variantes que já têm resultados/<variante>/stress_resumo.csv
+    --pular-existentes    não refaz variantes que já concluíram todas as etapas (têm decomposicao_domiciliar_26_resumo.csv)
     --saneamento          antes de tudo, roda o programa 01 (exige dados/silver/Dicionario_aplicado_PDADR_2022.xlsx) e compara com dados/gold/
     --figuras-tcc         roda também os programas 02, 04–13 e 20 (tabelas e figuras do TCC) sobre M1_revisado_K3
     --saida DIR           pasta de saída (padrão: resultados/)
@@ -109,7 +109,7 @@ def main():
         if falta: sys.exit(f'variantes desconhecidas: {falta}; veja pipeline/variantes.tsv')
         sel = {n: todas[n] for n in nomes}; saida = Path(a.saida or RAIZ / 'resultados')
     saida.mkdir(parents=True, exist_ok=True)
-    if a.pular_existentes: sel = {n: c for n, c in sel.items() if not (saida / n / 'stress_resumo.csv').exists()}
+    if a.pular_existentes: sel = {n: c for n, c in sel.items() if not (saida / n / 'decomposicao_domiciliar_26_resumo.csv').exists()}
     fig = a.figuras_tcc or a.modo == 'principal'
     print(f'{len(sel)} variante(s): {", ".join(sel)} | saída: {saida}', flush=True); t0 = time.time(); falhas = []
     with ThreadPoolExecutor(max_workers=max(1, a.paralelo)) as ex:
