@@ -1,6 +1,6 @@
 Variável (média por RA),Vizinhança,I de Moran,p (simulado)
-D1_Financeiro_Ativos_MC_PC1,Queen,0.269,0.026
-D1_Financeiro_Ativos_MC_PC1,k-NN (k=4),0.061,0.182
+D1_Bens_Duraveis_MC_PC1,Queen,0.269,0.026
+D1_Bens_Duraveis_MC_PC1,k-NN (k=4),0.061,0.182
 D2_Humano_Trabalho_MC_PC1,Queen,0.158,0.103
 D2_Humano_Trabalho_MC_PC1,k-NN (k=4),0.176,0.056
 D3_Fisico_Habitacional_Territorial_MC_PC1,Queen,0.349,0.005

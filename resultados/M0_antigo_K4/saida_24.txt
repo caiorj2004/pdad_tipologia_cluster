@@ -1,0 +1,15 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+(1) NULO DO BOOTSTRAP (100 matrizes nulas x 15 réplicas): ARI observado médio 0.503 | nulo médio 0.473 (p95 0.624) | p = 0.356
+(2) METADES (100 divisões): ARI entre metades observado médio 0.313 (p5 0.138) | nulo médio 0.317 (p95 0.558)
+(3) ATRIBUIÇÃO DOMICILIAR ALEATÓRIA DENTRO DO ESTRATO (100 sorteios): AMI(RA) obs 0.155 | nulo médio 0.089 (p95 0.134) | p = 0.020
+    AMI(subpop) obs 0.007 | nulo médio 0.039 | p = 0.901

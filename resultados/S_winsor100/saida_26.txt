@@ -1,0 +1,18 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+DECOMPOSIÇÃO DOMICILIAR (frações da variância total; binários na escala logit latente):
+                    indicador        modelo  n_dom  subpop(fixa)    RA  RA x subpop (segmento)  residual  RA_ic_baixo  RA_ic_alto  segmento_ic_baixo  segmento_ic_alto
+                    agua_rede    logit (VB)   5067         0.001 0.001                   0.455     0.543        0.000       0.001              0.311             0.666
+    internet_banda_larga_fixa    logit (VB)   5067         0.004 0.001                   0.069     0.925        0.001       0.003              0.047             0.102
+solucao_sanitaria_estruturada    logit (VB)   5049         0.006 0.170                   0.061     0.763        0.097       0.298              0.041             0.089
+            possui_computador    logit (VB)   5075         0.000 0.089                   0.011     0.899        0.051       0.157              0.008             0.017
+                  ln_renda_pc linear (REML)   4907         0.001 0.022                   0.003     0.974          NaN         NaN                NaN               NaN

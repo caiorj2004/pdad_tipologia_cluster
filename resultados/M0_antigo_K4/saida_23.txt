@@ -1,0 +1,41 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+                  a01ra  n_removidos  ARI_vs_ref_restantes  n_componentes_novo  n_componentes_ref        tamanhos
+             Brazlândia            3                 0.924                   6                  6  [20, 15, 8, 3]
+              Ceilândia            2                 1.000                   6                  6  [19, 16, 9, 3]
+                 Fercal            3                 0.940                   6                  6 [17, 16, 10, 3]
+                   Gama            3                 0.924                   6                  6  [20, 15, 8, 3]
+                 Itapoã            1                 0.948                   6                  6 [19, 16, 10, 3]
+             Lago Norte            1                 0.948                   6                  6 [19, 16, 10, 3]
+     Núcleo Bandeirante            1                 0.617                   6                  6 [17, 16, 12, 3]
+                Paranoá            4                 1.000                   6                  6  [18, 16, 8, 3]
+               Park Way            2                 0.948                   6                  6  [19, 16, 9, 3]
+             Planaltina            4                 0.939                   6                  6 [16, 16, 10, 3]
+       Recanto das Emas            2                 0.873                   6                  6 [19, 15, 10, 3]
+           Riacho Fundo            2                 0.615                   6                  6 [17, 14, 12, 4]
+        Riacho Fundo II            2                 1.000                   6                  6  [19, 17, 8, 3]
+                   SCIA            1                 1.000                   6                  6  [18, 18, 9, 3]
+              Samambaia            3                 1.000                   6                  6  [18, 16, 9, 3]
+            Santa Maria            1                 0.750                   6                  6 [20, 13, 12, 3]
+             Sobradinho            2                 0.945                   6                  6 [18, 16, 10, 3]
+          Sobradinho II            3                 1.000                   6                  6  [19, 15, 9, 3]
+Sol Nascente/Pôr do Sol            2                 1.000                   6                  6  [18, 17, 9, 3]
+          São Sebastião            3                 0.940                   6                  6 [17, 16, 10, 3]
+             Taguatinga            2                 0.462                   6                  6 [14, 13, 12, 8]
+          Vicente Pires            1                 1.000                   6                  6  [18, 18, 9, 3]
+           Águas Claras            1                 0.490                   6                  6 [14, 14, 12, 8]
+        a01subpopulacao  n_removidos  ARI_vs_ref_restantes  n_componentes_novo  n_componentes_ref        tamanhos
+Agricultura Empresarial           13                 0.597                   5                  6  [13, 10, 8, 5]
+   Agricultura Familiar           12                 0.879                   6                  6  [15, 14, 5, 3]
+  Assentamento/Agrovila            8                 0.658                   6                  6 [18, 10, 10, 3]
+Características Urbanas           16                 0.471                   6                  6  [13, 11, 5, 4]
+{'S6b_ARI_medio_sem_uma_RA': np.float64(0.8808925466299761), 'S6b_ARI_min_sem_uma_RA': np.float64(0.4618479951580552), 'S6b_RA_critica': 'Taguatinga', 'S6b_pct_RAs_ARI<0.5': 0.08695652173913043, 'S6b_n_componentes_varia': False, 'S6b_ARI_medio_sem_uma_subpop': np.float64(0.6515783388640545), 'S6b_ARI_min_sem_uma_subpop': np.float64(0.4712778429073857)}
