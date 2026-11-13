@@ -9,7 +9,7 @@ FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
 
 Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 
-componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
 ARI reprodução da referência: 1.0
 
 Coligação no bootstrap por classe (núcleo/fronteira):
@@ -19,7 +19,7 @@ Fronteira  0.54    0.55  0.36  0.64     12
 Núcleo     0.77    0.75  0.58  0.85     37
 Spearman com o escore de co-associação por subamostras: 0.53
 
-(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20)
+(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20, nível=segmento, retenção=fixa)
 ARI vs. partição de referência: média 0.516 | mediana 0.488 | p5 0.301 | p95 0.781 | min 0.213
 Silhueta nas réplicas: média 0.239 (referência 0.246)
 
@@ -107,6 +107,10 @@ trabalhou_30d                       0.48    0.45     0.41    0.44    0.43    0.3
      Lago Norte | Características Urbanas n=51: G2 -> G0
      Planaltina | Agricultura Familiar n=270: G1 -> G2
      Taguatinga | Agricultura Empresarial n=8: G2 -> G0
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.884; mudam: 2
+     Lago Norte | Características Urbanas n=51: G2 -> G0
+     Planaltina | Agricultura Familiar n=270: G1 -> G2
 
 (e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 7
 Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 19.2

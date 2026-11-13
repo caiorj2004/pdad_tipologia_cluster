@@ -9,7 +9,7 @@ FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
 
 Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 
-componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
 ARI reprodução da referência: 1.0
 
 Coligação no bootstrap por classe (núcleo/fronteira):
@@ -19,7 +19,7 @@ Fronteira  0.56    0.56  0.44  0.71      7
 Núcleo     0.77    0.79  0.48  0.85     42
 Spearman com o escore de co-associação por subamostras: 0.54
 
-(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20)
+(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20, nível=segmento, retenção=fixa)
 ARI vs. partição de referência: média 0.565 | mediana 0.547 | p5 0.312 | p95 0.821 | min 0.219
 Silhueta nas réplicas: média 0.240 (referência 0.263)
 
@@ -100,6 +100,12 @@ trabalhou_30d                       0.48    0.45     0.41    0.44    0.43    0.3
 
 (d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.880; mudam: 2
      Planaltina | Agricultura Familiar n=270: G1 -> G2
+     Riacho Fundo II | Assentamento/Agrovila n=69: G0 -> G2
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.783; mudam: 4
+     Lago Norte | Características Urbanas n=51: G2 -> G0
+     Planaltina | Agricultura Familiar n=270: G1 -> G2
+     Recanto das Emas | Agricultura Empresarial n=28: G0 -> G2
      Riacho Fundo II | Assentamento/Agrovila n=69: G0 -> G2
 
 (e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 6

@@ -1,0 +1,8 @@
+indicador,ordem_grupos(pobre->rico em renda),rho_Spearman,p_perm
+ebia_insegur_qualquer,"[1, 0, 2]",-0.2790447027860317,0.051
+ebia_mod_grave,"[1, 0, 2]",-0.3111908044866388,0.023
+beneficio_social,"[1, 0, 2]",-0.39303356403746165,0.003
+cadunico,"[1, 0, 2]",-0.5910657276991378,0.001
+escritura_registrada,"[1, 0, 2]",-0.1105846677456822,0.45
+doc_formal,"[1, 0, 2]",-0.23605425171280772,0.101
+outorga_agua,"[1, 0, 2]",0.21097871802808146,0.151
