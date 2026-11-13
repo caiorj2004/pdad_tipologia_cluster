@@ -12,7 +12,7 @@ SUBN = {'Agricultura Empresarial': 'Agr. Empresarial', 'Agricultura Familiar': '
 d['sub'] = d.a01subpopulacao.map(SUBN); d = d.merge(lab, left_on=['a01ra', 'sub'], right_on=['a01ra', 'sub'], how='left')
 assert len(d) == 49 and d.Classe.notna().all()
 d['G'] = d.Cluster_K3
-COMP = {'D1_Financeiro_Ativos_MC_PC1': 'D1 PC1\nBens duráveis', 'D2_Humano_Trabalho_MC_PC1': 'D2 PC1\nFormalização e\nescolaridade', 'D3_Fisico_Habitacional_Territorial_MC_PC1': 'D3 PC1\nInfraestrutura\npública',
+COMP = {'D1_Bens_Duraveis_MC_PC1': 'D1 PC1\nBens duráveis', 'D2_Humano_Trabalho_MC_PC1': 'D2 PC1\nFormalização e\nescolaridade', 'D3_Fisico_Habitacional_Territorial_MC_PC1': 'D3 PC1\nInfraestrutura\npública',
         'D3_Fisico_Habitacional_Territorial_MC_PC2': 'D3 PC2\nCondição interna\nda moradia', 'D4_Tecnologico_Conectividade_MC_PC1': 'D4 PC1\nConectividade'}
 NOME_G = {0: 'Moradia e saneamento bons, água da rede rara', 1: 'Infraestrutura intermediária, conectividade abaixo da média', 2: 'Alta escolaridade e conectividade (pequeno)',
           3: 'Melhor infraestrutura pública', 4: 'Maior carência de infraestrutura'}

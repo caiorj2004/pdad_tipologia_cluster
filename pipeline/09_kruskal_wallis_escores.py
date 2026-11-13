@@ -10,7 +10,7 @@ V={'D1':["log_renda_domiciliar_pc","possui_automovel","possui_motocicleta","poss
 'D2':["escolaridade_adulto","trabalhou_30d","tem_ctps","contribui_previdencia","ivs_df"],
 'D3':["comodos_por_pessoa","banheiros_por_pessoa","agua_rede","agua_poco_artesiano","agua_poco_cisterna","captacao_chuva","caixa_agua","solucao_sanitaria_estruturada","acesso_energetico_estruturado","destino_com_coleta_direta","rua_pavimentada","iluminacao_publica","drenagem","ponto_onibus","qtd_estabelecimentos"],
 'D4':["internet_domiciliar","internet_banda_larga_fixa","internet_movel","possui_computador"]}
-comp=['D1_Financeiro_Ativos_MC_PC1','D2_Humano_Trabalho_MC_PC1','D3_Fisico_Habitacional_Territorial_MC_PC1','D3_Fisico_Habitacional_Territorial_MC_PC2','D4_Tecnologico_Conectividade_MC_PC1']
+comp=['D1_Bens_Duraveis_MC_PC1','D2_Humano_Trabalho_MC_PC1','D3_Fisico_Habitacional_Territorial_MC_PC1','D3_Fisico_Habitacional_Territorial_MC_PC2','D4_Tecnologico_Conectividade_MC_PC1']
 rows=[]
 n=len(d)
 for dim,vs in V.items():

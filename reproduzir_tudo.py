@@ -16,6 +16,7 @@ Opções úteis:
 
 Etapas por variante (rodam em resultados/<variante>/, na ordem):
     03 modelo | 16 bootstrap, nulos, encolhimento | 18 variância, AMI, join count | 19 validação externa | 21 testes de estresse | 23 deixa-uma-RA-fora refazendo o PCA
+    24 nulos do bootstrap, metades e atribuição domiciliar | 25 multinível, Moran ajustado, validação ordenada
 Ao final: 22 consolida todas as variantes em comparacao_variantes.{csv,md}.
 """
 import argparse, os, subprocess, sys, time, shutil
@@ -24,7 +25,8 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent; PIPE = RAIZ / 'pipeline'
 ETAPAS = [('03', '03_analise_cluster_4d.py'), ('16', '16_robustez_amostral_e_pesos.py'), ('18', '18_variancia_ami_espacial.py'),
-          ('19', '19_validacao_externa.py'), ('21', '21_stress_estrutural.py'), ('23', '23_deixa_uma_RA_refazendo_pca.py')]
+          ('19', '19_validacao_externa.py'), ('21', '21_stress_estrutural.py'), ('23', '23_deixa_uma_RA_refazendo_pca.py'),
+          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py')]
 FIGURAS_TCC = ['04_comparacao_metodos.py', '05_ward_dendrograma.py', '06_ward_bateria.py', '07_estabilidade_cruzada.py', '08_variaveis_apoio.py',
                '09_kruskal_wallis_escores.py', '10_tabelas_e_figuras.py', '11_mapas_indicadores.py', '12_robustez_tandem.py', '13_ra_grupos_componentes.py',
                '20_figuras_perfil_validacao.py']
@@ -34,8 +36,8 @@ def ler_variantes():
     v = {}
     for ln in (PIPE / 'variantes.tsv').read_text(encoding='utf-8').splitlines():
         if not ln.strip() or ln.startswith('#'): continue
-        c = ln.split('\t'); nome, V2, K, win, comp, nb, ni, fig = c[:8]
-        v[nome] = dict(nome=nome, V2='' if V2 == 'nenhuma' else V2, K=K, WINSOR_P=win, COMP=comp, N_BOOT=nb, NINIT_BOOT=ni, figuras=fig == '1')
+        c = ln.split('\t'); nome, V2, K, win, comp, nb, ni, fig = c[:8]; extras = c[8].strip() if len(c) > 8 else ''
+        v[nome] = dict(nome=nome, V2='' if V2 == 'nenhuma' else V2, K=K, WINSOR_P=win, COMP=comp, N_BOOT=nb, NINIT_BOOT=ni, figuras=fig == '1', extras=extras)
     return v
 
 def ambiente(cfg):
@@ -43,6 +45,7 @@ def ambiente(cfg):
     e.update(TCC_BASE=str(RAIZ / 'dados' / 'gold'), TCC_SHP=str(RAIZ / 'dados' / 'regioes_administrativas.zip'), TCC_03=str(PIPE / '03_analise_cluster_4d.py'),
              V2=cfg['V2'], K_FINAL=cfg['K'], WINSOR_P=cfg['WINSOR_P'], COMP=cfg['COMP'], N_BOOT=cfg['N_BOOT'], NINIT_BOOT=cfg['NINIT_BOOT'],
              MPLBACKEND='Agg', PYTHONHASHSEED='0', PYTHONIOENCODING='utf-8')
+    for kv in filter(None, cfg.get('extras', '').split(';')): k_, v_ = kv.split('=', 1); e[k_] = v_
     return e
 
 def rodar(script, cwd, env, log):
@@ -53,7 +56,7 @@ def rodar(script, cwd, env, log):
 
 def variante(cfg, saida, figuras_tcc):
     out = saida / cfg['nome']; shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
-    (out / 'config.txt').write_text(f"variante={cfg['nome']} V2={cfg['V2']} K={cfg['K']} WINSOR_P={cfg['WINSOR_P']} COMP={cfg['COMP']} N_BOOT={cfg['N_BOOT']} NINIT_BOOT={cfg['NINIT_BOOT']}\n", encoding='utf-8')
+    (out / 'config.txt').write_text(f"variante={cfg['nome']} V2={cfg['V2']} K={cfg['K']} WINSOR_P={cfg['WINSOR_P']} COMP={cfg['COMP']} N_BOOT={cfg['N_BOOT']} NINIT_BOOT={cfg['NINIT_BOOT']}" + (f" extras={cfg['extras']}" if cfg.get('extras') else '') + "\n", encoding='utf-8')
     env = ambiente(cfg); tempos = []
     for cod, script in ETAPAS:
         rc, dt = rodar(script, out, env, out / f'saida_{cod}.txt'); tempos.append((cod, rc, dt))
