@@ -110,7 +110,7 @@ A vantagem de M0 K=3 e K=4 **sobrevive** à condição de comparar dentro da mes
 - Foi definido depois dos dados (aviso acima).
 
 ## 4. Alternativa M2b (executada em K = 3)
-Satisfaz o checklist ao pé da letra (log-razão) sem a escada normativa: duas razões log-isométricas das três fontes originais (rede, poço artesiano, poço/cisterna), com zeros tratados por +0,5 domicílio por parte, mais `ctx`, `renda`, `dur`. O esgoto fica como no M2. Implementada em `03` (`AGUA_RAWILR=1`) e na variante `M2b_aguaILR_K3` (K = 4 e 5 listadas, não executadas). Decisões de modelagem tomadas sem consulta (zeros e balanço), documentadas em `03`.
+Satisfaz o checklist ao pé da letra (log-razão) sem a escada normativa: duas razões log-isométricas das três fontes originais (rede, poço artesiano, poço/cisterna), com zeros tratados por +0,5 domicílio por parte, mais `ctx`, `renda`, `dur`. O esgoto fica como no M2. Implementada em `03` (`AGUA_RAWILR=1`) e na variante `M2b_aguaILR_K3` (K = 4 e 5 executadas depois, no batch de verificação: ARI com M2 de 0,39 e 0,73; silhueta 0,177 e 0,176; p de covariância 0,98 e 0,97; sem melhora). Decisões de modelagem tomadas sem consulta (zeros e balanço), documentadas em `03`.
 
 | indicador | M2 K=3 | M2b K=3 |
 |---|---|---|

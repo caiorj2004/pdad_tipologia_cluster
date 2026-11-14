@@ -60,5 +60,5 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 | Validação externa condicional à RA (permutação dentro da RA) e eta² da RA | `29` | `validacao_condicional_RA_29*.csv`, `eta2_RA_escores_29.csv` | implementado |
 | Híbrido M2 (`ctx`, `renda`, `dur`; água e esgoto como em M0), K = 3, 4, 5 | `variantes.tsv` | `M2_semEscadas_K3/K4/K5`; análise em `docs/criticas_e_modelo_hibrido.md` | implementado; definido depois de ver `L_sem_agua` |
 
-| Água como ilr das três fontes originais, sem escada (M2b), K = 3 | `03` (`AGUA_RAWILR=1`), `variantes.tsv` | `M2b_aguaILR_K3` | implementado e executado com a bateria completa em K = 3 (`reproduzir_tudo.py --variantes M2b_aguaILR_K3`, mais `09`, `12` e `29` à parte); K = 4 e 5 não executados |
+| Água como ilr das três fontes originais, sem escada (M2b), K = 3 | `03` (`AGUA_RAWILR=1`), `variantes.tsv` | `M2b_aguaILR_K3` | implementado e executado com a bateria completa em K = 3 (`reproduzir_tudo.py --variantes M2b_aguaILR_K3`, mais `09`, `12` e `29` à parte); K = 4 e 5 executados no batch de verificação (ARI com M2: 0,39 e 0,73; sem ganho de robustez) |
 | Programas 09 e 12 sensíveis à configuração da rodada (`K_FINAL`, `V2`, `AGUA_RAWILR`) | `09`, `12` | `kw_todas.csv`, `robustez_tandem.csv` | corrigido: o 12 usava as variáveis do M1 no M2 e os números da sensibilidade à PCA foram refeitos |
