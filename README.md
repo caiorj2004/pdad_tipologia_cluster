@@ -3,7 +3,7 @@
 Repositório de apoio ao TCC *Tipologia dos Territórios Rurais do Distrito Federal: Uma Análise de Clustering Socioespacial com a PDAD Rural 2022* (IESB, Ciência de Dados e IA).
 Ele contém o código, os dados e as saídas necessárias para reproduzir **cada modelo** discutido no TCC e para **testá-los sob estresse com a mesma bateria**, conforme a avaliação crítica de 12/11/2026.
 
-> **Nenhum modelo foi eleito.** O repositório existe para comparar o modelo avaliado (`M0_antigo`) com o modelo revisado segundo a avaliação (`M1_revisado`) e com variantes intermediárias, e para mostrar quais conclusões se sustentam em todas elas.
+> **Modelo principal e sensibilidades.** No texto do TCC, o modelo principal é o `M2_semEscadas_K3` (IVS-DF e escala da RA fora da matriz, renda como média do ln com winsorização, geladeira e secadora fora, água e esgoto como em M0), escolha do autor. O `M0_antigo` e o `M1_revisado` são mantidos como comparação e o `M2b_aguaILR` como terceira sensibilidade. **O M2 foi definido depois de ver os resultados das variantes** (`L_sem_agua`), e nenhuma variante supera o nulo de covariância: a tipologia é um recorte descritivo de um gradiente. O repositório existe para reproduzir cada modelo e submetê-los à mesma bateria, e para mostrar quais conclusões se sustentam em todos.
 
 ## Estrutura
 
@@ -12,7 +12,7 @@ dados/gold/            microdados corrigidos (saída do programa 01) + IVS-DF (I
 dados/                 versão anterior das planilhas (sem as correções dos códigos 66666 etc.) e shapefile das RAs
 legado/                scripts originais dos modelos 4D e 5D (Colab); mantidos para consulta
 pipeline/              programas numerados e executores (veja abaixo)
-resultados/<variante>/ saídas de cada variante (texto e CSV; figuras só de M0_antigo_K5 e M1_revisado_K3)
+resultados/<variante>/ saídas de cada variante (texto e CSV; figuras só de M1_revisado_K3 e M2_semEscadas_K3)
 resultados/comparacao_variantes.{csv,md}   métricas de todas as variantes lado a lado
 docs/                  rastreabilidade da avaliação, denominadores e notas
 ```
@@ -36,6 +36,8 @@ Todas as sementes são fixas (`SEED = 42`; réplicas do bootstrap usam a semente
 | Grupo | Variantes | O que muda |
 |---|---|---|
 | Modelo avaliado | `M0_antigo_K5`, `M0_antigo_K3` | matriz original: 34 variáveis, IVS-DF e escala da RA dentro, água em 3 proporções, geladeira e secadora dentro, renda = ln da média |
+| Modelo principal do texto | `M2_semEscadas_K3` (e `_K4`, `_K5`) | M1 sem as escadas de água e esgoto (flags `ctx,renda,dur`); água e esgoto como em M0 |
+| Terceira sensibilidade | `M2b_aguaILR_K3` (e `_K4`, `_K5` listadas, não rodadas) | M2 com a água em duas razões log-isométricas das três fontes originais (`AGUA_RAWILR=1`), sem escada |
 | Modelo revisado | `M1_revisado_K3`, `M1_revisado_K5` | as 5 mudanças da avaliação juntas (flags `ctx,agua,esgoto,renda,dur`) |
 | Uma mudança por vez | `A_so_ctx`, `A_so_agua`, `A_so_esgoto`, `A_so_renda`, `A_so_dur` | M0 + uma só mudança |
 | Tira uma mudança | `L_sem_ctx`, `L_sem_agua`, `L_sem_esgoto`, `L_sem_renda`, `L_sem_dur` | M1 − uma mudança |

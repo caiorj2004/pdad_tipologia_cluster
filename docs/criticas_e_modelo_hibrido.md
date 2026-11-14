@@ -1,6 +1,6 @@
 # As críticas pelo mérito próprio e o modelo híbrido M2
 
-Números: `docs/tabelas_rodadas.md` (T1 a T10) e `resultados/comparacao_variantes.csv`. Este documento **não elege modelo**. O texto do TCC não foi alterado.
+Números: `docs/tabelas_rodadas.md` (T1 a T10) e `resultados/comparacao_variantes.csv`. Este documento foi escrito antes da escolha. **Depois dele, o autor adotou M2 K=3 como modelo principal do texto do TCC**, com M0 e M1 como comparação e o M2b como terceira sensibilidade (seção 4). A análise abaixo não foi alterada.
 
 ## 1. Cada crítica avaliada por si, e não por ter vindo da avaliação
 
@@ -109,8 +109,22 @@ A vantagem de M0 K=3 e K=4 **sobrevive** à condição de comparar dentro da mes
 - Dá o mesmo resultado nulo de grupos que M0 e M1 contra o nulo de covariância.
 - Foi definido depois dos dados (aviso acima).
 
-## 4. Alternativa M2b (não executada)
-Satisfaz o checklist ao pé da letra (log-razão) sem a escada normativa: clr/ilr das três fontes originais (rede, poço artesiano, poço/cisterna), com tratamento de zeros, mais `ctx`, `renda`, `dur`. Exige uma codificação nova em `03` (as variantes `COMP=clr` atuais já agrupam em níveis da escada). É a forma mais defensável de responder à crítica 1 sem aceitar a crítica 3. Não rodei porque envolve uma decisão sua (tratamento de zeros e definição do balanço).
+## 4. Alternativa M2b (executada em K = 3)
+Satisfaz o checklist ao pé da letra (log-razão) sem a escada normativa: duas razões log-isométricas das três fontes originais (rede, poço artesiano, poço/cisterna), com zeros tratados por +0,5 domicílio por parte, mais `ctx`, `renda`, `dur`. O esgoto fica como no M2. Implementada em `03` (`AGUA_RAWILR=1`) e na variante `M2b_aguaILR_K3` (K = 4 e 5 listadas, não executadas). Decisões de modelagem tomadas sem consulta (zeros e balanço), documentadas em `03`.
+
+| indicador | M2 K=3 | M2b K=3 |
+|---|---|---|
+| partição (segmentos) | 20/17/12 | 20/19/10 |
+| ARI M2 vs M2b | | 0,898 (dois segmentos mudam: Paranoá Assentamento e Sobradinho II Moradia e Lazer, de A para C) |
+| silhueta / p covariância | 0,236 / 0,535 | 0,234 / 0,573 |
+| ARI subamostra 80% | 0,696 | 0,548 |
+| ARI bootstrap / p contra o nulo | 0,535 / 0,34 | 0,507 / 0,46 |
+| domicílios em segmentos de fronteira | 3,2% | 7,6% |
+| encolhimento: ARI / segmentos que mudam | 0,77 / 4 | 0,45 / 12 |
+| sem uma RA, PCA refeita (ARI médio) | 0,90 | 0,66 (RA crítica: Park Way) |
+| desfechos p < 0,05 entre grupos / dentro da RA / ordenados | 3 / 2 / 5 | 3 / 2 / 0 |
+
+**Leitura.** O M2b responde à crítica de composição sem alterar a partição (ARI 0,90 com M2) e não melhora nenhum indicador de robustez; piora a estabilidade (subamostra, fronteira, encolhimento, deixa-uma-RA). Não supera o nulo de covariância. No texto do TCC é a terceira sensibilidade, e o M2 permanece como principal por decisão do autor. A conclusão é que a partição do M2 não depende de a água entrar como proporções ou como composição.
 
 ## 5. Como decidir sem circularidade
 1. Declarar o critério antes de escolher: (a) desenho metodológico, (b) estabilidade, (c) validação externa.
