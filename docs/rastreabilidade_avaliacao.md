@@ -25,7 +25,7 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 | E3 | K-Means ponderado | `16` (b), `21` S7 | `robustez_pesos_*.csv`, `stress_S7_algoritmos.csv` | implementado |
 | E4 | K-Means aparado (trimmed), α = 6% e 10% | `21` S4 | `stress_S4_kmeans_aparado.csv` | implementado (implementação própria, sem o pacote `tclust` do R) |
 | E5 | Análise de arquétipos | `21` S5 | `stress_S5_arquetipos*.csv` | implementado (implementação própria por NNLS alternado) |
-| E6 | K alternativo nomeado (K = 3 ou 4) | `variantes.tsv`, `03` | `M1_revisado_K3`, `M1_revisado_K5` | K = 2 a 8 comparados em todas as variantes |
+| E6 | K alternativo nomeado (K = 3 ou 4) | `variantes.tsv`, `03` | `M0_antigo_K3/K4/K5`, `M1_revisado_K3/K4/K5` | K = 2 a 8 comparados em todas as variantes; K=3 e K=4 nomeados para M0 e M1 |
 | E7 | Denominador da CTPS explícito | `03` (linha com `tem_ctps`) | `docs/denominadores.md` | documentado |
 | E8 | Reprodutibilidade: links dos códigos e dos dados | este repositório | `README.md` | **Falta o DOI/arquivamento (Zenodo) e o link do artefato** |
 | E9 | Interação RA × subpopulação (efeito mecânico da RA) | `21` S9 | `stress_resumo.csv` | implementado |
