@@ -1,7 +1,7 @@
 # Rastreabilidade: avaliação da orientadora (12/11/2026) → código → saída
 
 Cada ponto da avaliação aponta para o script que o executa e para o arquivo (por variante, em `resultados/<variante>/`) que o prova.
-"Status" diz apenas se o teste existe e roda; **não diz que o resultado foi favorável**. A comparação entre variantes está em `resultados/comparacao_variantes.md`; a leitura detalhada, em `docs/rodadas_stress_test.md` (tabelas em `docs/tabelas_rodadas.md`). Nenhum modelo foi eleito.
+"Status" diz apenas se o teste existe e roda; **não diz que o resultado foi favorável**. A comparação entre variantes está em `resultados/comparacao_variantes.md`; a leitura detalhada, em `docs/rodadas_stress_test.md` (tabelas em `docs/tabelas_rodadas.md`). O texto do TCC adota M2 como principal e M0, M1 e M2b como comparação e sensibilidade (ver `docs/criticas_e_modelo_hibrido.md`).
 
 | # | Ponto da avaliação | Script | Saída | Status |
 |---|---|---|---|---|
@@ -12,7 +12,7 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 | 5 | Bootstrap de domicílios refazendo todo o fluxo, com perfis e ICs | `16` (a) | `saida_16.txt`, `perfis_grupos_ic.csv` | implementado; `NINIT_BOOT` separa ótimo local de incerteza amostral |
 | 6 | Encolhimento e/ou "não classificável" | `16` (d), (e) | `robustez_amostral_segmentos.csv` | implementado |
 | 7 | ARI de estabilidade contra o nulo de covariância | `16` (c) | `estabilidade_vs_nulo_cov.csv` | implementado |
-| 8 | Destino do grupo 2 decidido pelo bootstrap | `16`, `21` S4 | `saida_16.txt`, `stress_S4_*.csv` | resultado por variante; decisão final **em aberto** |
+| 8 | Destino do grupo 2 decidido pelo bootstrap | `16`, `21` S4 | `saida_16.txt`, `stress_S4_*.csv` | resultado por variante; no texto do TCC, o K final é 3 e a regra é: segmentos com menos de 10 domicílios são não classificáveis e os de coligação < 0,60, de fronteira |
 | 9 | Decomposição de variância RA × subpopulação (multinível) | `18` | `variancia_ra_sub.csv` | implementado (ANOVA e MixedLM) |
 | 10 | AMI dos rótulos com RA e subpopulação | `18` | `ami_rotulos.csv` | implementado |
 | 11 | Média por RA ponderada; join count dos grupos | `03`, `18` | `moran_global.csv`, `joincount.csv` | implementado |
@@ -59,3 +59,6 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 
 | Validação externa condicional à RA (permutação dentro da RA) e eta² da RA | `29` | `validacao_condicional_RA_29*.csv`, `eta2_RA_escores_29.csv` | implementado |
 | Híbrido M2 (`ctx`, `renda`, `dur`; água e esgoto como em M0), K = 3, 4, 5 | `variantes.tsv` | `M2_semEscadas_K3/K4/K5`; análise em `docs/criticas_e_modelo_hibrido.md` | implementado; definido depois de ver `L_sem_agua` |
+
+| Água como ilr das três fontes originais, sem escada (M2b), K = 3 | `03` (`AGUA_RAWILR=1`), `variantes.tsv` | `M2b_aguaILR_K3` | implementado; terceira sensibilidade no texto; bateria de `M2b_aguaILR_K3` executada (`reproduzir_tudo.py --variantes`), K = 4 e 5 não executados |
+| Programas 09 e 12 sensíveis à configuração da rodada (`K_FINAL`, `V2`, `AGUA_RAWILR`) | `09`, `12` | `kw_todas.csv`, `robustez_tandem.csv` | corrigido: o 12 usava as variáveis do M1 no M2 e os números da sensibilidade à PCA foram refeitos |

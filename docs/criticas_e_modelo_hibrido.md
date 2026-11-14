@@ -1,6 +1,6 @@
 # As críticas pelo mérito próprio e o modelo híbrido M2
 
-Números: `docs/tabelas_rodadas.md` (T1 a T10) e `resultados/comparacao_variantes.csv`. Este documento **não elege modelo**. O texto do TCC não foi alterado.
+Números: `docs/tabelas_rodadas.md` (T1 a T10) e `resultados/comparacao_variantes.csv`. Este documento foi escrito antes da escolha. **Depois dele, o autor adotou M2 K=3 como modelo principal do texto do TCC**, com M0 e M1 como comparação e o M2b como terceira sensibilidade (seção 4). A análise abaixo não foi alterada.
 
 ## 1. Cada crítica avaliada por si, e não por ter vindo da avaliação
 
