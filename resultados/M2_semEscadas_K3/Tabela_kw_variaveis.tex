@@ -1,7 +1,7 @@
-% Tabela do Anexo: Kruskal-Wallis das 34 variáveis do modelo entre os 5 grupos
+% Tabela do Anexo: Kruskal-Wallis das variáveis originais entre os três grupos
 {\small
 \begin{longtable}{@{}l l r r r r c@{}}
-\caption{Kruskal-Wallis das 34 variáveis do modelo entre os cinco grupos ($N = 49$ segmentos)}
+\caption{Kruskal-Wallis das variáveis originais (inclusive as que ficaram fora do modelo) entre os três grupos ($N = 49$ segmentos)}
 \label{tab:kw_variaveis}\\
 \toprule
 Dim. & Variável & $H$ & $p$ & $q$ (FDR) & $\varepsilon^2$ & Dif.\ ($q<0{,}05$) \\
@@ -16,7 +16,7 @@ Dim. & Variável & $H$ & $p$ & $q$ (FDR) & $\varepsilon^2$ & Dif.\ ($q<0{,}05$) 
 \multicolumn{7}{r}{\textit{continua na página seguinte}}\\
 \endfoot
 \bottomrule
-\multicolumn{7}{@{}p{\linewidth}@{}}{\footnotesize \textbf{Fonte:} elaboração própria. $H$: estatística de Kruskal-Wallis (4 graus de liberdade) sobre as médias dos 49 segmentos, agrupados pelo $K$-Means ($K=3$); $q$: valor $p$ ajustado pela taxa de falsas descobertas de Benjamini-Hochberg, sobre os 40 testes (34 variáveis e 6 componentes); $\varepsilon^2$: tamanho de efeito. Os valores são descritivos, porque os grupos foram formados com as mesmas variáveis.}\\
+\multicolumn{7}{@{}p{\linewidth}@{}}{\footnotesize \textbf{Fonte:} elaboração própria. $H$: estatística de Kruskal-Wallis (2 graus de liberdade) sobre as médias dos 49 segmentos, agrupados pelo $K$-Means ($K=3$); $q$: valor $p$ ajustado pela taxa de falsas descobertas de Benjamini-Hochberg, sobre os testes (variáveis originais e componentes); $\varepsilon^2$: tamanho de efeito. Os valores são descritivos, porque os grupos foram formados com as mesmas variáveis.}\\
 \endlastfoot
 D1 & Renda domiciliar \textit{per capita} (log) & 13,3 & 0,001 & 0,002 & 0,25 & sim \\
 D1 & Automóvel & 11,5 & 0,003 & 0,005 & 0,21 & sim \\

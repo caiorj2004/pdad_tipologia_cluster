@@ -45,10 +45,10 @@ plt.tight_layout(); plt.savefig('figuras/escores_grupos.png',dpi=200); plt.close
 # ---------- anexo KW 34 variáveis
 lab={"log_renda_domiciliar_pc":"Renda domiciliar \\textit{per capita} (log)","possui_automovel":"Automóvel","possui_motocicleta":"Motocicleta","possui_geladeira":"Geladeira","possui_freezer":"\\textit{Freezer}","possui_lavadora":"Máquina de lavar","possui_secadora":"Secadora","possui_tv":"Televisão","possui_ar_condicionado":"Ar-condicionado","possui_microondas":"Micro-ondas","escolaridade_adulto":"Escolaridade (25 anos ou mais)","trabalhou_30d":"Trabalhou nos últimos 30 dias","tem_ctps":"Carteira assinada (CTPS)","contribui_previdencia":"Contribui para a previdência","ivs_df":"IVS-DF","comodos_por_pessoa":"Cômodos por pessoa","banheiros_por_pessoa":"Banheiros por pessoa","agua_rede":"Água da rede","agua_poco_artesiano":"Poço artesiano","agua_poco_cisterna":"Poço cisterna","captacao_chuva":"Captação de chuva","caixa_agua":"Caixa d'água","solucao_sanitaria_estruturada":"Solução sanitária estruturada","acesso_energetico_estruturado":"Acesso energético estruturado","destino_com_coleta_direta":"Coleta direta de lixo","rua_pavimentada":"Rua pavimentada","iluminacao_publica":"Iluminação pública","drenagem":"Drenagem","ponto_onibus":"Ponto de ônibus","qtd_estabelecimentos":"Escala da RA (domicílios expandidos)","internet_domiciliar":"Internet domiciliar","internet_banda_larga_fixa":"Banda larga fixa","internet_movel":"Internet móvel","possui_computador":"Computador"}
 v=kw[kw.tipo=='var']
-t=r"""% Tabela do Anexo: Kruskal-Wallis das 34 variáveis do modelo entre os 5 grupos
+t=r"""% Tabela do Anexo: Kruskal-Wallis das variáveis originais entre os três grupos
 {\small
 \begin{longtable}{@{}l l r r r r c@{}}
-\caption{Kruskal-Wallis das 34 variáveis do modelo entre os cinco grupos ($N = 49$ segmentos)}
+\caption{Kruskal-Wallis das variáveis originais (inclusive as que ficaram fora do modelo) entre os três grupos ($N = 49$ segmentos)}
 \label{tab:kw_variaveis}\\
 \toprule
 Dim. & Variável & $H$ & $p$ & $q$ (FDR) & $\varepsilon^2$ & Dif.\ ($q<0{,}05$) \\
@@ -63,7 +63,7 @@ Dim. & Variável & $H$ & $p$ & $q$ (FDR) & $\varepsilon^2$ & Dif.\ ($q<0{,}05$) 
 \multicolumn{7}{r}{\textit{continua na página seguinte}}\\
 \endfoot
 \bottomrule
-\multicolumn{7}{@{}p{\linewidth}@{}}{\footnotesize \textbf{Fonte:} elaboração própria. $H$: estatística de Kruskal-Wallis (4 graus de liberdade) sobre as médias dos 49 segmentos, agrupados pelo $K$-Means ($K=3$); $q$: valor $p$ ajustado pela taxa de falsas descobertas de Benjamini-Hochberg, sobre os 40 testes (34 variáveis e 6 componentes); $\varepsilon^2$: tamanho de efeito. Os valores são descritivos, porque os grupos foram formados com as mesmas variáveis.}\\
+\multicolumn{7}{@{}p{\linewidth}@{}}{\footnotesize \textbf{Fonte:} elaboração própria. $H$: estatística de Kruskal-Wallis (2 graus de liberdade) sobre as médias dos 49 segmentos, agrupados pelo $K$-Means ($K=3$); $q$: valor $p$ ajustado pela taxa de falsas descobertas de Benjamini-Hochberg, sobre os testes (variáveis originais e componentes); $\varepsilon^2$: tamanho de efeito. Os valores são descritivos, porque os grupos foram formados com as mesmas variáveis.}\\
 \endlastfoot
 """
 for _,r in v.iterrows():
