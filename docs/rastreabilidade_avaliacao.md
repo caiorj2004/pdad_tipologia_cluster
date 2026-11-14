@@ -54,4 +54,5 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 | Escadas alternativas de água e esgoto | `03` (`AGUA_ESCADA`, `ESGOTO_ESCADA`) | variantes `E_*` | implementado |
 | K = 4 para M0 e M1 | `variantes.tsv` | `M0_antigo_K4`, `M1_revisado_K4` | implementado |
 | Tabelas T1 a T8 e ARI entre partições | `27` | `docs/tabelas_rodadas.md`, `resultados/ari_entre_particoes.csv` | implementado |
-| Validação externa sob incerteza da partição; jackknife por domicílio; Emater-DF | – | – | **não feito** |
+| Validação externa sob incerteza da partição | `28` | `validacao_externa_incerteza_28*.csv` | implementado; desfechos fixos, só a partição varia; sem correção para múltiplos testes |
+| Jackknife por domicílio; Emater-DF | – | – | **não feito** |

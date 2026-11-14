@@ -238,6 +238,41 @@ Nulo de covariância: dados sintéticos com a mesma covariância e sem grupos. p
 | M1_revisado_K3_bootEstratoRegra | 0.145 | 0.013 | 0.164 | 0.001 | 0.065 | 0.257 | 0.281 | 0.000 | 0.000 | 0.053 |
 
 
+### T9. Validação externa sob incerteza da partição (programa 28)
+
+| variante | desfechos com p<0,05 (partição de referência) | desfechos com p mediano<0,05 (réplicas) | % médio de réplicas com p<0,05 | epsilon² mediano médio |
+|---|---|---|---|---|
+| M0_antigo_K3 | 4 | 3 | 49.571 | 0.107 |
+| M0_antigo_K4 | 3 | 3 | 43.357 | 0.111 |
+| M0_antigo_K5 | 4 | 3 | 38 | 0.108 |
+| M1_revisado_K3 | 2 | 2 | 34.714 | 0.067 |
+| M1_revisado_K4 | 2 | 1 | 28.786 | 0.075 |
+| M1_revisado_K5 | 2 | 1 | 25.571 | 0.074 |
+| A_so_ctx | 3 | 3 | 41.714 | 0.081 |
+| A_so_agua | 3 | 3 | 48.429 | 0.098 |
+| A_so_esgoto | 3 | 3 | 47.571 | 0.096 |
+| A_so_renda | 4 | 3 | 49 | 0.103 |
+| A_so_dur | 3 | 3 | 48.286 | 0.098 |
+| L_sem_ctx | 3 | 3 | 42.143 | 0.086 |
+| L_sem_agua | 2 | 1 | 32.286 | 0.066 |
+| L_sem_esgoto | 2 | 3 | 40.143 | 0.080 |
+| L_sem_renda | 4 | 2 | 35.571 | 0.068 |
+| L_sem_dur | 3 | 2 | 37.714 | 0.069 |
+| S_winsor95 | 2 | 2 | 35.286 | 0.068 |
+| S_winsor100 | 2 | 2 | 34.857 | 0.067 |
+| S_clr | 2 | 1 | 32 | 0.062 |
+| E_agua_cisterna_precaria | 3 | 2 | 33.429 | 0.064 |
+| E_agua_nascente_individual | 4 | 1 | 32.714 | 0.064 |
+| E_agua_gambiarra_na_rede | 3 | 3 | 37.857 | 0.074 |
+| E_esgoto_rudimentar_individual | 3 | 2 | 34.571 | 0.066 |
+| M0_antigo_K5_b500n50 | 4 | 3 | 39.514 | 0.110 |
+| M0_antigo_K5_bootEstratoRegra | 4 | 3 | 41.071 | 0.105 |
+| M1_revisado_K3_b500n50 | 2 | 1 | 33.286 | 0.065 |
+| M1_revisado_K3_bootEstratoRegra | 2 | 2 | 36.357 | 0.065 |
+
+De 7 desfechos (Kruskal-Wallis entre grupos, 49 segmentos). Desfechos fixos; só a partição varia, com os rótulos de cada réplica do bootstrap. Sem correção para comparações múltiplas.
+
+
 ### T8. ARI entre a partição de cada variante (no seu K) e as duas de referência
 
 | variante | ARI vs M0_antigo_K5 | ARI vs M1_revisado_K3 |

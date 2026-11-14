@@ -180,6 +180,32 @@ O número de réplicas **converge**: o ARI médio e o p5 mudam pouco. A lista de
 6. **Deixar-uma-RA-fora** refaz o PCA (S6b) mas não refaz o redimensionamento do K; o número de componentes varia em M1.
 7. **Não realizados:** validação externa sob incerteza da partição; jackknife por domicílio; comparação com técnicos da Emater-DF; mediana ponderada de renda.
 
+## 7b. Validação externa sob incerteza da partição (programa 28)
+
+O programa 19 testa os sete desfechos externos contra a partição de referência. O programa 28 mantém o desfecho de cada segmento fixo e refaz o Kruskal-Wallis com o rótulo de cada réplica do bootstrap (200 réplicas, já realinhadas). Pergunta: a associação sobrevive quando a partição é refeita com a incerteza amostral?
+
+Percentual das réplicas com p < 0,05 (mediana do p entre parênteses):
+
+| desfecho | M0 K=3 | M0 K=4 | M0 K=5 | M1 K=3 | M1 K=4 | M1 K=5 |
+|---|---|---|---|---|---|---|
+| EBIA insegurança qualquer | 32,5 (0,095) | 18,5 (0,136) | 14,5 (0,151) | 8,0 (0,227) | 6,5 (0,265) | 5,0 (0,331) |
+| EBIA moderada/grave | 75,0 (0,022) | 62,5 (0,032) | 51,5 (0,047) | 53,0 (0,043) | 42,5 (0,066) | 30,0 (0,082) |
+| benefício social | 84,0 (0,015) | 72,5 (0,026) | 63,5 (0,037) | 38,5 (0,081) | 30,5 (0,091) | 25,0 (0,092) |
+| CadÚnico | 100 (<0,001) | 98,5 (0,001) | 100 (0,001) | 93,5 (0,004) | 94,5 (0,003) | 97,0 (0,003) |
+| escritura registrada | 22,5 (0,106) | 28,5 (0,090) | 20,5 (0,106) | 26,0 (0,104) | 15,0 (0,129) | 9,0 (0,167) |
+| documentação formal | 12,0 (0,204) | 7,5 (0,228) | 3,5 (0,268) | 4,5 (0,305) | 3,0 (0,319) | 3,0 (0,418) |
+| outorga de água | 21,0 (0,102) | 15,5 (0,123) | 12,5 (0,136) | 19,5 (0,120) | 9,5 (0,172) | 10,0 (0,197) |
+
+Leitura:
+- **CadÚnico** é robusto em todos os modelos (93,5% a 100% das réplicas). Mas renda está na matriz de todos eles, e o CadÚnico é focalizado por renda: a associação é em parte mecânica.
+- **EBIA moderada/grave e benefício social** sobrevivem na maior parte das réplicas em M0 (51,5% a 84%) e menos em M1 (25% a 53%).
+- **EBIA qualquer, escritura, documentação formal e outorga** não sobrevivem em nenhum modelo (≤ 32%).
+- Dentro de M1, a robustez cai de K=3 para K=5 em EBIA moderada/grave (53,0% → 30,0%) e em benefício social (38,5% → 25,0%).
+- O epsilon² mediano médio (tamanho de efeito) é 0,11 em M0 e 0,07 em M1: efeitos pequenos nos dois.
+- Entre as 27 linhas, o número de desfechos com p mediano < 0,05 vai de 1 a 3 (T9 em `tabelas_rodadas.md`). Esta rodada favorece M0 sobre M1 em validação externa, mas o contraste é modesto e sem correção para múltiplos testes.
+
+Limites: o desfecho do segmento não é reamostrado; só a partição varia (a incerteza do desfecho está no IC do programa 19). 49 segmentos; sem correção para comparações múltiplas.
+
 ## 8. Quadro de trade-offs (sem ranking)
 
 | critério | favorece | desfavorece |
@@ -192,6 +218,7 @@ O número de réplicas **converge**: o ARI médio e o p5 mudam pouco. A lista de
 | sensibilidade a encolhimento | A_so_agua (1,000), M0 K=3 (0,892) | M0 K=4 (0,404), E_agua_gambiarra (0,316), L_sem_agua (0,300) |
 | retirar uma RA | M0 K=5 (0% RAs com ARI < 0,5), M0 K=3 (4%) | M1 K=4 (70%), L_sem_esgoto (35%) |
 | sinal territorial (RA) | M0 K=5, K=4, A_so_esgoto (p perm. ≤ 0,003) | M1 K=3 (p atrib. 0,683), S_clr (0,752) |
+| validação externa sob incerteza da partição (7b) | M0 K=3/K=5 (3 desfechos com p mediano < 0,05), A_so_* (3) | M1 K=4/K=5, S_clr (1) |
 | validação externa ordenada | A_so_ctx, A_so_esgoto, A_so_dur (5 desfechos) | M1 K=3, S_*, L_sem_{esgoto,renda,dur}, E_* exceto gambiarra (0) |
 | IVS-DF como validação **externa** | M1 e derivadas (p ≤ 0,003) | M0 e A_so_* sem ctx (circular) |
 
@@ -213,7 +240,6 @@ Nenhuma variante domina as demais em todos os critérios. M0 K=5 e M0 K=3 vão m
 - Que a validação externa é favorável ou desfavorável a M1 em geral: ela depende do modelo e do desfecho, sem correção para múltiplos testes.
 
 ## 10. Rodadas ainda abertas
-- Validação externa sob incerteza da partição (propagar o bootstrap para os testes de T7).
 - Jackknife por domicílio e por estrato.
 - Comparação com a Emater-DF (pesquisa futura).
 - Escolha de K por critério pré-registrado, antes de olhar os resultados externos.

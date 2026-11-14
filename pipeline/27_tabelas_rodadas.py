@@ -40,6 +40,9 @@ o.append(tab('T6. Confusão territorial', ['AMI_RA_obs','AMI_RA_p_atrib','AMI_se
     ['AMI RA','p (atrib. domicílios)','p (perm. segmentos)','AMI subpop','p (atrib.)','p (perm.)','pares mesma RA no mesmo grupo','esperado','p','pares mesma subpop no mesmo grupo','esperado','p','join count obs.','esperado','p']))
 o.append(tab('T7. Validação externa (Kruskal-Wallis por segmento, p) e ordenada', [c for c in d.columns if c.startswith('VE_KW')] + ['IVS_KW_p','ordenada_n_p<0.05','ordenada_rho_medio_abs'],
     [c.replace('VE_KW_p_','') for c in d.columns if c.startswith('VE_KW')] + ['IVS-DF','nº desfechos ordenados p<0,05','|rho| médio']))
+o.append(tab('T9. Validação externa sob incerteza da partição (programa 28)', ['ext28_n_desfechos_p_ref_menor_005','ext28_n_desfechos_mediana_p_menor_005','ext28_pct_replicas_p005_media','ext28_epsilon2_mediano_medio'],
+    ['desfechos com p<0,05 (partição de referência)','desfechos com p mediano<0,05 (réplicas)','% médio de réplicas com p<0,05','epsilon² mediano médio'],
+    'De 7 desfechos (Kruskal-Wallis entre grupos, 49 segmentos). Desfechos fixos; só a partição varia, com os rótulos de cada réplica do bootstrap. Sem correção para comparações múltiplas.'))
 # partições: ARI entre variantes
 L = {}
 for v in d.index:

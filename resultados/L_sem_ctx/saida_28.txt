@@ -1,0 +1,10 @@
+VALIDAÇÃO EXTERNA SOB INCERTEZA DA PARTIÇÃO (Kruskal-Wallis por segmento; 100 réplicas)
+             desfecho  p_referencia  epsilon2_referencia  p_mediana_replicas  p_q25  p_q75  pct_replicas_p_menor_005  epsilon2_mediana  n_replicas
+ebia_insegur_qualquer         0.076                0.069               0.159  0.084  0.320                      12.0             0.035         100
+       ebia_mod_grave         0.003                0.204               0.028  0.013  0.064                      69.0             0.112         100
+     beneficio_social         0.013                0.144               0.039  0.011  0.079                      57.0             0.098         100
+             cadunico         0.000                0.375               0.002  0.000  0.004                     100.0             0.239         100
+ escritura_registrada         0.107                0.054               0.111  0.044  0.193                      30.0             0.050         100
+           doc_formal         0.194                0.028               0.265  0.167  0.410                       5.0             0.014         100
+         outorga_agua         0.071                0.073               0.114  0.061  0.224                      22.0             0.052         100
+{'ext28_n_desfechos_p_ref_menor_005': 3, 'ext28_n_desfechos_mediana_p_menor_005': 3, 'ext28_pct_replicas_p005_media': 42.142857142857146, 'ext28_epsilon2_mediano_medio': 0.08556736479386642}
