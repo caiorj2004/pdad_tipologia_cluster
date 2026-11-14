@@ -1,0 +1,30 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+VALIDAÇÃO EXTERNA — % dos domicílios (ponderado) por grupo, IC 95% por bootstrap
+  ebia_insegur_qualquer: G0 19.5 [16.5; 22.1] | G1 21.6 [18.7; 24.3] | G2 23.4 [15.7; 30.1] | G3 24.1 [21.2; 27.5] | G4 23.1 [21.2; 25.1]
+  ebia_mod_grave: G0 7.7 [5.7; 9.4] | G1 9.5 [7.6; 11.5] | G2 5.7 [1.8; 10.2] | G3 16.2 [13.4; 18.6] | G4 9.6 [8.2; 11.2]
+  beneficio_social: G0 16.3 [14.1; 18.7] | G1 16.4 [14.0; 18.7] | G2 23.6 [16.1; 30.9] | G3 28.1 [24.7; 31.6] | G4 23.1 [21.2; 24.8]
+  cadunico: G0 19.0 [16.6; 22.1] | G1 18.3 [16.2; 20.5] | G2 24.4 [17.1; 30.9] | G3 37.7 [33.5; 42.1] | G4 28.6 [26.8; 30.3]
+  escritura_registrada: G0 29.0 [25.2; 33.0] | G1 23.7 [20.8; 27.2] | G2 20.3 [13.4; 27.6] | G3 46.1 [41.2; 50.2] | G4 40.9 [38.8; 43.3]
+  doc_formal: G0 31.0 [26.7; 34.7] | G1 36.1 [32.2; 39.5] | G2 21.8 [14.3; 31.3] | G3 43.3 [38.6; 47.4] | G4 46.5 [43.8; 48.7]
+  outorga_agua: G0 43.6 [39.5; 47.2] | G1 38.0 [32.8; 43.2] | G2 47.6 [36.4; 58.8] | G3 35.5 [30.8; 39.3] | G4 38.5 [34.9; 41.7]
+
+EBIA: prevalência global de insegurança alimentar (qualquer): 22.2 %
+
+Nível segmento (n=49): Kruskal-Wallis entre grupos e Spearman com os escores
+  ebia_insegur_qualquer: KW H=7.89 p=0.096 | D1PC1 rho=-0.30 | D2PC1 rho=-0.10 | D3PC1 rho=0.02 | D3PC2 rho=-0.23 | D4PC1 rho=-0.32
+  ebia_mod_grave: KW H=11.00 p=0.027 | D1PC1 rho=-0.43 | D2PC1 rho=0.00 | D3PC1 rho=-0.19 | D3PC2 rho=-0.21 | D4PC1 rho=-0.47
+  beneficio_social: KW H=8.12 p=0.087 | D1PC1 rho=-0.42 | D2PC1 rho=-0.13 | D3PC1 rho=-0.09 | D3PC2 rho=-0.43 | D4PC1 rho=-0.25
+  cadunico: KW H=20.39 p=0.000 | D1PC1 rho=-0.47 | D2PC1 rho=-0.36 | D3PC1 rho=-0.26 | D3PC2 rho=-0.61 | D4PC1 rho=-0.48
+  escritura_registrada: KW H=5.27 p=0.260 | D1PC1 rho=-0.18 | D2PC1 rho=-0.08 | D3PC1 rho=-0.26 | D3PC2 rho=-0.02 | D4PC1 rho=-0.29
+  doc_formal: KW H=6.89 p=0.142 | D1PC1 rho=-0.06 | D2PC1 rho=0.01 | D3PC1 rho=-0.10 | D3PC2 rho=-0.25 | D4PC1 rho=-0.13
+  outorga_agua: KW H=5.56 p=0.234 | D1PC1 rho=0.47 | D2PC1 rho=-0.02 | D3PC1 rho=0.15 | D3PC2 rho=0.13 | D4PC1 rho=0.28

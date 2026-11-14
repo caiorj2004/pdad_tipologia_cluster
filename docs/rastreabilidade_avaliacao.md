@@ -56,3 +56,6 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 | Tabelas T1 a T8 e ARI entre partições | `27` | `docs/tabelas_rodadas.md`, `resultados/ari_entre_particoes.csv` | implementado |
 | Validação externa sob incerteza da partição | `28` | `validacao_externa_incerteza_28*.csv` | implementado; desfechos fixos, só a partição varia; sem correção para múltiplos testes |
 | Jackknife por domicílio; Emater-DF | – | – | **não feito** |
+
+| Validação externa condicional à RA (permutação dentro da RA) e eta² da RA | `29` | `validacao_condicional_RA_29*.csv`, `eta2_RA_escores_29.csv` | implementado |
+| Híbrido M2 (`ctx`, `renda`, `dur`; água e esgoto como em M0), K = 3, 4, 5 | `variantes.tsv` | `M2_semEscadas_K3/K4/K5`; análise em `docs/criticas_e_modelo_hibrido.md` | implementado; definido depois de ver `L_sem_agua` |

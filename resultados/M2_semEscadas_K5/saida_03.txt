@@ -1,0 +1,454 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+==============================================================================================================
+RETENÇÃO DE COMPONENTES (MONTE CARLO vs. KAISER)
+==============================================================================================================
+                          dimensao  componente  eigenvalue_obs  eigenvalue_mc_p95  retido_mc  retido_kaiser  variancia_explicada_pct  variancia_acumulada_pct
+                  D1_Bens_Duraveis           1          3.0702             1.8789       True           True                    38.38                    38.38
+                  D1_Bens_Duraveis           2          1.4619             1.5407      False           True                    18.27                    56.65
+                  D1_Bens_Duraveis           3          1.0842             1.3209      False           True                    13.55                    70.20
+                  D1_Bens_Duraveis           4          0.7394             1.1478      False          False                     9.24                    79.45
+                  D1_Bens_Duraveis           5          0.5862             0.9865      False          False                     7.33                    86.77
+                  D1_Bens_Duraveis           6          0.4640             0.8573      False          False                     5.80                    92.57
+                  D1_Bens_Duraveis           7          0.3386             0.7222      False          False                     4.23                    96.81
+                  D1_Bens_Duraveis           8          0.2556             0.5867      False          False                     3.19                   100.00
+                D2_Humano_Trabalho           1          2.1487             1.5366       True           True                    53.72                    53.72
+                D2_Humano_Trabalho           2          1.1368             1.1991      False           True                    28.42                    82.14
+                D2_Humano_Trabalho           3          0.5369             0.9951      False          False                    13.42                    95.56
+                D2_Humano_Trabalho           4          0.1776             0.8376      False          False                     4.44                   100.00
+D3_Fisico_Habitacional_Territorial           1          4.5238             2.2746       True           True                    32.31                    32.31
+D3_Fisico_Habitacional_Territorial           2          2.8230             1.9276       True           True                    20.16                    52.48
+D3_Fisico_Habitacional_Territorial           3          1.3616             1.6765      False           True                     9.73                    62.20
+D3_Fisico_Habitacional_Territorial           4          1.0706             1.4969      False           True                     7.65                    69.85
+D3_Fisico_Habitacional_Territorial           5          1.0235             1.3428      False           True                     7.31                    77.16
+D3_Fisico_Habitacional_Territorial           6          0.8834             1.2021      False          False                     6.31                    83.47
+D3_Fisico_Habitacional_Territorial           7          0.6005             1.0714      False          False                     4.29                    87.76
+D3_Fisico_Habitacional_Territorial           8          0.4967             0.9592      False          False                     3.55                    91.31
+D3_Fisico_Habitacional_Territorial           9          0.3722             0.8493      False          False                     2.66                    93.97
+D3_Fisico_Habitacional_Territorial          10          0.2681             0.7429      False          False                     1.91                    95.88
+D3_Fisico_Habitacional_Territorial          11          0.2329             0.6481      False          False                     1.66                    97.54
+D3_Fisico_Habitacional_Territorial          12          0.1822             0.5518      False          False                     1.30                    98.85
+D3_Fisico_Habitacional_Territorial          13          0.0992             0.4602      False          False                     0.71                    99.56
+D3_Fisico_Habitacional_Territorial          14          0.0623             0.3650      False          False                     0.44                   100.00
+      D4_Tecnologico_Conectividade           1          3.0556             1.5366       True           True                    76.39                    76.39
+      D4_Tecnologico_Conectividade           2          0.4675             1.1991      False          False                    11.69                    88.08
+      D4_Tecnologico_Conectividade           3          0.3837             0.9951      False          False                     9.59                    97.67
+      D4_Tecnologico_Conectividade           4          0.0932             0.8376      False          False                     2.33                   100.00
+
+==============================================================================================================
+CARGAS FATORIAIS DOS COMPONENTES RETIDOS
+==============================================================================================================
+                          Dimensão Componente                      Variável  Carga Fatorial (Loading)  Influência Absoluta
+                  D1_Bens_Duraveis        PC1             possui_microondas                    0.4995               0.4995
+                  D1_Bens_Duraveis        PC1        possui_ar_condicionado                    0.4382               0.4382
+                  D1_Bens_Duraveis        PC1               possui_lavadora                    0.4174               0.4174
+                  D1_Bens_Duraveis        PC1              possui_automovel                    0.3808               0.3808
+                  D1_Bens_Duraveis        PC1                     possui_tv                    0.3773               0.3773
+                  D1_Bens_Duraveis        PC1                possui_freezer                    0.2053               0.2053
+                  D1_Bens_Duraveis        PC1               log_renda_media                   -0.1658               0.1658
+                  D1_Bens_Duraveis        PC1            possui_motocicleta                   -0.1651               0.1651
+                D2_Humano_Trabalho        PC1         contribui_previdencia                    0.6367               0.6367
+                D2_Humano_Trabalho        PC1                 trabalhou_30d                    0.5395               0.5395
+                D2_Humano_Trabalho        PC1           escolaridade_adulto                    0.4956               0.4956
+                D2_Humano_Trabalho        PC1                      tem_ctps                    0.2407               0.2407
+D3_Fisico_Habitacional_Territorial        PC1               rua_pavimentada                    0.4045               0.4045
+D3_Fisico_Habitacional_Territorial        PC1                      drenagem                    0.3848               0.3848
+D3_Fisico_Habitacional_Territorial        PC1            iluminacao_publica                    0.3745               0.3745
+D3_Fisico_Habitacional_Territorial        PC1     destino_com_coleta_direta                    0.3697               0.3697
+D3_Fisico_Habitacional_Territorial        PC1                     agua_rede                    0.3559               0.3559
+D3_Fisico_Habitacional_Territorial        PC1                  ponto_onibus                    0.2957               0.2957
+D3_Fisico_Habitacional_Territorial        PC1           agua_poco_artesiano                   -0.2534               0.2534
+D3_Fisico_Habitacional_Territorial        PC1 solucao_sanitaria_estruturada                    0.2322               0.2322
+D3_Fisico_Habitacional_Territorial        PC1 acesso_energetico_estruturado                    0.2116               0.2116
+D3_Fisico_Habitacional_Territorial        PC1                    caixa_agua                   -0.1439               0.1439
+D3_Fisico_Habitacional_Territorial        PC1            agua_poco_cisterna                   -0.0804               0.0804
+D3_Fisico_Habitacional_Territorial        PC1            comodos_por_pessoa                   -0.0733               0.0733
+D3_Fisico_Habitacional_Territorial        PC1          banheiros_por_pessoa                   -0.0427               0.0427
+D3_Fisico_Habitacional_Territorial        PC1                captacao_chuva                   -0.0129               0.0129
+D3_Fisico_Habitacional_Territorial        PC2            comodos_por_pessoa                    0.5232               0.5232
+D3_Fisico_Habitacional_Territorial        PC2          banheiros_por_pessoa                    0.5069               0.5069
+D3_Fisico_Habitacional_Territorial        PC2 acesso_energetico_estruturado                    0.3937               0.3937
+D3_Fisico_Habitacional_Territorial        PC2 solucao_sanitaria_estruturada                    0.3484               0.3484
+D3_Fisico_Habitacional_Territorial        PC2                captacao_chuva                    0.2643               0.2643
+D3_Fisico_Habitacional_Territorial        PC2           agua_poco_artesiano                    0.2324               0.2324
+D3_Fisico_Habitacional_Territorial        PC2            iluminacao_publica                    0.1446               0.1446
+D3_Fisico_Habitacional_Territorial        PC2                     agua_rede                   -0.1142               0.1142
+D3_Fisico_Habitacional_Territorial        PC2                  ponto_onibus                   -0.1124               0.1124
+D3_Fisico_Habitacional_Territorial        PC2                      drenagem                   -0.0859               0.0859
+D3_Fisico_Habitacional_Territorial        PC2                    caixa_agua                    0.0850               0.0850
+D3_Fisico_Habitacional_Territorial        PC2     destino_com_coleta_direta                    0.0719               0.0719
+D3_Fisico_Habitacional_Territorial        PC2            agua_poco_cisterna                   -0.0485               0.0485
+D3_Fisico_Habitacional_Territorial        PC2               rua_pavimentada                   -0.0183               0.0183
+      D4_Tecnologico_Conectividade        PC1     internet_banda_larga_fixa                    0.5238               0.5238
+      D4_Tecnologico_Conectividade        PC1           internet_domiciliar                    0.5179               0.5179
+      D4_Tecnologico_Conectividade        PC1                internet_movel                    0.4790               0.4790
+      D4_Tecnologico_Conectividade        PC1             possui_computador                    0.4775               0.4775
+
+Etapa 5 — Benchmark de K. Matriz de agrupamento: 49 segmentos x 5 componentes:
+  - D1_Bens_Duraveis_MC_PC1
+  - D2_Humano_Trabalho_MC_PC1
+  - D3_Fisico_Habitacional_Territorial_MC_PC1
+  - D3_Fisico_Habitacional_Territorial_MC_PC2
+  - D4_Tecnologico_Conectividade_MC_PC1
+
+==============================================================================================================
+BENCHMARK DE K
+==============================================================================================================
+ K  Silhouette  Calinski_Harabasz  Davies_Bouldin  Gap_Statistic    BIC  Menor_cluster_(segmentos)
+ 2      0.3147              26.95          1.1735         0.8513 984.29                         19
+ 3      0.2364              22.16          1.2473         0.8861 992.33                         12
+ 4      0.2186              19.07          1.3192         0.8422 954.42                          8
+ 5      0.2217              17.29          1.3034         0.8308 949.17                          5
+ 6      0.2331              16.18          1.0545         0.8315 916.44                          1
+ 7      0.2366              16.05          1.0150         0.8268 938.16                          1
+ 8      0.2178              15.65          1.0401         0.8654 934.32                          1
+
+Etapa 5.1/5.2 — Silhueta contra dois nulos + estabilidade por subamostragem...
+
+ K  Silhueta  Nulo_embaralhado_media  p_embaralhado  Nulo_covariancia_media  p_covariancia  Estabilidade_ARI
+ 2    0.3147                  0.2092         0.0020                  0.2996         0.3493             0.920
+ 3    0.2364                  0.1822         0.0100                  0.2404         0.5349             0.696
+ 4    0.2186                  0.1806         0.0359                  0.2277         0.6228             0.605
+ 5    0.2217                  0.1798         0.0279                  0.2199         0.4371             0.583
+ 6    0.2331                  0.1840         0.0180                  0.2162         0.2375             0.496
+ 7    0.2366                  0.1840         0.0100                  0.2118         0.1437             0.639
+ 8    0.2178                  0.1850         0.0719                  0.2112         0.3713             0.547
+
+Leitura: o nulo 'embaralhado' costuma rejeitar para qualquer K e NÃO discrimina entre eles; use p_covariancia e a estabilidade (ARI) para comparar candidatos.
+
+Etapa 6 — K-Means final (K=5) e cruzamento com a tipologia original...
+
+ Cluster_K5  n_segmentos  domicilios_expandidos
+          0           12           12161.552259
+          1           10           13997.743846
+          2            5            1960.687078
+          3            7            7572.887742
+          4           15           30789.075813
+
+Domicílios expandidos por cluster x tipologia original:
+tipologia_original  Agricultura Empresarial  Agricultura Familiar  Assentamento/Agrovila  Características Urbanas
+Cluster_K5                                                                                                       
+0                                    3429.8                8125.2                  388.5                    218.0
+1                                    1406.4                1150.4                  178.9                  11262.1
+2                                      97.2                   0.0                  351.0                   1512.5
+3                                    3172.3                   0.0                 1291.8                   3108.8
+4                                    7211.1                7757.5                  242.7                  15577.7
+
+Kruskal-Wallis (caráter descritivo, n=49 segmentos):
+                 Variável  Estatística H    p-valor Significativo (5%)
+  log_renda_domiciliar_pc         8.6838     0.0695                Não
+      escolaridade_adulto        23.5470 9.8435e-05                Sim
+            trabalhou_30d        14.0075     0.0073                Sim
+     banheiros_por_pessoa        23.8124 8.7095e-05                Sim
+       comodos_por_pessoa        18.6002     0.0009                Sim
+                agua_rede        23.6362 9.4469e-05                Sim
+      internet_domiciliar        24.4681 6.4344e-05                Sim
+internet_banda_larga_fixa        29.2504 6.9533e-06                Sim
+        possui_computador        32.1593 1.7749e-06                Sim
+                   ivs_df        22.8480     0.0001                Sim
+     qtd_estabelecimentos         7.2090     0.1252                Não
+
+Etapa 6.1 — Sensibilidade a `escolaridade_adulto` (valores dos níveis incompletos e corte de idade)...
+
+                                     Cenário  Comp. totais           Tamanhos  Silhueta  ARI vs referência
+   Referência (4,5 / 10,5 / 14; idade >= 25)             5 [15, 12, 10, 7, 5]     0.222                1.0
+                         Baixo (2 / 10 / 13)             5 [15, 12, 10, 7, 5]     0.222                1.0
+                          Alto (6 / 11 / 15)             5 [15, 12, 10, 7, 5]     0.222                1.0
+              Extremo baixo (1 / 9,5 / 12,5)             5 [15, 12, 10, 7, 5]     0.222                1.0
+Extremo alto (8 / 11,5 / 15,5) [implausível]             5 [15, 12, 10, 7, 5]     0.222                1.0
+         Ordinal 0-6 (sem converter em anos)             5 [15, 12, 10, 7, 5]     0.222                1.0
+                                 Idade >= 20             5 [15, 12, 10, 7, 5]     0.222                1.0
+                                 Idade >= 18             5 [15, 12, 10, 7, 5]     0.223                1.0
+
+Redação: ARI próximo de 1 = a partição não depende do valor atribuído aos níveis incompletos. O cenário 'extremo alto' aproxima o nível incompleto do completo e contradiz a definição das categorias.
+
+Etapa 6.2 — Co-associação (consenso) entre subamostras e cenários...
+
+                                 Segmento  Cluster_ref  n_amostra  Escore_subamostras  Escore_cenarios    Classe
+         Sobradinho II — Agr. Empresarial            0         35                0.88              1.0    Núcleo
+               Brazlândia — Agr. Familiar            0        191                0.87              1.0    Núcleo
+                     Gama — Agr. Familiar            0         81                0.87              1.0    Núcleo
+                Ceilândia — Agr. Familiar            0        121                0.86              1.0    Núcleo
+                Itapoã — Agr. Empresarial            0         41                0.86              1.0    Núcleo
+            Sobradinho II — Agr. Familiar            0         22                0.85              1.0    Núcleo
+                Brazlândia — Assentamento            0         48                0.83              1.0    Núcleo
+                  Park Way — Assentamento            0         49                0.79              1.0    Núcleo
+             Ceilândia — Agr. Empresarial            0        195                0.69              1.0 Fronteira
+             Samambaia — Agr. Empresarial            0         12                0.67              1.0 Fronteira
+                Samambaia — Agr. Familiar            0          6                0.67              1.0 Fronteira
+             Lago Norte — Moradia e Lazer            0         51                0.54              1.0 Fronteira
+             Riacho Fundo — Agr. Familiar            1        222                0.72              1.0 Fronteira
+                 Park Way — Agr. Familiar            1        141                0.71              1.0 Fronteira
+                   Gama — Moradia e Lazer            1        212                0.70              1.0 Fronteira
+             Brazlândia — Moradia e Lazer            1        277                0.69              1.0 Fronteira
+                   Paranoá — Assentamento            1         41                0.67              1.0 Fronteira
+           Santa Maria — Agr. Empresarial            1         46                0.64              1.0 Fronteira
+     Núcleo Bandeirante — Moradia e Lazer            1          5                0.61              1.0 Fronteira
+           Riacho Fundo — Moradia e Lazer            1          5                0.57              1.0 Fronteira
+          Sobradinho II — Moradia e Lazer            1        182                0.54              1.0 Fronteira
+            Sobradinho — Agr. Empresarial            1         79                0.41              1.0 Fronteira
+             Taguatinga — Moradia e Lazer            2         11                0.73              1.0 Fronteira
+           Águas Claras — Moradia e Lazer            2          5                0.69              1.0 Fronteira
+            Taguatinga — Agr. Empresarial            2          8                0.66              1.0 Fronteira
+           Riacho Fundo II — Assentamento            2         69                0.54              1.0 Fronteira
+        Riacho Fundo II — Moradia e Lazer            2         71                0.53              1.0 Fronteira
+         São Sebastião — Agr. Empresarial            3        218                0.84              1.0    Núcleo
+                Planaltina — Assentamento            3        124                0.83              1.0    Núcleo
+              Samambaia — Moradia e Lazer            3         19                0.83              1.0    Núcleo
+             Planaltina — Moradia e Lazer            3         32                0.82              1.0    Núcleo
+             Sobradinho — Moradia e Lazer            3        152                0.71              1.0 Fronteira
+             São Sebastião — Assentamento            3        237                0.71              1.0 Fronteira
+                Fercal — Agr. Empresarial            3          7                0.59              1.0 Fronteira
+                    Fercal — Assentamento            4         29                0.77              1.0    Núcleo
+                  Paranoá — Agr. Familiar            4        205                0.76              1.0    Núcleo
+         Recanto das Emas — Agr. Familiar            4         49                0.76              1.0    Núcleo
+          Vicente Pires — Moradia e Lazer            4        358                0.74              1.0 Fronteira
+               Paranoá — Agr. Empresarial            4         97                0.73              1.0 Fronteira
+            Planaltina — Agr. Empresarial            4        194                0.73              1.0 Fronteira
+                   Fercal — Agr. Familiar            4         50                0.71              1.0 Fronteira
+                Paranoá — Moradia e Lazer            4         95                0.71              1.0 Fronteira
+               Planaltina — Agr. Familiar            4        270                0.68              1.0 Fronteira
+   Sol Nascente/Pôr do Sol — Assentamento            4         31                0.67              1.0 Fronteira
+                  Gama — Agr. Empresarial            4        250                0.66              1.0 Fronteira
+                     SCIA — Agr. Familiar            4         50                0.64              1.0 Fronteira
+Sol Nascente/Pôr do Sol — Moradia e Lazer            4         41                0.58              1.0 Fronteira
+      Recanto das Emas — Agr. Empresarial            4         28                0.46              1.0 Fronteira
+          São Sebastião — Moradia e Lazer            4        305                0.45              1.0 Fronteira
+
+Resumo por cluster de referência:
+             n_segmentos  nucleo  fronteira  escore_sub_medio  escore_cen_medio
+Cluster_ref                                                                    
+0                     12       8          4              0.78               1.0
+1                     10       0         10              0.63               1.0
+2                      5       0          5              0.63               1.0
+3                      7       4          3              0.76               1.0
+4                     15       3         12              0.67               1.0
+
+Segmentos 'núcleo' (escore >= 0.75 nas duas fontes): 15 de 49
+
+Etapa 7 — Análise espacial local (LISA)...
+
+OK Queen calculada do shapefile (23 RAs, sem ilhas). RAs cujos vizinhos diferem da lista manual: 18.
+====================================================================================================
+BASELINE DO TCC (Queen, PCA D4, FDR)
+====================================================================================================
+Região Administrativa (RA)                                  Quadrante  p-Valor (Simulado)
+                  Park Way Q1 (Alto-Alto): Polo de Alta Conectividade               0.001 
+
+====================================================================================================
+SENSIBILIDADE DE VIZINHANÇA (k-NN, PCA D4, FDR)
+====================================================================================================
+Nenhum polo significativo neste cenário.
+
+====================================================================================================
+EXPLORATÓRIO (Queen, PCA D4, p<0,05 sem FDR)
+====================================================================================================
+Região Administrativa (RA)                                  Quadrante  p-Valor (Simulado)
+                  Park Way Q1 (Alto-Alto): Polo de Alta Conectividade               0.001
+                Planaltina Q3 (Baixo-Baixo): Polo de Exclusão Digital               0.018
+             Vicente Pires       Q2 (Baixo-Alto): Outlier Tecnológico               0.038 
+
+====================================================================================================
+INFRAESTRUTURA BRUTA (Queen, internet_domiciliar, FDR)
+====================================================================================================
+Nenhum polo significativo neste cenário.
+
+====================================================================================================
+FRICÇÃO RURURBANA MÚLTIPLA (k-NN, PCA D4, p<0,05 sem FDR)
+====================================================================================================
+Região Administrativa (RA)                                  Quadrante  p-Valor (Simulado)
+        Nucleo Bandeirante Q1 (Alto-Alto): Polo de Alta Conectividade               0.026
+                  Park Way Q1 (Alto-Alto): Polo de Alta Conectividade               0.043
+              Riacho Fundo Q1 (Alto-Alto): Polo de Alta Conectividade               0.035
+           Riacho Fundo Ii Q1 (Alto-Alto): Polo de Alta Conectividade               0.024
+           Scia Estrutural       Q2 (Baixo-Alto): Outlier Tecnológico               0.046
+             Vicente Pires       Q2 (Baixo-Alto): Outlier Tecnológico               0.037 
+
+====================================================================================================
+AUTOCORRELAÇÃO ESPACIAL GLOBAL (Moran's I, 999 permutações; unidade = RA, média dos segmentos)
+====================================================================================================
+                  Variável (média por RA) Vizinhança  I de Moran  p (simulado)
+                  D1_Bens_Duraveis_MC_PC1      Queen       0.269         0.026
+                  D1_Bens_Duraveis_MC_PC1 k-NN (k=4)       0.061         0.182
+                D2_Humano_Trabalho_MC_PC1      Queen       0.158         0.103
+                D2_Humano_Trabalho_MC_PC1 k-NN (k=4)       0.176         0.056
+D3_Fisico_Habitacional_Territorial_MC_PC1      Queen       0.337         0.005
+D3_Fisico_Habitacional_Territorial_MC_PC1 k-NN (k=4)       0.267         0.015
+D3_Fisico_Habitacional_Territorial_MC_PC2      Queen       0.047         0.255
+D3_Fisico_Habitacional_Territorial_MC_PC2 k-NN (k=4)       0.012         0.275
+      D4_Tecnologico_Conectividade_MC_PC1      Queen       0.144         0.097
+      D4_Tecnologico_Conectividade_MC_PC1 k-NN (k=4)       0.124         0.068
+                      internet_domiciliar      Queen       0.051         0.250
+                      internet_domiciliar k-NN (k=4)       0.020         0.253
+                                agua_rede      Queen       0.195         0.054
+                                agua_rede k-NN (k=4)       0.015         0.262
+                          rua_pavimentada      Queen       0.198         0.053
+                          rua_pavimentada k-NN (k=4)       0.227         0.025
+            solucao_sanitaria_estruturada      Queen       0.395         0.007
+            solucao_sanitaria_estruturada k-NN (k=4)       0.169         0.062
+                  log_renda_domiciliar_pc      Queen      -0.191         0.149
+                  log_renda_domiciliar_pc k-NN (k=4)      -0.254         0.010
+                      escolaridade_adulto      Queen       0.054         0.259
+                      escolaridade_adulto k-NN (k=4)      -0.066         0.490
+                                   ivs_df      Queen       0.162         0.096
+                                   ivs_df k-NN (k=4)      -0.065         0.480
+
+RAs por nº de clusters distintos entre seus segmentos:
+                ra_norm  n_clusters  n_segmentos
+                   gama           3            3
+                paranoa           2            4
+             planaltina           2            4
+             brazlandia           2            3
+                 fercal           2            3
+              samambaia           2            3
+          sao sebastiao           2            3
+          sobradinho ii           2            3
+               park way           2            2
+             sobradinho           2            2
+              ceilandia           1            2
+       recanto das emas           1            2
+           riacho fundo           1            2
+        riacho fundo ii           1            2
+sol nascente por do sol           1            2
+             taguatinga           1            2
+           aguas claras           1            1
+                 itapoa           1            1
+             lago norte           1            1
+     nucleo bandeirante           1            1
+            santa maria           1            1
+        scia estrutural           1            1
+          vicente pires           1            1
+RAs da PDAD sem geometria: nenhuma
+
+Etapa 8 — Perfil dos clusters e diagnóstico por RA...
+
+PERFIL MÉDIO DOS CLUSTERS
+             renda_domiciliar_pc  escolaridade_adulto  internet_banda_larga_fixa  possui_computador  agua_rede  solucao_sanitaria_estruturada  rua_pavimentada
+Cluster_K5                                                                                                                                                   
+0                     1450.8335               8.4266                     0.7441             0.3891     0.0862                         0.8436           0.2206
+1                      958.8055               9.7790                     0.8078             0.5007     0.6228                         0.8249           0.5010
+2                      755.9429               9.6194                     0.8562             0.4868     0.2836                         0.8068           0.3341
+3                      807.5606               7.7289                     0.5659             0.2144     0.1418                         0.2368           0.0213
+4                      899.0896               8.1385                     0.6829             0.3170     0.2881                         0.5426           0.1257 
+
+PERFIL MÉDIO DAS RAs
+                          renda_domiciliar_pc  escolaridade_adulto  internet_banda_larga_fixa  possui_computador  agua_rede  solucao_sanitaria_estruturada  rua_pavimentada
+aguas claras                       1825.0000              10.4231                     1.0000             0.8000     0.0000                         0.8000           0.2000
+brazlandia                         1141.8322               8.6145                     0.7894             0.4097     0.4243                         0.8355           0.4830
+ceilandia                          1395.6276               8.2923                     0.7397             0.3987     0.0388                         0.9251           0.2820
+fercal                              824.9093               8.2484                     0.6416             0.2460     0.6901                         0.4820           0.0412
+gama                               1000.2483               9.1675                     0.7024             0.4324     0.5381                         0.8211           0.2996
+itapoa                              695.7906               9.2412                     0.8293             0.2683     0.0244                         0.6829           0.0976
+lago norte                         2756.7361              11.8152                     0.8824             0.7059     0.1800                         0.8478           0.1569
+nucleo bandeirante                  868.3333               6.7500                     0.8000             0.6000     0.8000                         0.8000           0.8000
+paranoa                             811.9907               7.9793                     0.6534             0.1977     0.2129                         0.4981           0.1680
+park way                            653.5771               9.1173                     0.7064             0.5195     0.6775                         0.7798           0.2138
+planaltina                          941.5358               7.8226                     0.6896             0.3294     0.5268                         0.3836           0.1788
+recanto das emas                   1025.9224               8.3578                     0.6017             0.2876     0.4636                         0.8974           0.1572
+riacho fundo                       1127.4402              10.1767                     0.8255             0.5554     0.6304                         0.7578           0.5946
+riacho fundo ii                     704.2491               9.3811                     0.8426             0.4679     0.3073                         0.8374           0.3268
+samambaia                           766.1643               8.0817                     0.5195             0.2400     0.1340                         0.5242           0.1584
+santa maria                        1199.1875              11.5598                     0.8913             0.8043     0.3333                         0.8182           0.8478
+sao sebastiao                       926.8676               8.1245                     0.6804             0.2525     0.0913                         0.2268           0.0318
+scia estrutural                     556.0776               8.3261                     0.7800             0.4200     0.2400                         0.8600           0.4400
+sobradinho                          918.7874               9.1647                     0.6160             0.3033     0.0949                         0.5327           0.0983
+sobradinho ii                      1230.5813              10.1060                     0.8075             0.4925     0.4911                         0.7123           0.1508
+sol nascente por do sol             765.0006               7.9273                     0.7066             0.2729     0.7977                         0.8332           0.3270
+taguatinga                          773.7221              10.7780                     0.8973             0.5137     0.2214                         0.6324           0.4110
+vicente pires                       841.4551               7.6837                     0.6629             0.4469     0.0252                         0.8814           0.0476 
+
+DIAGNÓSTICO DE VULNERABILIDADES (gap < -5% vs. cluster dominante)
+Aguas Claras (Cluster 2): deficiências relativas em:
+   - agua_rede: -100.0% abaixo do esperado para o Cluster 2
+   - rua_pavimentada: -40.1% abaixo do esperado para o Cluster 2
+Brazlandia (Cluster 1): deficiências relativas em:
+   - agua_rede: -31.9% abaixo do esperado para o Cluster 1
+   - possui_computador: -18.2% abaixo do esperado para o Cluster 1
+   - escolaridade_adulto: -11.9% abaixo do esperado para o Cluster 1
+Ceilandia (Cluster 0): deficiências relativas em:
+   - agua_rede: -55.0% abaixo do esperado para o Cluster 0
+Fercal (Cluster 4): deficiências relativas em:
+   - rua_pavimentada: -67.3% abaixo do esperado para o Cluster 4
+   - possui_computador: -22.4% abaixo do esperado para o Cluster 4
+   - solucao_sanitaria_estruturada: -11.2% abaixo do esperado para o Cluster 4
+   - renda_domiciliar_pc: -8.3% abaixo do esperado para o Cluster 4
+   - internet_banda_larga_fixa: -6.0% abaixo do esperado para o Cluster 4
+Gama (Cluster 1): deficiências relativas em:
+   - rua_pavimentada: -40.2% abaixo do esperado para o Cluster 1
+   - possui_computador: -13.6% abaixo do esperado para o Cluster 1
+   - agua_rede: -13.6% abaixo do esperado para o Cluster 1
+   - internet_banda_larga_fixa: -13.0% abaixo do esperado para o Cluster 1
+   - escolaridade_adulto: -6.3% abaixo do esperado para o Cluster 1
+Itapoa (Cluster 0): deficiências relativas em:
+   - agua_rede: -71.7% abaixo do esperado para o Cluster 0
+   - rua_pavimentada: -55.8% abaixo do esperado para o Cluster 0
+   - renda_domiciliar_pc: -52.0% abaixo do esperado para o Cluster 0
+   - possui_computador: -31.0% abaixo do esperado para o Cluster 0
+   - solucao_sanitaria_estruturada: -19.0% abaixo do esperado para o Cluster 0
+Lago Norte (Cluster 0): deficiências relativas em:
+   - rua_pavimentada: -28.9% abaixo do esperado para o Cluster 0
+Nucleo Bandeirante (Cluster 1): deficiências relativas em:
+   - escolaridade_adulto: -31.0% abaixo do esperado para o Cluster 1
+   - renda_domiciliar_pc: -9.4% abaixo do esperado para o Cluster 1
+Paranoa (Cluster 4): deficiências relativas em:
+   - possui_computador: -37.6% abaixo do esperado para o Cluster 4
+   - agua_rede: -26.1% abaixo do esperado para o Cluster 4
+   - renda_domiciliar_pc: -9.7% abaixo do esperado para o Cluster 4
+   - solucao_sanitaria_estruturada: -8.2% abaixo do esperado para o Cluster 4
+Park Way (Cluster 1): deficiências relativas em:
+   - rua_pavimentada: -57.3% abaixo do esperado para o Cluster 1
+   - renda_domiciliar_pc: -31.8% abaixo do esperado para o Cluster 1
+   - internet_banda_larga_fixa: -12.6% abaixo do esperado para o Cluster 1
+   - escolaridade_adulto: -6.8% abaixo do esperado para o Cluster 1
+   - solucao_sanitaria_estruturada: -5.5% abaixo do esperado para o Cluster 1
+Planaltina (Cluster 4): deficiências relativas em:
+   - solucao_sanitaria_estruturada: -29.3% abaixo do esperado para o Cluster 4
+Recanto Das Emas (Cluster 4): deficiências relativas em:
+   - internet_banda_larga_fixa: -11.9% abaixo do esperado para o Cluster 4
+   - possui_computador: -9.3% abaixo do esperado para o Cluster 4
+Riacho Fundo (Cluster 1): deficiências relativas em:
+   - solucao_sanitaria_estruturada: -8.1% abaixo do esperado para o Cluster 1
+Riacho Fundo Ii (Cluster 2): deficiências relativas em:
+   - renda_domiciliar_pc: -6.8% abaixo do esperado para o Cluster 2
+Samambaia (Cluster 3): deficiências relativas em:
+   - internet_banda_larga_fixa: -8.2% abaixo do esperado para o Cluster 3
+   - agua_rede: -5.5% abaixo do esperado para o Cluster 3
+   - renda_domiciliar_pc: -5.1% abaixo do esperado para o Cluster 3
+Santa Maria (Cluster 1): deficiências relativas em:
+   - agua_rede: -46.5% abaixo do esperado para o Cluster 1
+Sao Sebastiao (Cluster 4): deficiências relativas em:
+   - rua_pavimentada: -74.7% abaixo do esperado para o Cluster 4
+   - agua_rede: -68.3% abaixo do esperado para o Cluster 4
+   - solucao_sanitaria_estruturada: -58.2% abaixo do esperado para o Cluster 4
+   - possui_computador: -20.4% abaixo do esperado para o Cluster 4
+Scia Estrutural (Cluster 4): deficiências relativas em:
+   - renda_domiciliar_pc: -38.2% abaixo do esperado para o Cluster 4
+   - agua_rede: -16.7% abaixo do esperado para o Cluster 4
+Sobradinho (Cluster 3): deficiências relativas em:
+   - agua_rede: -33.1% abaixo do esperado para o Cluster 3
+Sobradinho Ii (Cluster 1): deficiências relativas em:
+   - rua_pavimentada: -69.9% abaixo do esperado para o Cluster 1
+   - agua_rede: -21.1% abaixo do esperado para o Cluster 1
+   - solucao_sanitaria_estruturada: -13.7% abaixo do esperado para o Cluster 1
+Sol Nascente Por Do Sol (Cluster 4): deficiências relativas em:
+   - renda_domiciliar_pc: -14.9% abaixo do esperado para o Cluster 4
+   - possui_computador: -13.9% abaixo do esperado para o Cluster 4
+Taguatinga (Cluster 2): deficiências relativas em:
+   - agua_rede: -21.9% abaixo do esperado para o Cluster 2
+   - solucao_sanitaria_estruturada: -21.6% abaixo do esperado para o Cluster 2
+Vicente Pires (Cluster 4): deficiências relativas em:
+   - agua_rede: -91.2% abaixo do esperado para o Cluster 4
+   - rua_pavimentada: -62.1% abaixo do esperado para o Cluster 4
+   - renda_domiciliar_pc: -6.4% abaixo do esperado para o Cluster 4
+   - escolaridade_adulto: -5.6% abaixo do esperado para o Cluster 4
+
+Análise concluída.

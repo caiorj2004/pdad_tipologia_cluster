@@ -30,6 +30,9 @@ Geradas por `pipeline/27_tabelas_rodadas.py` a partir de `resultados/comparacao_
 | E_agua_nascente_individual | ctx,agua,esgoto,renda,dur | 3 | 0.99 | ilr | 5 | [20, 16, 13] | 24.33 |
 | E_agua_gambiarra_na_rede | ctx,agua,esgoto,renda,dur | 3 | 0.99 | ilr | 5 | [20, 17, 12] | 19.17 |
 | E_esgoto_rudimentar_individual | ctx,agua,esgoto,renda,dur | 3 | 0.99 | ilr | 5 | [20, 17, 12] | 27.90 |
+| M2_semEscadas_K3 | ctx,renda,dur | 3 | 0.99 | ilr | 5 | [20, 17, 12] | 22.21 |
+| M2_semEscadas_K4 | ctx,renda,dur | 4 | 0.99 | ilr | 5 | [16, 13, 12, 8] | 19.67 |
+| M2_semEscadas_K5 | ctx,renda,dur | 5 | 0.99 | ilr | 5 | [15, 12, 10, 7, 5] | 2.95 |
 | M0_antigo_K5_b500n50 | (nenhuma) | 5 | 0.99 | ilr | 6 | [14, 14, 10, 8, 3] | 0.53 |
 | M0_antigo_K5_bootEstratoRegra | (nenhuma) | 5 | 0.99 | ilr | 6 | [14, 14, 10, 8, 3] | 0.53 |
 | M1_revisado_K3_b500n50 | ctx,agua,esgoto,renda,dur | 3 | 0.99 | ilr | 5 | [24, 17, 8] | 22.47 |
@@ -63,6 +66,9 @@ Geradas por `pipeline/27_tabelas_rodadas.py` a partir de `resultados/comparacao_
 | E_agua_nascente_individual | 0.224 | 0.024 | 0.709 | 22.050 | 1.313 | 0.668 | 0.297 | 2 | 0.000 |
 | E_agua_gambiarra_na_rede | 0.226 | 0.030 | 0.697 | 21.930 | 1.263 | 0.589 | 0.226 | 7 | 0.000 |
 | E_esgoto_rudimentar_individual | 0.212 | 0.052 | 0.836 | 21.710 | 1.383 | 0.709 | 0.038 | 8 | 1 |
+| M2_semEscadas_K3 | 0.236 | 0.010 | 0.535 | 22.160 | 1.247 | 0.696 | 0.144 | 7 | 0.000 |
+| M2_semEscadas_K4 | 0.219 | 0.036 | 0.623 | 19.070 | 1.319 | 0.605 | 0.144 | 7 | 0.000 |
+| M2_semEscadas_K5 | 0.222 | 0.028 | 0.437 | 17.290 | 1.303 | 0.583 | 0.144 | 7 | 0.000 |
 | M0_antigo_K5_b500n50 | 0.236 | 0.004 | 0.110 | 17.250 | 1.190 | 0.664 | 0.016 | 7 | 1 |
 | M0_antigo_K5_bootEstratoRegra | 0.236 | 0.004 | 0.110 | 17.250 | 1.190 | 0.664 | 0.016 | 7 | 1 |
 | M1_revisado_K3_b500n50 | 0.253 | 0.006 | 0.305 | 21.900 | 1.253 | 0.658 | 0.130 | 8 | 0.000 |
@@ -98,6 +104,9 @@ Nulo de covariância: dados sintéticos com a mesma covariância e sem grupos. p
 | E_agua_nascente_individual | 0.446 | 0.253 | 0.446 | 0.685 | 0.673 | 0.264 | 0.580 | 0.769 | 4 | 9 | 9 |
 | E_agua_gambiarra_na_rede | 0.506 | 0.263 | 0.506 | 0.656 | 0.554 | 0.277 | 0.552 | 0.316 | 18 | 7 | 7.800 |
 | E_esgoto_rudimentar_individual | 0.398 | 0.241 | 0.398 | 0.685 | 0.851 | 0.245 | 0.552 | 0.837 | 3 | 11 | 16.900 |
+| M2_semEscadas_K3 | 0.535 | 0.299 | 0.535 | 0.671 | 0.337 | 0.294 | 0.597 | 0.772 | 4 | 5 | 3.200 |
+| M2_semEscadas_K4 | 0.407 | 0.269 | 0.407 | 0.575 | 0.713 | 0.276 | 0.459 | 0.669 | 6 | 18 | 37.400 |
+| M2_semEscadas_K5 | 0.390 | 0.252 | 0.390 | 0.539 | 0.733 | 0.259 | 0.426 | 0.364 | 20 | 21 | 54.500 |
 | M0_antigo_K5_b500n50 | 0.472 | 0.296 | 0.472 | 0.557 | 0.337 | 0.283 | 0.464 | 0.760 | 5 | 11 | 24.800 |
 | M0_antigo_K5_bootEstratoRegra | 0.450 | 0.291 | 0.450 | 0.552 | 0.475 | 0.283 | 0.443 | 0.760 | 5 | 16 | 33.600 |
 | M1_revisado_K3_b500n50 | 0.381 | 0.197 | 0.381 | 0.682 | 0.842 | 0.263 | 0.545 | 0.794 | 4 | 25 | 52.700 |
@@ -133,6 +142,9 @@ Nulo de covariância: dados sintéticos com a mesma covariância e sem grupos. p
 | E_agua_nascente_individual | 0.050 | 0.555 | 0.209 | 0.360 | 0.812 | 0.251 | 0.881 | 0.623 | 0.026 | 1 | 1 | 0.348 | 0.648 |
 | E_agua_gambiarra_na_rede | 0.025 | 0.554 | 0.285 | 0.300 | 0.496 | 0.229 | 0.647 | 0.426 | 0.041 | 0.389 | 0.446 | 0.716 | 0.653 |
 | E_esgoto_rudimentar_individual | 0.035 | 0.567 | 0.258 | 0.430 | 0.644 | 0.425 | 0.751 | 0.565 | 0.017 | 0.869 | 0.861 | 0.338 | 0.647 |
+| M2_semEscadas_K3 | 0.040 | 0.581 | 0.284 | 0.330 | 0.350 | 0.311 | 0.598 | 0.405 | 0.041 | 0.595 | 0.681 | 0.772 | 0.646 |
+| M2_semEscadas_K4 | 0.000 | 0.503 | 0.125 | 0.020 | 0.705 | 0.190 | 0.603 | 0.511 | 0.027 | 0.941 | 0.719 | 0.392 | 0.583 |
+| M2_semEscadas_K5 | 0.000 | 0.496 | 0.172 | 0.020 | 0.761 | 0.265 | 0.428 | 0.457 | 0.012 | 0.869 | 0.512 | 0.256 | 0.540 |
 | M0_antigo_K5_b500n50 | 0.015 | 0.523 | 0.287 | 0.340 | 0.790 | 0.476 | 0.582 | 0.526 | 0.063 | 0.887 | 0.774 | 0.421 | 0.542 |
 | M0_antigo_K5_bootEstratoRegra | 0.015 | 0.523 | 0.287 | 0.340 | 0.790 | 0.476 | 0.582 | 0.526 | 0.063 | 0.887 | 0.774 | 0.421 | 0.542 |
 | M1_revisado_K3_b500n50 | 0.000 | 0.511 | 0.194 | 0.180 | 0.683 | 0.384 | 0.603 | 0.515 | 0.056 | 0.721 | 0.750 | 0.276 | 0.649 |
@@ -166,6 +178,9 @@ Nulo de covariância: dados sintéticos com a mesma covariância e sem grupos. p
 | E_agua_nascente_individual | 0.852 | 0.902 | 0.372 | Samambaia | 0.087 | 1 | 0.652 | 0.200 | 0.786 | 0.368 | -0.535 | 0.000 | 0.510 |
 | E_agua_gambiarra_na_rede | 0.683 | 0.683 | 0.295 | Núcleo Bandeirante | 0.348 | 1 | 0.812 | 0.702 | 0.646 | 0.625 | -0.544 | 0.000 | 0.511 |
 | E_esgoto_rudimentar_individual | 0.860 | 0.847 | 0.346 | Gama | 0.087 | 1 | 0.507 | 0.183 | 0.861 | 0.294 | -0.566 | 0.000 | 0.510 |
+| M2_semEscadas_K3 | 0.877 | 0.902 | 0.352 | Ceilândia | 0.043 | 1 | 0.803 | 0.653 | 0.602 | 0.581 | -0.523 | 0.000 | 0.510 |
+| M2_semEscadas_K4 | 0.784 | 0.817 | 0.340 | Riacho Fundo | 0.043 | 1 | 0.512 | 0.378 | 0.814 | 0.553 | -0.572 | 0.000 | 0.510 |
+| M2_semEscadas_K5 | 0.745 | 0.754 | 0.411 | Ceilândia | 0.130 | 1 | 0.611 | 0.373 | 0.832 | 0.565 | -0.403 | 0.004 | 0.510 |
 | M0_antigo_K5_b500n50 | 0.744 | 0.805 | 0.507 | Fercal | 0.000 | 0.000 | 0.760 | 0.539 | 0.760 | 0.611 | -0.422 | 0.003 | 0.510 |
 | M0_antigo_K5_bootEstratoRegra | 0.744 | 0.805 | 0.507 | Fercal | 0.000 | 0.000 | 0.760 | 0.539 | 0.760 | 0.611 | -0.422 | 0.003 | 0.510 |
 | M1_revisado_K3_b500n50 | 0.705 | 0.736 | 0.314 | Sobradinho | 0.261 | 1 | 0.446 | 0.159 | 0.677 | 0.213 | -0.551 | 0.000 | 0.510 |
@@ -199,6 +214,9 @@ Nulo de covariância: dados sintéticos com a mesma covariância e sem grupos. p
 | E_agua_nascente_individual | 0.089 | 0.337 | 0.027 | 0.231 | 0.010 | 0.001 | 0.447 | 0.332 | 0.093 | 0.490 | 0.329 | 0.001 | 19 | 13.791 | 0.055 |
 | E_agua_gambiarra_na_rede | 0.116 | 0.099 | 0.001 | 0.015 | 0.446 | 0.284 | 0.553 | 0.330 | 0.007 | 0.346 | 0.333 | 0.261 | 19 | 13.127 | 0.032 |
 | E_esgoto_rudimentar_individual | 0.050 | 0.723 | 0.110 | 0.098 | 0.010 | 0.014 | 0.395 | 0.335 | 0.243 | 0.421 | 0.333 | 0.003 | 19 | 14.460 | 0.085 |
+| M2_semEscadas_K3 | 0.090 | 0.139 | 0.016 | 0.072 | 0.030 | 0.036 | 0.500 | 0.331 | 0.033 | 0.387 | 0.333 | 0.034 | 19 | 13.621 | 0.046 |
+| M2_semEscadas_K4 | 0.114 | 0.168 | 0.003 | 0.064 | 0.129 | 0.065 | 0.421 | 0.247 | 0.021 | 0.291 | 0.248 | 0.045 | 19 | 11.954 | 0.010 |
+| M2_semEscadas_K5 | 0.159 | 0.010 | 0.001 | -0.001 | 0.941 | 0.464 | 0.421 | 0.212 | 0.005 | 0.205 | 0.209 | 0.549 | 14 | 9.297 | 0.048 |
 | M0_antigo_K5_b500n50 | 0.159 | 0.050 | 0.001 | 0.061 | 0.287 | 0.097 | 0.447 | 0.221 | 0.006 | 0.250 | 0.219 | 0.082 | 15 | 9.307 | 0.022 |
 | M0_antigo_K5_bootEstratoRegra | 0.159 | 0.050 | 0.001 | 0.061 | 0.287 | 0.097 | 0.447 | 0.221 | 0.006 | 0.250 | 0.219 | 0.082 | 15 | 9.307 | 0.022 |
 | M1_revisado_K3_b500n50 | 0.071 | 0.683 | 0.040 | 0.072 | 0.059 | 0.052 | 0.474 | 0.374 | 0.142 | 0.435 | 0.374 | 0.028 | 20 | 15.429 | 0.083 |
@@ -232,6 +250,9 @@ Nulo de covariância: dados sintéticos com a mesma covariância e sem grupos. p
 | E_agua_nascente_individual | 0.151 | 0.009 | 0.030 | 0.001 | 0.090 | 0.374 | 0.024 | 0.000 | 0.000 | 0.166 |
 | E_agua_gambiarra_na_rede | 0.159 | 0.022 | 0.014 | 0.000 | 0.171 | 0.407 | 0.063 | 0.000 | 4 | 0.305 |
 | E_esgoto_rudimentar_individual | 0.143 | 0.022 | 0.154 | 0.003 | 0.048 | 0.339 | 0.054 | 0.000 | 0.000 | 0.085 |
+| M2_semEscadas_K3 | 0.148 | 0.021 | 0.010 | 0.000 | 0.124 | 0.362 | 0.064 | 0.000 | 5 | 0.314 |
+| M2_semEscadas_K4 | 0.198 | 0.114 | 0.017 | 0.000 | 0.185 | 0.422 | 0.287 | 0.000 | 2 | 0.186 |
+| M2_semEscadas_K5 | 0.094 | 0.027 | 0.087 | 0.000 | 0.257 | 0.142 | 0.234 | 0.000 | 5 | 0.345 |
 | M0_antigo_K5_b500n50 | 0.031 | 0.036 | 0.027 | 0.000 | 0.135 | 0.163 | 0.212 | 0.000 | 4 | 0.265 |
 | M0_antigo_K5_bootEstratoRegra | 0.031 | 0.036 | 0.027 | 0.000 | 0.135 | 0.163 | 0.212 | 0.000 | 4 | 0.265 |
 | M1_revisado_K3_b500n50 | 0.145 | 0.013 | 0.164 | 0.001 | 0.065 | 0.257 | 0.281 | 0.000 | 0.000 | 0.053 |
@@ -265,12 +286,53 @@ Nulo de covariância: dados sintéticos com a mesma covariância e sem grupos. p
 | E_agua_nascente_individual | 4 | 1 | 32.714 | 0.064 |
 | E_agua_gambiarra_na_rede | 3 | 3 | 37.857 | 0.074 |
 | E_esgoto_rudimentar_individual | 3 | 2 | 34.571 | 0.066 |
+| M2_semEscadas_K3 | 3 | 2 | 36.571 | 0.077 |
+| M2_semEscadas_K4 | 2 | 2 | 33.500 | 0.082 |
+| M2_semEscadas_K5 | 2 | 1 | 31.857 | 0.086 |
 | M0_antigo_K5_b500n50 | 4 | 3 | 39.514 | 0.110 |
 | M0_antigo_K5_bootEstratoRegra | 4 | 3 | 41.071 | 0.105 |
 | M1_revisado_K3_b500n50 | 2 | 1 | 33.286 | 0.065 |
 | M1_revisado_K3_bootEstratoRegra | 2 | 2 | 36.357 | 0.065 |
 
 De 7 desfechos (Kruskal-Wallis entre grupos, 49 segmentos). Desfechos fixos; só a partição varia, com os rótulos de cada réplica do bootstrap. Sem correção para comparações múltiplas.
+
+
+### T10. Validação externa condicional à RA (permutação dentro da RA) e eta² da RA (programa 29)
+
+| variante | desfechos com p<0,05 dentro da RA | menor p | p EBIA mod./grave | p benefício social | p CadÚnico | p escritura | eta² RA médio (escores) | eta² RA ajustado por gl |
+|---|---|---|---|---|---|---|---|---|
+| M0_antigo_K3 | 2 | 0.005 | 0.005 | 0.086 | 0.011 | 0.051 | 0.729 | 0.500 |
+| M0_antigo_K4 | 3 | 0.006 | 0.006 | 0.064 | 0.008 | 0.189 | 0.729 | 0.500 |
+| M0_antigo_K5 | 1 | 0.001 | 0.126 | 0.066 | 0.001 | 0.498 | 0.729 | 0.500 |
+| M1_revisado_K3 | 0.000 | 0.067 | 0.072 | 0.417 | 0.067 | 0.395 | 0.683 | 0.415 |
+| M1_revisado_K4 | 1 | 0.006 | 0.244 | 0.186 | 0.006 | 0.406 | 0.683 | 0.415 |
+| M1_revisado_K5 | 2 | 0.004 | 0.039 | 0.370 | 0.004 | 0.242 | 0.683 | 0.415 |
+| A_so_ctx | 2 | 0.015 | 0.033 | 0.145 | 0.015 | 0.230 | 0.693 | 0.434 |
+| A_so_agua | 2 | 0.003 | 0.003 | 0.110 | 0.009 | 0.162 | 0.723 | 0.488 |
+| A_so_esgoto | 2 | 0.018 | 0.018 | 0.122 | 0.025 | 0.704 | 0.726 | 0.495 |
+| A_so_renda | 2 | 0.005 | 0.005 | 0.086 | 0.011 | 0.051 | 0.734 | 0.508 |
+| A_so_dur | 2 | 0.018 | 0.018 | 0.122 | 0.025 | 0.704 | 0.725 | 0.492 |
+| L_sem_ctx | 2 | 0.003 | 0.003 | 0.110 | 0.009 | 0.162 | 0.721 | 0.485 |
+| L_sem_agua | 2 | 0.030 | 0.030 | 0.157 | 0.042 | 0.598 | 0.690 | 0.428 |
+| L_sem_esgoto | 2 | 0.025 | 0.025 | 0.361 | 0.044 | 0.179 | 0.685 | 0.419 |
+| L_sem_renda | 2 | 0.019 | 0.027 | 0.090 | 0.019 | 0.057 | 0.678 | 0.405 |
+| L_sem_dur | 2 | 0.011 | 0.011 | 0.347 | 0.021 | 0.059 | 0.688 | 0.424 |
+| S_winsor95 | 0.000 | 0.067 | 0.072 | 0.417 | 0.067 | 0.395 | 0.683 | 0.415 |
+| S_winsor100 | 0.000 | 0.067 | 0.072 | 0.417 | 0.067 | 0.395 | 0.683 | 0.415 |
+| S_clr | 1 | 0.031 | 0.031 | 0.252 | 0.159 | 0.668 | 0.675 | 0.401 |
+| E_agua_cisterna_precaria | 0.000 | 0.061 | 0.061 | 0.229 | 0.113 | 0.171 | 0.682 | 0.412 |
+| E_agua_nascente_individual | 2 | 0.019 | 0.027 | 0.090 | 0.019 | 0.057 | 0.689 | 0.425 |
+| E_agua_gambiarra_na_rede | 2 | 0.024 | 0.034 | 0.194 | 0.024 | 0.382 | 0.687 | 0.422 |
+| E_esgoto_rudimentar_individual | 1 | 0.019 | 0.191 | 0.411 | 0.128 | 0.019 | 0.684 | 0.416 |
+| M2_semEscadas_K3 | 2 | 0.015 | 0.033 | 0.145 | 0.015 | 0.230 | 0.693 | 0.434 |
+| M2_semEscadas_K4 | 1 | 0.023 | 0.224 | 0.132 | 0.023 | 0.539 | 0.693 | 0.434 |
+| M2_semEscadas_K5 | 1 | 0.018 | 0.057 | 0.247 | 0.018 | 0.405 | 0.693 | 0.434 |
+| M0_antigo_K5_b500n50 | 1 | 0.001 | 0.126 | 0.066 | 0.001 | 0.498 | 0.729 | 0.500 |
+| M0_antigo_K5_bootEstratoRegra | 1 | 0.001 | 0.126 | 0.066 | 0.001 | 0.498 | 0.729 | 0.500 |
+| M1_revisado_K3_b500n50 | 0.000 | 0.067 | 0.072 | 0.417 | 0.067 | 0.395 | 0.683 | 0.415 |
+| M1_revisado_K3_bootEstratoRegra | 0.000 | 0.067 | 0.072 | 0.417 | 0.067 | 0.395 | 0.683 | 0.415 |
+
+Permutação dos rótulos só entre segmentos da mesma RA (5000 sorteios). O eta² bruto da RA vale ≈ 0,46 sob independência (23 RAs, 49 segmentos); o ajustado desconta isso.
 
 
 ### T8. ARI entre a partição de cada variante (no seu K) e as duas de referência
@@ -300,6 +362,9 @@ De 7 desfechos (Kruskal-Wallis entre grupos, 49 segmentos). Desfechos fixos; só
 | E_agua_nascente_individual | 0.399 | 0.684 |
 | E_agua_gambiarra_na_rede | 0.431 | 0.332 |
 | E_esgoto_rudimentar_individual | 0.377 | 0.792 |
+| M2_semEscadas_K3 | 0.519 | 0.332 |
+| M2_semEscadas_K4 | 0.701 | 0.556 |
+| M2_semEscadas_K5 | 0.730 | 0.480 |
 | M0_antigo_K5_b500n50 | 1.000 | 0.402 |
 | M0_antigo_K5_bootEstratoRegra | 1.000 | 0.402 |
 | M1_revisado_K3_b500n50 | 0.402 | 1.000 |

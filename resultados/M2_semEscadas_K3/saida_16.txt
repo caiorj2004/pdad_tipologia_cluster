@@ -1,0 +1,126 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 1, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 5
+ARI reprodução da referência: 1.0
+
+Coligação no bootstrap por classe (núcleo/fronteira):
+           mean  median   min   max  count
+Classe                                    
+Fronteira  0.57    0.60  0.35  0.72     11
+Núcleo     0.77    0.79  0.59  0.87     38
+Spearman com o escore de co-associação por subamostras: 0.67
+
+(a) BOOTSTRAP POR DOMICÍLIOS (200 réplicas, K=3, n_init=30, nível=segmento, retenção=fixa)
+ARI vs. partição de referência: média 0.535 | mediana 0.538 | p5 0.299 | p95 0.770 | min 0.237
+Silhueta nas réplicas: média 0.242 (referência 0.236)
+
+Coligação média com o próprio grupo, por grupo (e por tamanho de amostra):
+           mean   min   max
+grupo_ref                  
+0          0.81  0.65  0.87
+1          0.71  0.35  0.80
+2          0.68  0.43  0.79
+       mean   min  count
+n_cat                   
+5-9    0.70  0.54      6
+10-14  0.67  0.59      2
+15+    0.69  0.35     23
+
+Segmentos com coligação < 0,60:
+                                         segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+Sol Nascente/Pôr do Sol | Características Urbanas          1         41                    0.35
+                      SCIA | Agricultura Familiar          1         50                    0.42
+       Recanto das Emas | Agricultura Empresarial          2         28                    0.43
+                 Samambaia | Agricultura Familiar          1          6                    0.54
+             Sobradinho | Agricultura Empresarial          2         79                    0.57
+              Samambaia | Agricultura Empresarial          2         12                    0.59
+             Taguatinga | Agricultura Empresarial          2          8                    0.60
+
+ARI médio do bootstrap por K (referência de cada K = partição de 49 segmentos com n_init=50):
+  K=2: ARI médio 0.628 (200 réplicas)
+  K=3: ARI médio 0.535 (200 réplicas)
+  K=4: ARI médio 0.407 (200 réplicas)
+  K=5: ARI médio 0.390 (200 réplicas)
+  K=6: ARI médio 0.403 (200 réplicas)
+
+(b) K-MEANS PONDERADO (mesmos 6 escores, K={K}, n_init=50)
+- sem peso (referência): ARI 1.000; tamanhos [20, 17, 12]; segmentos que mudam de grupo: 0
+- raiz do peso: ARI 0.579; tamanhos [19, 17, 13]; segmentos que mudam de grupo: 8
+     Gama | Agricultura Empresarial (ref G2, domicílios exp. 3598)
+     Planaltina | Agricultura Familiar (ref G2, domicílios exp. 4813)
+     Recanto das Emas | Agricultura Empresarial (ref G2, domicílios exp. 403)
+     Riacho Fundo II | Assentamento/Agrovila (ref G2, domicílios exp. 351)
+     SCIA | Agricultura Familiar (ref G1, domicílios exp. 125)
+     Samambaia | Agricultura Familiar (ref G1, domicílios exp. 132)
+     Sobradinho | Agricultura Empresarial (ref G2, domicílios exp. 744)
+     Sol Nascente/Pôr do Sol | Características Urbanas (ref G1, domicílios exp. 681)
+- peso integral: ARI 0.598; tamanhos [21, 14, 14]; segmentos que mudam de grupo: 7
+     Fercal | Agricultura Familiar (ref G1, domicílios exp. 891)
+     Paranoá | Agricultura Empresarial (ref G1, domicílios exp. 1382)
+     Recanto das Emas | Agricultura Familiar (ref G1, domicílios exp. 445)
+     SCIA | Agricultura Familiar (ref G1, domicílios exp. 125)
+     Samambaia | Agricultura Familiar (ref G1, domicílios exp. 132)
+     Sobradinho | Agricultura Empresarial (ref G2, domicílios exp. 744)
+     Sol Nascente/Pôr do Sol | Características Urbanas (ref G1, domicílios exp. 681)
+
+Domicílios expandidos por grupo de referência (%):
+0    22.2
+1    44.6
+2    33.1
+
+PERFIS DOS GRUPOS COM IC 95% (bootstrap de domicílios; média ponderada por domicílios expandidos)
+                              estimativa                   ic_inf                   ic_sup                 
+grupo                                  0       1        2       0       1       2        0       1        2
+variavel                                                                                                   
+agua_rede                           0.61    0.16     0.30    0.52    0.07    0.07     1.00    0.25     0.44
+contribui_previdencia               0.36    0.27     0.28    0.31    0.24    0.23     0.58    0.28     0.32
+escolaridade_adulto                 9.70    8.00     8.47    8.97    7.72    7.96    11.56    8.26     9.02
+internet_banda_larga_fixa           0.82    0.65     0.73    0.75    0.62    0.65     0.90    0.68     0.78
+ivs_df                              0.33    0.47     0.38    0.26    0.43    0.35     0.41    0.49     0.43
+possui_automovel                    0.72    0.60     0.69    0.66    0.57    0.63     1.00    0.63     0.74
+possui_computador                   0.50    0.27     0.39    0.43    0.23    0.32     0.90    0.31     0.44
+renda_domiciliar_pc               905.14  851.86  1256.88  804.65  782.47  959.02  1036.34  999.91  1703.53
+rua_pavimentada                     0.50    0.07     0.23    0.38    0.03    0.14     0.90    0.11     0.35
+solucao_sanitaria_estruturada       0.82    0.46     0.73    0.70    0.27    0.66     0.89    0.53     0.86
+trabalhou_30d                       0.48    0.46     0.42    0.44    0.44    0.40     0.70    0.50     0.47
+
+(c) ESTABILIDADE (ARI por subamostras de 80%) vs. NULO DE COVARIANCIA (100 conjuntos nulos)
+  K=3: observado 0.704 | nulo média 0.690 (p95 0.881) | p = 0.485
+  K=4: observado 0.505 | nulo média 0.652 (p95 0.811) | p = 0.911
+  K=5: observado 0.562 | nulo média 0.612 (p95 0.777) | p = 0.703
+
+(d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.772; mudam: 4
+     Recanto das Emas | Agricultura Empresarial n=28: G2 -> G0
+     SCIA | Agricultura Familiar n=50: G1 -> G0
+     Sobradinho | Agricultura Empresarial n=79: G2 -> G0
+     Sol Nascente/Pôr do Sol | Características Urbanas n=41: G1 -> G0
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.537; mudam: 9
+     Fercal | Agricultura Familiar n=50: G1 -> G2
+     Lago Norte | Características Urbanas n=51: G2 -> G0
+     Paranoá | Agricultura Empresarial n=97: G1 -> G2
+     Recanto das Emas | Agricultura Familiar n=49: G1 -> G2
+     Riacho Fundo II | Assentamento/Agrovila n=69: G2 -> G0
+     SCIA | Agricultura Familiar n=50: G1 -> G2
+     Samambaia | Agricultura Familiar n=6: G1 -> G2
+     Sobradinho | Agricultura Empresarial n=79: G2 -> G0
+     Taguatinga | Agricultura Empresarial n=8: G2 -> G0
+
+(e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 5
+Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 3.2
+                                    segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+            Fercal | Agricultura Empresarial          1          7                    0.76
+Núcleo Bandeirante | Características Urbanas          0          5                    0.83
+      Riacho Fundo | Características Urbanas          0          5                    0.83
+            Samambaia | Agricultura Familiar          1          6                    0.54
+        Taguatinga | Agricultura Empresarial          2          8                    0.60
+      Águas Claras | Características Urbanas          0          5                    0.65
