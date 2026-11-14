@@ -9,7 +9,7 @@ FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
 
 Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 
-componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 1, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 5
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 1, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 5
 ARI reprodução da referência: 1.0
 
 Coligação no bootstrap por classe (núcleo/fronteira):
@@ -19,7 +19,7 @@ Fronteira  0.57    0.57  0.38  0.71     11
 Núcleo     0.77    0.80  0.60  0.87     38
 Spearman com o escore de co-associação por subamostras: 0.64
 
-(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20)
+(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20, nível=segmento, retenção=fixa)
 ARI vs. partição de referência: média 0.534 | mediana 0.545 | p5 0.311 | p95 0.788 | min 0.285
 Silhueta nas réplicas: média 0.244 (referência 0.231)
 
@@ -102,6 +102,15 @@ trabalhou_30d                       0.48    0.46     0.42    0.44    0.44     0.
 (d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.880; mudam: 2
      Gama | Agricultura Empresarial n=250: G2 -> G1
      Recanto das Emas | Agricultura Empresarial n=28: G2 -> G0
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.608; mudam: 7
+     Fercal | Agricultura Familiar n=50: G1 -> G2
+     Lago Norte | Características Urbanas n=51: G2 -> G0
+     Paranoá | Agricultura Empresarial n=97: G1 -> G2
+     Recanto das Emas | Agricultura Familiar n=49: G1 -> G2
+     SCIA | Agricultura Familiar n=50: G1 -> G2
+     Samambaia | Agricultura Familiar n=6: G1 -> G2
+     Taguatinga | Agricultura Empresarial n=8: G2 -> G0
 
 (e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 5
 Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 8.4

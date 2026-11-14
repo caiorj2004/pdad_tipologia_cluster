@@ -1,35 +1,22 @@
-# Leitura da comparação de variantes (13/11/2026) — sem eleger modelo
+# Leitura da comparação de variantes (sem eleger vencedor)
 
-Fonte: `resultados/comparacao_variantes.csv` (19 variantes). Todos os números abaixo vêm dessa tabela.
-Bootstrap: 200 réplicas e 30 inicializações para M0_antigo_K5, M0_antigo_K3, M1_revisado_K3; 100 réplicas e 20 inicializações para as demais; as duas variantes `_b500n50` usam 500 e 50.
+Resumo de uma página. A análise detalhada por modelo, K e parâmetro está em `docs/rodadas_stress_test.md`; todas as tabelas, em `docs/tabelas_rodadas.md` (geradas por `pipeline/27_tabelas_rodadas.py`). Base: 27 variantes completas em `resultados/comparacao_variantes.{csv,md}`.
 
-## 1. O que reproduz os diagnósticos da orientadora (modelo antigo, K=5)
-| Diagnóstico dela | Reprodução aqui |
-|---|---|
-| p de covariância em K=5 = 0,110 | 0,110 |
-| AMI dos rótulos com a RA 0,16 e com a subpopulação 0,06 | 0,159 e 0,061 |
-| grupo 2 com 3 segmentos e 24 domicílios (0,5%) | menor grupo com 3 segmentos e 0,53% dos domicílios |
-| Spearman tamanho × distância ao centro = −0,45 (4 variáveis, 49 segmentos) | −0,42 (matriz completa) |
+**Nomes.** M0 = modelo antigo; M1 = revisado (cinco ajustes: `ctx`, `agua`, `esgoto`, `renda`, `dur`). `A_so_X` = M0 mais só o ajuste X; `L_sem_X` = M1 menos só o ajuste X (são ablações de **ajustes**, não de dimensões). `S_*`, `E_*` e `*_b500n50`/`*_bootEstratoRegra` variam parâmetros do M1 ou M0 centrais.
 
-## 2. O que vale em todas as variantes (não depende de qual modelo vença)
-1. **Nenhuma variante com K=3 supera o nulo de covariância** (p de 0,14 a 0,88). Algum K entre 2 e 8 fica significativo (p < 0,05) no modelo antigo (K=7, p=0,016), em `A_so_agua`, `A_so_dur`, `A_so_esgoto`, `A_so_renda` e em `L_sem_ctx`; o modelo revisado não tem nenhum (menor p = 0,13, em K=8).
-2. **Segmentos pequenos são mais extremos em todas as variantes**: Spearman entre n e distância ao centro de −0,42 a −0,56, e Mann-Whitney (n < 20 mais distantes) com p < 0,001 em todas. Não foi resolvido por nenhuma mudança de matriz testada.
-3. **Validação externa**: CadÚnico difere entre grupos (Kruskal-Wallis entre segmentos, p < 0,05) e o IVS-DF (fora da matriz nas variantes `ctx`) ordena os grupos (p < 0,01) em todas as variantes. A insegurança alimentar moderada ou grave difere (p < 0,05) em todas, exceto em `L_sem_agua` (p = 0,060). A escritura registrada raramente difere (p < 0,05 em 3 de 19).
-4. **A winsorização da renda não altera nada**: `S_winsor95` e `S_winsor100` produzem a mesma partição de `M1_revisado_K3` (bootstrap 0,384 e 0,385 contra 0,381).
-5. **Só K=2 é estável no bootstrap** (ARI médio de 0,58 a 0,73 em K=2 contra 0,37 a 0,57 para K=3 a 5).
+## O que vale para quase todas as variantes
+- Nenhum K final bate o nulo de covariância com p < 0,05 (menor p entre os centrais: M0 K=5, 0,110).
+- O ARI de bootstrap e o de metades não superam o p95 do nulo em nenhuma das 27 variantes.
+- K=2 é o mais estável em todas, e K=3 custa estabilidade.
+- Spearman entre tamanho do segmento e distância ao centro é negativo em todas (−0,33 a −0,63; p ≤ 0,02).
+- Decomposição domiciliar (≈ 82% residual, 12% segmento, 5,7% RA, 0,2% subpopulação) e Moran ajustado (≈ 0) não dependem da partição.
+- Winsor (0,95, 0,99, 1,00) e número de réplicas do bootstrap (200 vs 500) não mudam as conclusões.
 
-## 2b. Onde os resultados divergem entre as variantes
-| Métrica | Modelo antigo (K=5) | Revisado (K=3) | Observação |
-|---|---|---|---|
-| ARI médio do bootstrap | 0,46 (0,47 com 500 réplicas) | 0,38 | variantes intermediárias de 0,38 a 0,57 |
-| Puxão da RA (pares da mesma RA no mesmo grupo, p) | 0,006 | 0,142 | recolocar IVS-DF e escala da RA no revisado (`L_sem_ctx`) leva a 0,005 e sobe o ARI do bootstrap para 0,515 |
-| Partição sem uma subpopulação (ARI médio, PCA refeito) | 0,76 | 0,45 | no revisado, tirar "Características Urbanas" leva o ARI a 0,16 |
-| Partição sem uma RA (ARI médio, PCA refeito) | 0,81 | 0,74 | RA crítica varia (Fercal, Sobradinho, Gama, Ceilândia) |
-| Ótimo do K-Means com 10 inicializações | 34% das sementes | 18% | de 7% a 73% entre variantes |
-| AMI com a RA / com a subpopulação | 0,159 / 0,061 | 0,071 / 0,072 | "mais associado à RA" vale para o antigo, não para o revisado |
+## O que muda entre modelos
+- M0 → M1 muda a partição (ARI entre M0 K=5 e M1 K=3 = 0,402). Nenhum ajuste isolado reproduz o efeito combinado (ARI entre 0,33 e 0,52).
+- M0 tem melhor bootstrap, estabilidade ao retirar uma RA e validação ordenada, mas tem IVS-DF dentro da matriz e, em K=4 e K=5, um grupo de 0,5% dos domicílios.
+- M1 K=3 tem a maior silhueta entre os K finais centrais (0,253) e o contexto fora da matriz, mas o menor bootstrap entre os K=3 (0,381) e 47,9% dos domicílios na fronteira.
+- Retirar `ctx` ou `agua` de M1 eleva muito a estabilidade, mas o p de covariância sobe (0,880 e 0,635).
+- A codificação de água e esgoto (ilr vs clr; "gambiarra" como rede ou não; cisterna, nascente) muda a partição (ARI de 0,33 a 0,79 contra M1 K=3).
 
-## 3. Pontos que continuam em aberto (não decididos)
-* **Qual modelo é melhor.** Em estabilidade e separação do nulo o antigo tem números melhores; em ausência de variáveis constantes na RA e de composições colineares o revisado é mais defensável. As métricas de estabilidade melhoram quando o IVS-DF e a escala da RA voltam à matriz (`L_sem_ctx`), mas junto com o puxão da RA (item 2b).
-* **O revisado depende fortemente da subpopulação Características Urbanas** (S6b): isso pode ser um traço do território ou uma limitação da matriz.
-* **Grupo pequeno do antigo (3 segmentos)** some no revisado, mas os segmentos pequenos continuam extremos (item 2.2).
-* Testes ainda não feitos: refazer toda a bateria com o dicionário aplicado reprocessado; variante com mediana ponderada de renda (descartada por decisão do autor); variante deixando fora também os 6 segmentos não classificáveis.
+Nenhum modelo domina em todos os critérios. A decisão de modelo continua em aberto.

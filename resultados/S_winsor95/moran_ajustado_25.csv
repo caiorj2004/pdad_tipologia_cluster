@@ -1,0 +1,9 @@
+indicador,versao,RAs,vinculos,I_Moran,p_perm
+água em rede,bruto,23,42,0.19178732868692108,0.048
+água em rede,ajustado por subpopulação,23,42,0.2086852852111567,0.057
+banda larga fixa,bruto,23,42,-0.022362828400074062,0.441
+banda larga fixa,ajustado por subpopulação,23,42,-0.07518369826650605,0.551
+escolaridade do adulto,bruto,23,42,0.04211241760877975,0.261
+escolaridade do adulto,ajustado por subpopulação,23,42,0.026189215431581377,0.277
+ln(renda pc),bruto,23,42,-0.20000788485434795,0.897
+ln(renda pc),ajustado por subpopulação,23,42,-0.1616576715017743,0.806

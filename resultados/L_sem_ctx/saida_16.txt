@@ -9,7 +9,7 @@ FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
 
 Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 
-componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
 ARI reprodução da referência: 1.0
 
 Coligação no bootstrap por classe (núcleo/fronteira):
@@ -19,7 +19,7 @@ Fronteira  0.67    0.69  0.45  0.81     11
 Núcleo     0.73    0.75  0.43  0.81     38
 Spearman com o escore de co-associação por subamostras: 0.17
 
-(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20)
+(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20, nível=segmento, retenção=fixa)
 ARI vs. partição de referência: média 0.515 | mediana 0.489 | p5 0.307 | p95 0.772 | min 0.244
 Silhueta nas réplicas: média 0.231 (referência 0.199)
 
@@ -108,6 +108,14 @@ trabalhou_30d                       0.49     0.41    0.46    0.44    0.39    0.4
      Recanto das Emas | Agricultura Familiar n=49: G2 -> G1
      SCIA | Agricultura Familiar n=50: G2 -> G1
      Sol Nascente/Pôr do Sol | Características Urbanas n=41: G2 -> G1
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.687; mudam: 6
+     Fercal | Agricultura Familiar n=50: G2 -> G1
+     Paranoá | Agricultura Empresarial n=97: G2 -> G1
+     Paranoá | Agricultura Familiar n=205: G2 -> G1
+     Planaltina | Agricultura Empresarial n=194: G2 -> G1
+     Recanto das Emas | Agricultura Familiar n=49: G2 -> G1
+     SCIA | Agricultura Familiar n=50: G2 -> G1
 
 (e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 3
 Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 1.8

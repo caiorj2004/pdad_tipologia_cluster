@@ -24,7 +24,7 @@ Revisão do repositório comparando (i) o que a avaliação pede, incluindo o qu
 
 - Mediana ponderada (a avaliação diz "winsorização **ou** mediana"; escolhida a winsorização).
 - V de Cramér corrigido (substituído por AMI com permutação).
-- Regressão logística em nível domiciliar com erro robusto por conglomerado e controles: **não implementada**; a validação externa continua no nível do segmento e é, portanto, descritiva.
+- (Correção) A regressão logística da avaliação pertence à **decomposição territorial** no nível do domicílio, não à validação externa; está no programa 26. A validação externa continua no nível do segmento (descritiva); regressão com erro robusto por conglomerado e controles foi acréscimo meu e não é exigida.
 - Validação externa sob incerteza da partição (rótulos de cada réplica do bootstrap) e comparação com Emater: pendentes.
 - Teste de dependência em relação a um único domicílio/segmento influente (jackknife por domicílio): pendente.
 - O ruído do nulo do bootstrap vem das réplicas do próprio bootstrap (preserva a correlação dentro do segmento), mas assume que a covariância "verdadeira" é a observada descontado o ruído; é uma aproximação.

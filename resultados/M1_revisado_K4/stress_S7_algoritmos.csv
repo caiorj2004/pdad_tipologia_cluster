@@ -1,0 +1,8 @@
+algoritmo,ARI_vs_kmeans,tamanhos
+Ward,0.4850412949360871,"[18, 13, 13, 5]"
+ligacao_media,-0.002945595056123754,"[44, 3, 1, 1]"
+GMM_completo,0.3376891407795541,"[21, 17, 8, 3]"
+GMM_diagonal,0.299864472410455,"[24, 20, 4, 1]"
+KMeans_peso_raiz,0.4920525224602626,"[18, 13, 12, 6]"
+KMeans_peso_integral,0.5159347723120644,"[18, 15, 12, 4]"
+KMeans_peso_n_amostral,0.5159347723120644,"[18, 15, 12, 4]"

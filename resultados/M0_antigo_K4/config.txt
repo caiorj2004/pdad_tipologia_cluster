@@ -1,0 +1,1 @@
+variante=M0_antigo_K4 V2= K=4 WINSOR_P=0.99 COMP=ilr N_BOOT=200 NINIT_BOOT=30

@@ -43,14 +43,14 @@
  "S9_frac_esperada_subpop": 0.361,
  "S9_p_subpop": 0.011,
  "S10_eta2_max": 0.627,
- "S10_eixo_dominante": "D1_Financeiro_Ativos_MC_PC1",
+ "S10_eixo_dominante": "D1_Bens_Duraveis_MC_PC1",
  "S10_pct_var_1o_eixo_da_matriz": 0.549
 }
-5
+94735
 S9_p_RA: 0.17082917082917082
 S9_frac_mesmo_grupo_subpop: 0.4417808219178082
 S9_frac_esperada_subpop: 0.36078767123287675
 S9_p_subpop: 0.01098901098901099
 S10_eta2_max: 0.6272212178753105
-S10_eixo_dominante: D1_Financeiro_Ativos_MC_PC1
+S10_eixo_dominante: D1_Bens_Duraveis_MC_PC1
 S10_pct_var_1o_eixo_da_matriz: 0.5487749065612946

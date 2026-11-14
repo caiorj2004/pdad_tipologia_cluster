@@ -11,7 +11,7 @@ Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 
 1. DECOMPOSIÇÃO DE VARIANCIA (R2 de ANOVA; ICC de modelo misto com intercepto aleatório de RA, subpopulação como efeito fixo)
     nivel                                  variavel  R2_RA  R2_sub  R2_RA+sub  ICC_RA_dado_sub  R2_segmento(RAxsub)  residual
- segmento               D1_Financeiro_Ativos_MC_PC1  0.816   0.015      0.830            0.681                  NaN       NaN
+ segmento                   D1_Bens_Duraveis_MC_PC1  0.816   0.015      0.830            0.681                  NaN       NaN
  segmento                 D2_Humano_Trabalho_MC_PC1  0.732   0.022      0.751            0.497                  NaN       NaN
  segmento D3_Fisico_Habitacional_Territorial_MC_PC1  0.592   0.042      0.635            0.207                  NaN       NaN
  segmento D3_Fisico_Habitacional_Territorial_MC_PC2  0.565   0.186      0.732            0.317                  NaN       NaN

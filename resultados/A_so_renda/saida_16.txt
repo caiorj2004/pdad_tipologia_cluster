@@ -9,7 +9,7 @@ FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
 
 Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 
-componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
 ARI reprodução da referência: 1.0
 
 Coligação no bootstrap por classe (núcleo/fronteira):
@@ -19,7 +19,7 @@ Fronteira  0.52     0.5  0.42  0.62      6
 Núcleo     0.77     0.8  0.53  0.87     43
 Spearman com o escore de co-associação por subamostras: 0.52
 
-(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20)
+(a) BOOTSTRAP POR DOMICÍLIOS (100 réplicas, K=3, n_init=20, nível=segmento, retenção=fixa)
 ARI vs. partição de referência: média 0.552 | mediana 0.547 | p5 0.325 | p95 0.782 | min 0.280
 Silhueta nas réplicas: média 0.235 (referência 0.219)
 
@@ -101,6 +101,15 @@ trabalhou_30d                       0.42    0.48    0.46    0.39    0.43    0.43
 (d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.892; mudam: 2
      Recanto das Emas | Agricultura Empresarial n=28: G0 -> G1
      Taguatinga | Agricultura Empresarial n=8: G1 -> G0
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.618; mudam: 7
+     Fercal | Agricultura Familiar n=50: G2 -> G0
+     Lago Norte | Características Urbanas n=51: G0 -> G1
+     Paranoá | Agricultura Empresarial n=97: G2 -> G0
+     Recanto das Emas | Agricultura Familiar n=49: G2 -> G0
+     Riacho Fundo II | Assentamento/Agrovila n=69: G0 -> G1
+     SCIA | Agricultura Familiar n=50: G2 -> G0
+     Sobradinho | Agricultura Empresarial n=79: G0 -> G1
 
 (e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 5
 Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 10.2

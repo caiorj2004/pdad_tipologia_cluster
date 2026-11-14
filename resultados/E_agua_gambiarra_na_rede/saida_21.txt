@@ -1,0 +1,56 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 5,
+ "S1_pct_sementes_no_otimo": 0.025,
+ "S1_ARI_medio_semente_unica": 0.554,
+ "S1_ARI_min_semente_unica": 0.285,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.3,
+ "S2_spearman_n_dist_Kfinal": -0.544,
+ "S2_p_Kfinal": 0.0,
+ "S2_spearman_n_dist_global": -0.368,
+ "S2_p_global": 0.009,
+ "S2_dist_med_peq": 4.091,
+ "S2_dist_med_grande": 2.001,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.511,
+ "S4_aparado6_ARI": 0.389,
+ "S4_aparado6_pct_n<20": 0.5,
+ "S4_aparado10_ARI": 0.446,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.653,
+ "S5_pct_peso>0.8_Kfinal": 0.224,
+ "S5_ARI_argmax_vs_kmeans": 0.716,
+ "S5_var_explicada_Kfinal": 0.702,
+ "S6_ARI_medio_sem_uma_RA": 0.683,
+ "S6_ARI_min_sem_uma_RA": 0.295,
+ "S6_RA_critica": "Santa Maria",
+ "S6_ARI_medio_sem_uma_subpop": 0.82,
+ "S6_ARI_min_sem_uma_subpop": 0.721,
+ "S7_ARI_medio_outros_algoritmos": 0.426,
+ "S7_ARI_min_outros_algoritmos": 0.041,
+ "S7_ARI_Ward": 0.496,
+ "S7_ARI_GMM_completo": 0.229,
+ "S7_ARI_KMeans_peso_integral": 0.647,
+ "S8_ARI_n>=10": 0.646,
+ "S8_ARI_n>=20": 0.625,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.553,
+ "S9_frac_esperada_RA": 0.33,
+ "S9_p_RA": 0.007,
+ "S9_frac_mesmo_grupo_subpop": 0.346,
+ "S9_frac_esperada_subpop": 0.333,
+ "S9_p_subpop": 0.261,
+ "S10_eta2_max": 0.559,
+ "S10_eixo_dominante": "D1_Bens_Duraveis_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.548
+}
+05263
+S9_p_RA: 0.006993006993006993
+S9_frac_mesmo_grupo_subpop: 0.3458904109589041
+S9_frac_esperada_subpop: 0.33296232876712334
+S9_p_subpop: 0.26073926073926074
+S10_eta2_max: 0.5589526486589355
+S10_eixo_dominante: D1_Bens_Duraveis_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5476358325198046

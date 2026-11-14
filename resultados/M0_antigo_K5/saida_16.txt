@@ -9,7 +9,7 @@ FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
 
 Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 
-componentes por dimensão: {'D1_Financeiro_Ativos': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 2, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 6
 ARI reprodução da referência: 1.0
 
 Coligação no bootstrap por classe (núcleo/fronteira):
@@ -19,7 +19,7 @@ Fronteira  0.51    0.48  0.31  0.71     12
 Núcleo     0.71    0.70  0.48  0.90     37
 Spearman com o escore de co-associação por subamostras: 0.73
 
-(a) BOOTSTRAP POR DOMICÍLIOS (200 réplicas, K=5, n_init=30)
+(a) BOOTSTRAP POR DOMICÍLIOS (200 réplicas, K=5, n_init=30, nível=segmento, retenção=fixa)
 ARI vs. partição de referência: média 0.458 | mediana 0.450 | p5 0.259 | p95 0.696 | min 0.190
 Silhueta nas réplicas: média 0.230 (referência 0.236)
 
@@ -122,6 +122,13 @@ trabalhou_30d                       0.42    0.42    0.38    0.49    0.48     0.3
 (d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.760; mudam: 5
      Paranoá | Agricultura Familiar n=205: G1 -> G4
      Planaltina | Agricultura Empresarial n=194: G1 -> G4
+     Sobradinho | Agricultura Empresarial n=79: G0 -> G3
+     Sol Nascente/Pôr do Sol | Assentamento/Agrovila n=31: G1 -> G4
+     Vicente Pires | Características Urbanas n=358: G1 -> G4
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.765; mudam: 5
+     Lago Norte | Características Urbanas n=51: G0 -> G2
+     Riacho Fundo II | Assentamento/Agrovila n=69: G0 -> G2
      Sobradinho | Agricultura Empresarial n=79: G0 -> G3
      Sol Nascente/Pôr do Sol | Assentamento/Agrovila n=31: G1 -> G4
      Vicente Pires | Características Urbanas n=358: G1 -> G4

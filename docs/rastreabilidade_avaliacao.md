@@ -1,7 +1,7 @@
 # Rastreabilidade: avaliação da orientadora (12/11/2026) → código → saída
 
 Cada ponto da avaliação aponta para o script que o executa e para o arquivo (por variante, em `resultados/<variante>/`) que o prova.
-"Status" diz apenas se o teste existe e roda; **não diz que o resultado foi favorável**. A comparação entre variantes está em `resultados/comparacao_variantes.md` e nenhum modelo foi eleito.
+"Status" diz apenas se o teste existe e roda; **não diz que o resultado foi favorável**. A comparação entre variantes está em `resultados/comparacao_variantes.md`; a leitura detalhada, em `docs/rodadas_stress_test.md` (tabelas em `docs/tabelas_rodadas.md`). Nenhum modelo foi eleito.
 
 | # | Ponto da avaliação | Script | Saída | Status |
 |---|---|---|---|---|
@@ -39,3 +39,19 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 5. **Confusão territorial**: AMI, variância, puxão da RA, join count, Moran (`18`, `21` S9).
 6. **Construção da matriz**: ablação de cada ajuste (A_so_*, L_sem_*), winsorização e clr (`variantes.tsv`).
 7. **Validade externa**: EBIA, CadÚnico, benefícios, escritura, outorga, IVS-DF (`19`).
+
+## Rodadas adicionadas depois da auditoria (programas 24, 25, 26, 27)
+
+| Ponto | Programa | Saída | Status |
+|---|---|---|---|
+| Nulo do bootstrap (ARI observado contra dados sem grupos, mesma covariância) | `24` (1) | `nulos_24_resumo.csv` | implementado; resolução do p = 0,01 (100 matrizes nulas) |
+| Replicabilidade por metades dos domicílios | `24` (2) | `nulos_24_resumo.csv` | implementado |
+| Nulo de atribuição domiciliar dentro do estrato (AMI com RA e subpopulação) | `24` (3) | `nulos_24_resumo.csv` | implementado |
+| Multinível por segmento (CCI da RA), Moran I ajustado pela composição, validação ordenada | `25` | `multinivel_25.csv`, `moran_ajustado_25.csv`, `validacao_ordenada_25.csv` | implementado; sem correção para comparações múltiplas |
+| Decomposição de variância no nível do domicílio (logit misto por VB; ln da renda em MixedLM) | `26` | `decomposicao_domiciliar_26*.csv` | implementado em Python; sem pesos amostrais; VB subestima a incerteza |
+| Encolhimento por n efetivo de Kish (variante d2) | `16` | `robustez_amostral_segmentos.csv` | implementado |
+| Bootstrap por estrato e retenção de componentes redecidida por réplica | `16` (`BOOT_NIVEL`, `BOOT_RETENCAO`) | `*_bootEstratoRegra` | implementado para M0 K=5 e M1 K=3 |
+| Escadas alternativas de água e esgoto | `03` (`AGUA_ESCADA`, `ESGOTO_ESCADA`) | variantes `E_*` | implementado |
+| K = 4 para M0 e M1 | `variantes.tsv` | `M0_antigo_K4`, `M1_revisado_K4` | implementado |
+| Tabelas T1 a T8 e ARI entre partições | `27` | `docs/tabelas_rodadas.md`, `resultados/ari_entre_particoes.csv` | implementado |
+| Validação externa sob incerteza da partição; jackknife por domicílio; Emater-DF | – | – | **não feito** |

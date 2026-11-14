@@ -13,16 +13,16 @@ Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
 RETENÇÃO DE COMPONENTES (MONTE CARLO vs. KAISER)
 ==============================================================================================================
                           dimensao  componente  eigenvalue_obs  eigenvalue_mc_p95  retido_mc  retido_kaiser  variancia_explicada_pct  variancia_acumulada_pct
-              D1_Financeiro_Ativos           1          3.3687             2.0223       True           True                    33.69                    33.69
-              D1_Financeiro_Ativos           2          1.5769             1.6735      False           True                    15.77                    49.46
-              D1_Financeiro_Ativos           3          1.3427             1.4471      False           True                    13.43                    62.88
-              D1_Financeiro_Ativos           4          1.0581             1.2781      False           True                    10.58                    73.46
-              D1_Financeiro_Ativos           5          0.7640             1.1201      False          False                     7.64                    81.10
-              D1_Financeiro_Ativos           6          0.6204             0.9849      False          False                     6.20                    87.31
-              D1_Financeiro_Ativos           7          0.5430             0.8520      False          False                     5.43                    92.74
-              D1_Financeiro_Ativos           8          0.3516             0.7350      False          False                     3.52                    96.25
-              D1_Financeiro_Ativos           9          0.2206             0.6179      False          False                     2.21                    98.46
-              D1_Financeiro_Ativos          10          0.1541             0.4929      False          False                     1.54                   100.00
+                  D1_Bens_Duraveis           1          3.3687             2.0223       True           True                    33.69                    33.69
+                  D1_Bens_Duraveis           2          1.5769             1.6735      False           True                    15.77                    49.46
+                  D1_Bens_Duraveis           3          1.3427             1.4471      False           True                    13.43                    62.88
+                  D1_Bens_Duraveis           4          1.0581             1.2781      False           True                    10.58                    73.46
+                  D1_Bens_Duraveis           5          0.7640             1.1201      False          False                     7.64                    81.10
+                  D1_Bens_Duraveis           6          0.6204             0.9849      False          False                     6.20                    87.31
+                  D1_Bens_Duraveis           7          0.5430             0.8520      False          False                     5.43                    92.74
+                  D1_Bens_Duraveis           8          0.3516             0.7350      False          False                     3.52                    96.25
+                  D1_Bens_Duraveis           9          0.2206             0.6179      False          False                     2.21                    98.46
+                  D1_Bens_Duraveis          10          0.1541             0.4929      False          False                     1.54                   100.00
                 D2_Humano_Trabalho           1          2.1487             1.5366       True           True                    53.72                    53.72
                 D2_Humano_Trabalho           2          1.1368             1.1991      False           True                    28.42                    82.14
                 D2_Humano_Trabalho           3          0.5369             0.9951      False          False                    13.42                    95.56
@@ -50,16 +50,16 @@ D3_Fisico_Habitacional_Territorial          14          0.0584             0.365
 CARGAS FATORIAIS DOS COMPONENTES RETIDOS
 ==============================================================================================================
                           Dimensão Componente                      Variável  Carga Fatorial (Loading)  Influência Absoluta
-              D1_Financeiro_Ativos        PC1             possui_microondas                    0.4504               0.4504
-              D1_Financeiro_Ativos        PC1        possui_ar_condicionado                    0.4498               0.4498
-              D1_Financeiro_Ativos        PC1               possui_lavadora                    0.3809               0.3809
-              D1_Financeiro_Ativos        PC1                     possui_tv                    0.3359               0.3359
-              D1_Financeiro_Ativos        PC1              possui_automovel                    0.3227               0.3227
-              D1_Financeiro_Ativos        PC1               possui_secadora                    0.3054               0.3054
-              D1_Financeiro_Ativos        PC1                possui_freezer                    0.2240               0.2240
-              D1_Financeiro_Ativos        PC1            possui_motocicleta                   -0.2015               0.2015
-              D1_Financeiro_Ativos        PC1              possui_geladeira                    0.1581               0.1581
-              D1_Financeiro_Ativos        PC1               log_renda_media                   -0.1539               0.1539
+                  D1_Bens_Duraveis        PC1             possui_microondas                    0.4504               0.4504
+                  D1_Bens_Duraveis        PC1        possui_ar_condicionado                    0.4498               0.4498
+                  D1_Bens_Duraveis        PC1               possui_lavadora                    0.3809               0.3809
+                  D1_Bens_Duraveis        PC1                     possui_tv                    0.3359               0.3359
+                  D1_Bens_Duraveis        PC1              possui_automovel                    0.3227               0.3227
+                  D1_Bens_Duraveis        PC1               possui_secadora                    0.3054               0.3054
+                  D1_Bens_Duraveis        PC1                possui_freezer                    0.2240               0.2240
+                  D1_Bens_Duraveis        PC1            possui_motocicleta                   -0.2015               0.2015
+                  D1_Bens_Duraveis        PC1              possui_geladeira                    0.1581               0.1581
+                  D1_Bens_Duraveis        PC1               log_renda_media                   -0.1539               0.1539
                 D2_Humano_Trabalho        PC1         contribui_previdencia                    0.6367               0.6367
                 D2_Humano_Trabalho        PC1                 trabalhou_30d                    0.5395               0.5395
                 D2_Humano_Trabalho        PC1           escolaridade_adulto                    0.4956               0.4956
@@ -98,7 +98,7 @@ D3_Fisico_Habitacional_Territorial        PC2     destino_com_coleta_direta     
       D4_Tecnologico_Conectividade        PC1             possui_computador                    0.4775               0.4775
 
 Etapa 5 — Benchmark de K. Matriz de agrupamento: 49 segmentos x 5 componentes:
-  - D1_Financeiro_Ativos_MC_PC1
+  - D1_Bens_Duraveis_MC_PC1
   - D2_Humano_Trabalho_MC_PC1
   - D3_Fisico_Habitacional_Territorial_MC_PC1
   - D3_Fisico_Habitacional_Territorial_MC_PC2
@@ -275,8 +275,8 @@ Região Administrativa (RA)                                  Quadrante  p-Valor 
 AUTOCORRELAÇÃO ESPACIAL GLOBAL (Moran's I, 999 permutações; unidade = RA, média dos segmentos)
 ====================================================================================================
                   Variável (média por RA) Vizinhança  I de Moran  p (simulado)
-              D1_Financeiro_Ativos_MC_PC1      Queen       0.272         0.017
-              D1_Financeiro_Ativos_MC_PC1 k-NN (k=4)       0.089         0.123
+                  D1_Bens_Duraveis_MC_PC1      Queen       0.272         0.017
+                  D1_Bens_Duraveis_MC_PC1 k-NN (k=4)       0.089         0.123
                 D2_Humano_Trabalho_MC_PC1      Queen       0.158         0.103
                 D2_Humano_Trabalho_MC_PC1 k-NN (k=4)       0.176         0.056
 D3_Fisico_Habitacional_Territorial_MC_PC1      Queen       0.338         0.004

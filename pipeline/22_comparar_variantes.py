@@ -24,8 +24,9 @@ def linha_variante(d):
     for ln in t03[ini:ini + 2500].splitlines():
         p = ln.split()
         if len(p) == 7 and p[0].isdigit(): tab[int(p[0])] = [num(x) for x in p[1:]]
-    ini = t03.find('Benchmark de K')
-    for ln in t03[ini:ini + 2500].splitlines():
+    ini = t03.find('BENCHMARK DE K')
+    fim = t03.find('Silhueta contra dois nulos', ini); fim = fim if fim > ini else ini + 2500
+    for ln in t03[ini:fim].splitlines():
         p = ln.split()
         if len(p) == 7 and p[0].isdigit(): bench[int(p[0])] = [num(x) for x in p[1:]]
     if K in tab:
@@ -72,7 +73,7 @@ def linha_variante(d):
     for k_, v_ in st.items():
         if k_ not in ('K', 'n_segmentos'): r[k_] = v_
     r['extras'] = cfg.get('extras', '')
-    for fn in ('nulos_24_resumo.csv', 'multinivel_moran_resumo.csv'):
+    for fn in ('nulos_24_resumo.csv', 'multinivel_moran_resumo.csv', 'decomposicao_domiciliar_26_resumo.csv'):
         if (d / fn).exists():
             for k_, v_ in pd.read_csv(d / fn).iloc[0].to_dict().items(): r[k_] = v_
     f6b = d / 'stress_S6b_resumo.csv'

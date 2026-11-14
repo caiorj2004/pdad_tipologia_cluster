@@ -9,14 +9,14 @@
 Opções úteis:
     --paralelo N          variantes simultâneas (padrão 2)
     --variantes a,b,c     roda só estas variantes (nomes em pipeline/variantes.tsv)
-    --pular-existentes    não refaz variantes que já têm resultados/<variante>/stress_resumo.csv
+    --pular-existentes    não refaz variantes que já concluíram todas as etapas (têm decomposicao_domiciliar_26_resumo.csv)
     --saneamento          antes de tudo, roda o programa 01 (exige dados/silver/Dicionario_aplicado_PDADR_2022.xlsx) e compara com dados/gold/
     --figuras-tcc         roda também os programas 02, 04–13 e 20 (tabelas e figuras do TCC) sobre M1_revisado_K3
     --saida DIR           pasta de saída (padrão: resultados/)
 
 Etapas por variante (rodam em resultados/<variante>/, na ordem):
     03 modelo | 16 bootstrap, nulos, encolhimento | 18 variância, AMI, join count | 19 validação externa | 21 testes de estresse | 23 deixa-uma-RA-fora refazendo o PCA
-    24 nulos do bootstrap, metades e atribuição domiciliar | 25 multinível, Moran ajustado, validação ordenada
+    24 nulos do bootstrap, metades e atribuição domiciliar | 25 multinível por segmento, Moran ajustado, validação ordenada | 26 decomposição mista no nível do domicílio (logit)
 Ao final: 22 consolida todas as variantes em comparacao_variantes.{csv,md}.
 """
 import argparse, os, subprocess, sys, time, shutil
@@ -26,7 +26,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent; PIPE = RAIZ / 'pipeline'
 ETAPAS = [('03', '03_analise_cluster_4d.py'), ('16', '16_robustez_amostral_e_pesos.py'), ('18', '18_variancia_ami_espacial.py'),
           ('19', '19_validacao_externa.py'), ('21', '21_stress_estrutural.py'), ('23', '23_deixa_uma_RA_refazendo_pca.py'),
-          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py')]
+          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py'), ('26', '26_decomposicao_domiciliar_mista.py')]
 FIGURAS_TCC = ['04_comparacao_metodos.py', '05_ward_dendrograma.py', '06_ward_bateria.py', '07_estabilidade_cruzada.py', '08_variaveis_apoio.py',
                '09_kruskal_wallis_escores.py', '10_tabelas_e_figuras.py', '11_mapas_indicadores.py', '12_robustez_tandem.py', '13_ra_grupos_componentes.py',
                '20_figuras_perfil_validacao.py']
@@ -109,7 +109,7 @@ def main():
         if falta: sys.exit(f'variantes desconhecidas: {falta}; veja pipeline/variantes.tsv')
         sel = {n: todas[n] for n in nomes}; saida = Path(a.saida or RAIZ / 'resultados')
     saida.mkdir(parents=True, exist_ok=True)
-    if a.pular_existentes: sel = {n: c for n, c in sel.items() if not (saida / n / 'stress_resumo.csv').exists()}
+    if a.pular_existentes: sel = {n: c for n, c in sel.items() if not (saida / n / 'decomposicao_domiciliar_26_resumo.csv').exists()}
     fig = a.figuras_tcc or a.modo == 'principal'
     print(f'{len(sel)} variante(s): {", ".join(sel)} | saída: {saida}', flush=True); t0 = time.time(); falhas = []
     with ThreadPoolExecutor(max_workers=max(1, a.paralelo)) as ex:
@@ -119,6 +119,7 @@ def main():
     if a.modo != 'teste':
         env = os.environ.copy(); env['PYTHONIOENCODING'] = 'utf-8'
         subprocess.run([sys.executable, str(PIPE / '22_comparar_variantes.py')], env=env, cwd=RAIZ)
+        subprocess.run([sys.executable, str(PIPE / '27_tabelas_rodadas.py')], env=env, cwd=RAIZ)
     print(f'Concluído em {(time.time() - t0) / 60:.1f} min. Falhas: {falhas or "nenhuma"}')
     sys.exit(1 if falhas else 0)
 
