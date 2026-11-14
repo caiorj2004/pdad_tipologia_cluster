@@ -62,6 +62,7 @@ Flags do modelo (`V2`): `ctx` (IVS-DF e escala da RA saem da matriz), `agua` e `
 | `25_multinivel_moran_ajustado_validacao_ordenada.py` | MixedLM (subpopulação fixa, RA aleatória), Moran I ajustado por composição e validação externa ordenada |
 | `26_decomposicao_domiciliar_mista.py` | decomposição no nível do domicílio como a avaliação especifica: logit misto (binários) e MixedLM (renda), efeito fixo de subpopulação + RA + RA×subpopulação aleatórios |
 | `22_comparar_variantes.py` | consolidação das variantes |
+| `27_tabelas_rodadas.py` | tabelas T1–T8 de `docs/tabelas_rodadas.md` e ARI entre partições (`resultados/ari_entre_particoes.csv`) |
 
 ## Dados
 

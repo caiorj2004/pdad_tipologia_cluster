@@ -119,6 +119,7 @@ def main():
     if a.modo != 'teste':
         env = os.environ.copy(); env['PYTHONIOENCODING'] = 'utf-8'
         subprocess.run([sys.executable, str(PIPE / '22_comparar_variantes.py')], env=env, cwd=RAIZ)
+        subprocess.run([sys.executable, str(PIPE / '27_tabelas_rodadas.py')], env=env, cwd=RAIZ)
     print(f'Concluído em {(time.time() - t0) / 60:.1f} min. Falhas: {falhas or "nenhuma"}')
     sys.exit(1 if falhas else 0)
 
