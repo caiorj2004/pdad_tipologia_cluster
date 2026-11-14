@@ -6,35 +6,42 @@ com partições obtidas SEM a etapa de PCA ou com redução + agrupamento no mes
 Entrada: segmentos_completo.csv (49 segmentos x variáveis, gerado pelo script 4D).
 Saída: tabelas em CSV e impressão no terminal.
 """
-import numpy as np, pandas as pd, warnings
+import os, numpy as np, pandas as pd, warnings
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.metrics import adjusted_rand_score as ARI, silhouette_score
 warnings.filterwarnings("ignore")
 
-SEED, K = 42, 3
+SEED, K = 42, int(os.environ.get("K_FINAL", 3))
+V2 = set(x for x in os.environ.get("V2", "ctx,agua,esgoto,renda,dur").split(",") if x)   # mesma configuração do programa 03
+AGUA_RAWILR = os.environ.get("AGUA_RAWILR", "0") == "1"
+CL = f"Cluster_K{K}"
 CSV = "segmentos_completo.csv"
 d = pd.read_csv(CSV)
 
-D1 = ["log_renda_media", "possui_automovel", "possui_motocicleta", "possui_freezer", "possui_lavadora", "possui_tv", "possui_ar_condicionado", "possui_microondas"]
-D2 = ["escolaridade_adulto", "trabalhou_30d", "tem_ctps", "contribui_previdencia"]
-D3 = ["comodos_por_pessoa", "banheiros_por_pessoa", "agua_ilr_adequacao", "agua_ilr_tipo", "captacao_chuva", "caixa_agua",
-      "esgoto_ilr_adequacao", "esgoto_ilr_tipo", "acesso_energetico_estruturado", "destino_com_coleta_direta", "rua_pavimentada",
-      "iluminacao_publica", "drenagem", "ponto_onibus"]
+D1 = (["log_renda_media" if "renda" in V2 else "log_renda_domiciliar_pc", "possui_automovel", "possui_motocicleta"]
+      + ([] if "dur" in V2 else ["possui_geladeira"]) + ["possui_freezer", "possui_lavadora"]
+      + ([] if "dur" in V2 else ["possui_secadora"]) + ["possui_tv", "possui_ar_condicionado", "possui_microondas"])
+D2 = ["escolaridade_adulto", "trabalhou_30d", "tem_ctps", "contribui_previdencia"] + ([] if "ctx" in V2 else ["ivs_df"])
+_agua = (["agua_ilr_adequacao", "agua_ilr_tipo"] if "agua" in V2 else
+         (["agua_raw_ilr_rede_vs_poco", "agua_raw_ilr_art_vs_cist"] if AGUA_RAWILR else ["agua_rede", "agua_poco_artesiano", "agua_poco_cisterna"]))
+_esg = ["esgoto_ilr_adequacao", "esgoto_ilr_tipo"] if "esgoto" in V2 else ["solucao_sanitaria_estruturada"]
+D3 = (["comodos_por_pessoa", "banheiros_por_pessoa"] + _agua + ["captacao_chuva", "caixa_agua"] + _esg
+      + ["acesso_energetico_estruturado", "destino_com_coleta_direta", "rua_pavimentada", "iluminacao_publica", "drenagem", "ponto_onibus"]
+      + ([] if "ctx" in V2 else ["qtd_estabelecimentos"]))
 D4 = ["internet_domiciliar", "internet_banda_larga_fixa", "internet_movel", "possui_computador"]
 DIMS = {"D1": D1, "D2": D2, "D3": D3, "D4": D4}
 VARS = D1 + D2 + D3 + D4
-assert len(VARS) == 30
 X = d[VARS].apply(pd.to_numeric, errors="coerce").fillna(0)
 assert (X.nunique() > 1).all()
-Z = StandardScaler().fit_transform(X)                    # 49 x 34, z-score (igual ao script principal)
+Z = StandardScaler().fit_transform(X)                    # 49 x len(VARS), z-score (igual ao script principal)
 cols = {v: i for i, v in enumerate(VARS)}
 
 pcs = d.filter(like="_MC_PC")
 Xpca = pcs.values
 ref = KMeans(K, n_init=50, random_state=SEED).fit(Xpca).labels_
-assert ARI(ref, d["Cluster_K3"].values) == 1.0, "partição de referência não reproduzida"
+assert ARI(ref, d[CL].values) == 1.0, "partição de referência não reproduzida"
 print("Referência reproduzida (ARI=1). Tamanhos:", np.bincount(ref).tolist())
 
 rows = []
@@ -58,7 +65,7 @@ def discord(lab):
 out_disc = {}
 
 # 1) Referência
-reg("0. Referência: PCA por dimensão (6 PC) + K-Means", ref, Xpca)
+reg(f"0. Referência: PCA por dimensão ({pcs.shape[1]} PC) + K-Means", ref, Xpca)
 
 # 2) K-Means direto nas 30 variáveis padronizadas (peso igual por variável)
 l = km(Z); reg("1. K-Means nas 30 variáveis padronizadas", l, Z, "peso igual por variável; D3 (14 var.) pesa mais"); out_disc["1"] = discord(l)
@@ -136,11 +143,11 @@ print("\nSegmentos discordantes da referência (pareamento ótimo de rótulos):"
 for k, v in out_disc.items():
     print(f" variante {k}: {len(v)} -> ", "; ".join(f"{seg[i]} (grupo ref {ref[i]})" for i in v))
 
-# variância preservada pelos 6 PC da referência
-tot = 34
+# variância preservada pelos PC da referência
+tot = len(VARS)
 ret = 0
 for dim, vs in DIMS.items():
     sub = StandardScaler().fit_transform(X[vs]); ev = np.sort(np.linalg.eigvalsh(np.corrcoef(sub, rowvar=False)))[::-1]
     kd = sum(c.startswith(f"{dim}_") for c in pcs.columns) if False else sum(c.startswith({"D1": "D1_", "D2": "D2_", "D3": "D3_", "D4": "D4_"}[dim]) for c in pcs.columns)
     ret += ev[:kd].sum(); print(f"  {dim}: {kd} PC retidos, {ev[:kd].sum():.2f} de {len(vs)} unidades de variância ({ev[:kd].sum()/len(vs)*100:.0f}%)")
-print(f"Variância total preservada pelos 6 PC (dentro das dimensões): {ret/tot*100:.1f}%")
+print(f"Variância total preservada pelos {pcs.shape[1]} PC (dentro das dimensões): {ret/tot*100:.1f}%")

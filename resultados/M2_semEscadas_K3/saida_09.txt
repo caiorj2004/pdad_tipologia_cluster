@@ -38,7 +38,7 @@
 36  comp  D3  D3_Fisico_Habitacional_Territorial_MC_PC1  25.4629  0.0000  0.5101  0.0000
 37  comp  D3  D3_Fisico_Habitacional_Territorial_MC_PC2  22.9665  0.0000  0.4558  0.0000
 38  comp  D4        D4_Tecnologico_Conectividade_MC_PC1  30.0004  0.0000  0.6087  0.0000
-sig p<.05: 28 de 39  q<.05: 28  vars: 23 de 34; comps q<.05: 5
+sig p<.05: 28 de 39  q<.05: 28  vars: 23 de 34 ; comps q<.05: 5
             D1_Bens_Duraveis_MC_PC1  ...   n
 Cluster_K3                           ...    
 0                              1.67  ...  12
