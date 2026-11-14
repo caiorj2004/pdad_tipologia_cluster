@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Apoio à produção, acesso a programas e a mercado, por grupo da tipologia}
+\label{tab:apoio_grupo}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l r r r r }
+\hline
+\textbf{Indicador (\%)} & A & B & C & \textbf{Total} \\ \hline
+Incentivo à produção (já recebeu) & 2,9 & 6,2 & 6,3 & 5,5 \\
+\quad Pronaf (entre os beneficiários) & 20,3 & 40,8 & 24,6 & 32,3 \\
+\quad ATER (entre os beneficiários) & 13,3 & 19,7 & 30,2 & 22,9 \\
+\quad Fomento rural (entre os beneficiários) & 6,3 & 4,3 & 5,7 & 5,0 \\
+\quad FCO (entre os beneficiários) & 5,0 & 2,0 & 2,9 & 2,7 \\
+Outorga de uso da água & 37,9 & 37,3 & 43,4 & 39,6 \\
+Benefício de programa social & 8,2 & 12,3 & 9,0 & 10,3 \\
+Pediu auxílio governamental (via internet) & 4,9 & 10,3 & 8,6 & 8,4 \\
+Possui CNPJ (ocupados) & 9,8 & 6,2 & 8,9 & 7,7 \\
+Transações financeiras pela internet (PIX) & 53,0 & 48,8 & 50,9 & 50,5 \\
+Curso profissional agrícola em andamento & 1,0 & 4,5 & 3,4 & 3,3 \\
+\hline
+Base: domicílios com resposta válida & 1.174 & 2.248 & 1.496 & 4.926 \\
+Base: domicílios beneficiários & 49 & 180 & 87 & 318 \\
+\hline
+\end{tabular}}
+\par\footnotesize Fonte: elaboração própria a partir da PDAD Rural 2022. Proporções ponderadas pelo peso corrigido, entre as respostas válidas (``sim'' ou ``não''); respostas ``não sabe'' e ``não se aplica'' excluídas. Os programas são categorias excludentes entre os domicílios que receberam incentivo (as demais respostas são ``outro'' e ``não sabe''). $^{a}$ Base de menos de 30 domicílios beneficiários: leitura apenas indicativa.
+\end{table}
+

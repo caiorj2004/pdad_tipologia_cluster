@@ -9,7 +9,7 @@
 Opções úteis:
     --paralelo N          variantes simultâneas (padrão 2)
     --variantes a,b,c     roda só estas variantes (nomes em pipeline/variantes.tsv)
-    --pular-existentes    não refaz variantes que já concluíram todas as etapas (têm decomposicao_domiciliar_26_resumo.csv)
+    --pular-existentes    não refaz variantes que já concluíram todas as etapas (têm validacao_externa_incerteza_28_resumo.csv)
     --saneamento          antes de tudo, roda o programa 01 (exige dados/silver/Dicionario_aplicado_PDADR_2022.xlsx) e compara com dados/gold/
     --figuras-tcc         roda também os programas 02, 04–13 e 20 (tabelas e figuras do TCC) sobre M1_revisado_K3
     --saida DIR           pasta de saída (padrão: resultados/)
@@ -26,11 +26,12 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent; PIPE = RAIZ / 'pipeline'
 ETAPAS = [('03', '03_analise_cluster_4d.py'), ('16', '16_robustez_amostral_e_pesos.py'), ('18', '18_variancia_ami_espacial.py'),
           ('19', '19_validacao_externa.py'), ('21', '21_stress_estrutural.py'), ('23', '23_deixa_uma_RA_refazendo_pca.py'),
-          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py'), ('26', '26_decomposicao_domiciliar_mista.py')]
+          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py'), ('26', '26_decomposicao_domiciliar_mista.py'), ('28', '28_validacao_externa_incerteza_particao.py')]
 FIGURAS_TCC = ['04_comparacao_metodos.py', '05_ward_dendrograma.py', '06_ward_bateria.py', '07_estabilidade_cruzada.py', '08_variaveis_apoio.py',
                '09_kruskal_wallis_escores.py', '10_tabelas_e_figuras.py', '11_mapas_indicadores.py', '12_robustez_tandem.py', '13_ra_grupos_componentes.py',
                '20_figuras_perfil_validacao.py']
 PRINCIPAIS = ['M0_antigo_K5', 'M1_revisado_K3']
+COM_FIGURAS_TCC = ('M1_revisado_K3', 'M2_semEscadas_K3')   # variantes para as quais --figuras-tcc gera tabelas e figuras do texto
 
 def ler_variantes():
     v = {}
@@ -45,6 +46,7 @@ def ambiente(cfg):
     e.update(TCC_BASE=str(RAIZ / 'dados' / 'gold'), TCC_SHP=str(RAIZ / 'dados' / 'regioes_administrativas.zip'), TCC_03=str(PIPE / '03_analise_cluster_4d.py'),
              V2=cfg['V2'], K_FINAL=cfg['K'], WINSOR_P=cfg['WINSOR_P'], COMP=cfg['COMP'], N_BOOT=cfg['N_BOOT'], NINIT_BOOT=cfg['NINIT_BOOT'],
              MPLBACKEND='Agg', PYTHONHASHSEED='0', PYTHONIOENCODING='utf-8')
+    if cfg['nome'].startswith('M2_'): e['GRUPOS_NOMES'] = 'm2'
     for kv in filter(None, cfg.get('extras', '').split(';')): k_, v_ = kv.split('=', 1); e[k_] = v_
     return e
 
@@ -61,12 +63,12 @@ def variante(cfg, saida, figuras_tcc):
     for cod, script in ETAPAS:
         rc, dt = rodar(script, out, env, out / f'saida_{cod}.txt'); tempos.append((cod, rc, dt))
         if rc != 0: return cfg['nome'], False, tempos
-    if figuras_tcc and cfg['nome'] == 'M1_revisado_K3':
+    if figuras_tcc and cfg['nome'] in COM_FIGURAS_TCC:
         for script in FIGURAS_TCC:
             rc, dt = rodar(script, out, env, out / f"saida_{script[:2]}.txt"); tempos.append((script[:2], rc, dt))
             if rc != 0: return cfg['nome'], False, tempos
     shutil.rmtree(out / 'shape_df_extracao', ignore_errors=True)
-    if not (cfg['figuras'] or figuras_tcc and cfg['nome'] == 'M1_revisado_K3'):
+    if not (cfg['figuras'] or figuras_tcc and cfg['nome'] in COM_FIGURAS_TCC):
         for p in out.rglob('*.png'): p.unlink()
     return cfg['nome'], True, tempos
 
@@ -99,6 +101,7 @@ def main():
     ap.add_argument('--paralelo', type=int, default=2); ap.add_argument('--variantes', default='')
     ap.add_argument('--pular-existentes', action='store_true'); ap.add_argument('--saneamento', action='store_true')
     ap.add_argument('--figuras-tcc', action='store_true'); ap.add_argument('--saida', default='')
+    ap.add_argument('--so-figuras', default='', help='NOME de variante já rodada: refaz só o 03 (figuras) e os programas de tabelas e figuras do TCC, sem apagar a pasta')
     a = ap.parse_args(); todas = ler_variantes()
     if a.saneamento: saneamento()
     if a.modo == 'teste':      # smoke test: poucas réplicas, saída separada
@@ -108,8 +111,14 @@ def main():
         falta = [n for n in nomes if n not in todas]
         if falta: sys.exit(f'variantes desconhecidas: {falta}; veja pipeline/variantes.tsv')
         sel = {n: todas[n] for n in nomes}; saida = Path(a.saida or RAIZ / 'resultados')
+    if a.so_figuras:
+        cfg = ler_variantes()[a.so_figuras]; out = RAIZ / 'resultados' / a.so_figuras; env = ambiente(cfg)
+        for script in ['03_analise_cluster_4d.py'] + FIGURAS_TCC:
+            rc, dt = rodar(script, out, env, out / f"saida_{script[:2]}{'' if script[:2] != '03' else '_fig'}.txt"); print(f'  {script}: rc={rc} {dt:.0f}s', flush=True)
+            if rc != 0: sys.exit(1)
+        sys.exit(0)
     saida.mkdir(parents=True, exist_ok=True)
-    if a.pular_existentes: sel = {n: c for n, c in sel.items() if not (saida / n / 'decomposicao_domiciliar_26_resumo.csv').exists()}
+    if a.pular_existentes: sel = {n: c for n, c in sel.items() if not (saida / n / 'validacao_externa_incerteza_28_resumo.csv').exists()}
     fig = a.figuras_tcc or a.modo == 'principal'
     print(f'{len(sel)} variante(s): {", ".join(sel)} | saída: {saida}', flush=True); t0 = time.time(); falhas = []
     with ThreadPoolExecutor(max_workers=max(1, a.paralelo)) as ex:

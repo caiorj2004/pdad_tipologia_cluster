@@ -29,12 +29,13 @@ for c,n in names.items():
     t+=f"{n} & "+" & ".join(f2(m.loc[g,c]) for g in range(3))+f" & {f1(r.H)} & {fp(r.p)} & {f2(r.eps2)} \\\\\n"
 t+=r"""\hline
 \end{tabular}}
-\par\footnotesize Fonte: elaboração própria. Média dos escores dos segmentos de cada grupo (grupos A a C; $n$ = 17, 24 e 8 segmentos). Os escores têm média zero e desvio-padrão de 1,2 a 2,2 entre os 49 segmentos, e o sinal de cada componente é arbitrário (a leitura segue as cargas da Seção~\ref{sec:res_pca}). $H$: estatística de Kruskal-Wallis (4 graus de liberdade); $\varepsilon^2$: tamanho de efeito. Os $p$-valores são descritivos, porque os grupos foram formados com os mesmos componentes (Seção~\ref{sec:metodo_robustez}); todos permanecem abaixo de 0,001 após a correção de Benjamini-Hochberg.
+\par\footnotesize Fonte: elaboração própria. Média dos escores dos segmentos de cada grupo (grupos A a C). Os escores têm média zero e desvio-padrão de 1,2 a 2,2 entre os 49 segmentos, e o sinal de cada componente é arbitrário (a leitura segue as cargas da Seção~\ref{sec:res_pca}). $H$: estatística de Kruskal-Wallis (4 graus de liberdade); $\varepsilon^2$: tamanho de efeito. Os $p$-valores são descritivos, porque os grupos foram formados com os mesmos componentes (Seção~\ref{sec:metodo_robustez}); todos permanecem abaixo de 0,01 após a correção de Benjamini-Hochberg.
 \end{table}
 """
 open('tab_escores.tex','w').write(t)
 # heatmap em desvios-padrão
-z=(m/sd); NOMES=["A — Urbanização consolidada","B — Urbanização parcial","C — Infraestrutura precária"]; _n=list(d.groupby("Cluster_K3").size()) if "d" in dir() else [17,24,8]; z.index=[f"{NOMES[i]} (n={n})" for i,n in zip(range(3),_n)]
+z=(m/sd); import os as _os
+NOMES=(["A — Urbanização consolidada","B — Infraestrutura precária","C — Urbanização parcial"] if _os.environ.get("GRUPOS_NOMES")=="m2" else ["A — Urbanização consolidada","B — Urbanização parcial","C — Infraestrutura precária"]); _n=list(d.groupby("Cluster_K3").size()) if "d" in dir() else [17,24,8]; z.index=[f"{NOMES[i]} (n={n})" for i,n in zip(range(3),_n)]
 fig,ax=plt.subplots(figsize=(8,3.6)); im=ax.imshow(z.values,cmap='RdBu',vmin=-2,vmax=2,aspect='auto')
 ax.set_xticks(range(z.shape[1])); ax.set_xticklabels([v.split(' (')[0] for v in names.values()],fontsize=9); ax.set_yticks(range(3)); ax.set_yticklabels(z.index,fontsize=9)
 for i in range(3):
@@ -44,10 +45,10 @@ plt.tight_layout(); plt.savefig('figuras/escores_grupos.png',dpi=200); plt.close
 # ---------- anexo KW 34 variáveis
 lab={"log_renda_domiciliar_pc":"Renda domiciliar \\textit{per capita} (log)","possui_automovel":"Automóvel","possui_motocicleta":"Motocicleta","possui_geladeira":"Geladeira","possui_freezer":"\\textit{Freezer}","possui_lavadora":"Máquina de lavar","possui_secadora":"Secadora","possui_tv":"Televisão","possui_ar_condicionado":"Ar-condicionado","possui_microondas":"Micro-ondas","escolaridade_adulto":"Escolaridade (25 anos ou mais)","trabalhou_30d":"Trabalhou nos últimos 30 dias","tem_ctps":"Carteira assinada (CTPS)","contribui_previdencia":"Contribui para a previdência","ivs_df":"IVS-DF","comodos_por_pessoa":"Cômodos por pessoa","banheiros_por_pessoa":"Banheiros por pessoa","agua_rede":"Água da rede","agua_poco_artesiano":"Poço artesiano","agua_poco_cisterna":"Poço cisterna","captacao_chuva":"Captação de chuva","caixa_agua":"Caixa d'água","solucao_sanitaria_estruturada":"Solução sanitária estruturada","acesso_energetico_estruturado":"Acesso energético estruturado","destino_com_coleta_direta":"Coleta direta de lixo","rua_pavimentada":"Rua pavimentada","iluminacao_publica":"Iluminação pública","drenagem":"Drenagem","ponto_onibus":"Ponto de ônibus","qtd_estabelecimentos":"Escala da RA (domicílios expandidos)","internet_domiciliar":"Internet domiciliar","internet_banda_larga_fixa":"Banda larga fixa","internet_movel":"Internet móvel","possui_computador":"Computador"}
 v=kw[kw.tipo=='var']
-t=r"""% Tabela do Anexo: Kruskal-Wallis das 34 variáveis do modelo entre os 5 grupos
+t=r"""% Tabela do Anexo: Kruskal-Wallis das variáveis originais entre os três grupos
 {\small
 \begin{longtable}{@{}l l r r r r c@{}}
-\caption{Kruskal-Wallis das 34 variáveis do modelo entre os cinco grupos ($N = 49$ segmentos)}
+\caption{Kruskal-Wallis das variáveis originais (inclusive as que ficaram fora do modelo) entre os três grupos ($N = 49$ segmentos)}
 \label{tab:kw_variaveis}\\
 \toprule
 Dim. & Variável & $H$ & $p$ & $q$ (FDR) & $\varepsilon^2$ & Dif.\ ($q<0{,}05$) \\
@@ -62,7 +63,7 @@ Dim. & Variável & $H$ & $p$ & $q$ (FDR) & $\varepsilon^2$ & Dif.\ ($q<0{,}05$) 
 \multicolumn{7}{r}{\textit{continua na página seguinte}}\\
 \endfoot
 \bottomrule
-\multicolumn{7}{@{}p{\linewidth}@{}}{\footnotesize \textbf{Fonte:} elaboração própria. $H$: estatística de Kruskal-Wallis (4 graus de liberdade) sobre as médias dos 49 segmentos, agrupados pelo $K$-Means ($K=3$); $q$: valor $p$ ajustado pela taxa de falsas descobertas de Benjamini-Hochberg, sobre os 40 testes (34 variáveis e 6 componentes); $\varepsilon^2$: tamanho de efeito. Os valores são descritivos, porque os grupos foram formados com as mesmas variáveis.}\\
+\multicolumn{7}{@{}p{\linewidth}@{}}{\footnotesize \textbf{Fonte:} elaboração própria. $H$: estatística de Kruskal-Wallis (2 graus de liberdade) sobre as médias dos 49 segmentos, agrupados pelo $K$-Means ($K=3$); $q$: valor $p$ ajustado pela taxa de falsas descobertas de Benjamini-Hochberg, sobre os testes (variáveis originais e componentes); $\varepsilon^2$: tamanho de efeito. Os valores são descritivos, porque os grupos foram formados com as mesmas variáveis.}\\
 \endlastfoot
 """
 for _,r in v.iterrows():
@@ -94,7 +95,7 @@ def tab(by,order,heads,cap,lab_,note):
     return t
 nota="Fonte: elaboração própria a partir da PDAD Rural 2022. Proporções ponderadas pelo peso corrigido, entre as respostas válidas (``sim'' ou ``não''); respostas ``não sabe'' e ``não se aplica'' excluídas. Os programas são categorias excludentes entre os domicílios que receberam incentivo (as demais respostas são ``outro'' e ``não sabe''). $^{a}$ Base de menos de 30 domicílios beneficiários: leitura apenas indicativa."
 t1=tab('a01subpopulacao',['Agricultura Familiar','Agricultura Empresarial','Assentamento/Agrovila','Características Urbanas'],['Agr. Familiar','Agr. Empresarial','Assentamento','Moradia e Lazer'],'Apoio à produção, acesso a programas e a mercado, por subpopulação','tab:apoio_sub',nota)
-t2=tab('Cluster_K3',[0,1,2],['A','B','C'],'Apoio à produção, acesso a programas e a mercado, por grupo da tipologia','tab:apoio_grupo',nota+" G2 tem apenas 23 domicílios com resposta válida e 2 beneficiários.")
+t2=tab('Cluster_K3',[0,1,2],['A','B','C'],'Apoio à produção, acesso a programas e a mercado, por grupo da tipologia','tab:apoio_grupo',nota+""+("" if _os.environ.get("GRUPOS_NOMES")=="m2" else " G2 tem apenas 23 domicílios com resposta válida e 2 beneficiários."))
 open('tab_apoio_sub.tex','w').write(t1); open('tab_apoio_grupo.tex','w').write(t2)
 print(t2)
 # ---------- mapas apoio por RA

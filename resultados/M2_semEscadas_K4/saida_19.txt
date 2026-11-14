@@ -1,0 +1,30 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+VALIDAÇÃO EXTERNA — % dos domicílios (ponderado) por grupo, IC 95% por bootstrap
+  ebia_insegur_qualquer: G0 21.7 [18.9; 24.3] | G1 24.2 [21.9; 26.3] | G2 18.9 [16.1; 21.5] | G3 22.6 [19.8; 25.1]
+  ebia_mod_grave: G0 14.1 [11.7; 16.6] | G1 8.8 [7.5; 10.6] | G2 7.6 [5.8; 9.3] | G3 9.4 [7.1; 11.2]
+  beneficio_social: G0 23.9 [20.7; 26.6] | G1 24.2 [22.0; 26.0] | G2 15.0 [12.8; 17.2] | G3 18.5 [15.9; 21.1]
+  cadunico: G0 33.8 [30.3; 36.6] | G1 28.1 [26.3; 30.2] | G2 18.1 [15.9; 21.4] | G3 19.9 [17.7; 21.9]
+  escritura_registrada: G0 56.8 [53.3; 60.2] | G1 31.8 [29.4; 34.0] | G2 29.1 [25.9; 33.1] | G3 22.7 [20.1; 25.7]
+  doc_formal: G0 50.4 [46.8; 54.2] | G1 42.3 [39.9; 44.8] | G2 30.3 [26.6; 33.9] | G3 35.1 [31.3; 39.2]
+  outorga_agua: G0 42.4 [37.6; 46.4] | G1 34.4 [31.1; 37.6] | G2 44.5 [40.4; 48.5] | G3 37.9 [33.2; 42.4]
+
+EBIA: prevalência global de insegurança alimentar (qualquer): 22.2 %
+
+Nível segmento (n=49): Kruskal-Wallis entre grupos e Spearman com os escores
+  ebia_insegur_qualquer: KW H=4.64 p=0.200 | D1PC1 rho=-0.30 | D2PC1 rho=-0.10 | D3PC1 rho=0.02 | D3PC2 rho=-0.23 | D4PC1 rho=-0.32
+  ebia_mod_grave: KW H=5.99 p=0.112 | D1PC1 rho=-0.43 | D2PC1 rho=0.00 | D3PC1 rho=-0.19 | D3PC2 rho=-0.21 | D4PC1 rho=-0.47
+  beneficio_social: KW H=10.24 p=0.017 | D1PC1 rho=-0.42 | D2PC1 rho=-0.13 | D3PC1 rho=-0.09 | D3PC2 rho=-0.43 | D4PC1 rho=-0.25
+  cadunico: KW H=18.34 p=0.000 | D1PC1 rho=-0.47 | D2PC1 rho=-0.36 | D3PC1 rho=-0.26 | D3PC2 rho=-0.61 | D4PC1 rho=-0.48
+  escritura_registrada: KW H=4.78 p=0.189 | D1PC1 rho=-0.18 | D2PC1 rho=-0.08 | D3PC1 rho=-0.26 | D3PC2 rho=-0.02 | D4PC1 rho=-0.29
+  doc_formal: KW H=2.81 p=0.422 | D1PC1 rho=-0.06 | D2PC1 rho=0.01 | D3PC1 rho=-0.10 | D3PC2 rho=-0.25 | D4PC1 rho=-0.13
+  outorga_agua: KW H=3.78 p=0.287 | D1PC1 rho=0.47 | D2PC1 rho=-0.02 | D3PC1 rho=0.15 | D3PC2 rho=0.13 | D4PC1 rho=0.28

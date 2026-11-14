@@ -1,0 +1,55 @@
+{
+ "K": 3,
+ "n_segmentos": 49,
+ "n_componentes": 5,
+ "S1_pct_sementes_no_otimo": 0.04,
+ "S1_ARI_medio_semente_unica": 0.581,
+ "S1_ARI_min_semente_unica": 0.284,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.33,
+ "S2_spearman_n_dist_Kfinal": -0.523,
+ "S2_p_Kfinal": 0.0,
+ "S2_spearman_n_dist_global": -0.339,
+ "S2_p_global": 0.017,
+ "S2_dist_med_peq": 4.169,
+ "S2_dist_med_grande": 1.93,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 0.595,
+ "S4_aparado6_pct_n<20": 0.5,
+ "S4_aparado10_ARI": 0.681,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.646,
+ "S5_pct_peso>0.8_Kfinal": 0.184,
+ "S5_ARI_argmax_vs_kmeans": 0.772,
+ "S5_var_explicada_Kfinal": 0.706,
+ "S6_ARI_medio_sem_uma_RA": 0.877,
+ "S6_ARI_min_sem_uma_RA": 0.321,
+ "S6_RA_critica": "Brazlândia",
+ "S6_ARI_medio_sem_uma_subpop": 0.787,
+ "S6_ARI_min_sem_uma_subpop": 0.512,
+ "S7_ARI_medio_outros_algoritmos": 0.405,
+ "S7_ARI_min_outros_algoritmos": 0.041,
+ "S7_ARI_Ward": 0.35,
+ "S7_ARI_GMM_completo": 0.311,
+ "S7_ARI_KMeans_peso_integral": 0.598,
+ "S8_ARI_n>=10": 0.602,
+ "S8_ARI_n>=20": 0.581,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.5,
+ "S9_frac_esperada_RA": 0.331,
+ "S9_p_RA": 0.033,
+ "S9_frac_mesmo_grupo_subpop": 0.387,
+ "S9_frac_esperada_subpop": 0.333,
+ "S9_p_subpop": 0.034,
+ "S10_eta2_max": 0.568,
+ "S10_eixo_dominante": "D1_Bens_Duraveis_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.54
+}
+0.03296703296703297
+S9_frac_mesmo_grupo_subpop: 0.386986301369863
+S9_frac_esperada_subpop: 0.3332705479452055
+S9_p_subpop: 0.03396603396603397
+S10_eta2_max: 0.5679168439081657
+S10_eixo_dominante: D1_Bens_Duraveis_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5399848184609076

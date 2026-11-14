@@ -25,7 +25,7 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 | E3 | K-Means ponderado | `16` (b), `21` S7 | `robustez_pesos_*.csv`, `stress_S7_algoritmos.csv` | implementado |
 | E4 | K-Means aparado (trimmed), α = 6% e 10% | `21` S4 | `stress_S4_kmeans_aparado.csv` | implementado (implementação própria, sem o pacote `tclust` do R) |
 | E5 | Análise de arquétipos | `21` S5 | `stress_S5_arquetipos*.csv` | implementado (implementação própria por NNLS alternado) |
-| E6 | K alternativo nomeado (K = 3 ou 4) | `variantes.tsv`, `03` | `M1_revisado_K3`, `M1_revisado_K5` | K = 2 a 8 comparados em todas as variantes |
+| E6 | K alternativo nomeado (K = 3 ou 4) | `variantes.tsv`, `03` | `M0_antigo_K3/K4/K5`, `M1_revisado_K3/K4/K5` | K = 2 a 8 comparados em todas as variantes; K=3 e K=4 nomeados para M0 e M1 |
 | E7 | Denominador da CTPS explícito | `03` (linha com `tem_ctps`) | `docs/denominadores.md` | documentado |
 | E8 | Reprodutibilidade: links dos códigos e dos dados | este repositório | `README.md` | **Falta o DOI/arquivamento (Zenodo) e o link do artefato** |
 | E9 | Interação RA × subpopulação (efeito mecânico da RA) | `21` S9 | `stress_resumo.csv` | implementado |
@@ -54,4 +54,8 @@ Cada ponto da avaliação aponta para o script que o executa e para o arquivo (p
 | Escadas alternativas de água e esgoto | `03` (`AGUA_ESCADA`, `ESGOTO_ESCADA`) | variantes `E_*` | implementado |
 | K = 4 para M0 e M1 | `variantes.tsv` | `M0_antigo_K4`, `M1_revisado_K4` | implementado |
 | Tabelas T1 a T8 e ARI entre partições | `27` | `docs/tabelas_rodadas.md`, `resultados/ari_entre_particoes.csv` | implementado |
-| Validação externa sob incerteza da partição; jackknife por domicílio; Emater-DF | – | – | **não feito** |
+| Validação externa sob incerteza da partição | `28` | `validacao_externa_incerteza_28*.csv` | implementado; desfechos fixos, só a partição varia; sem correção para múltiplos testes |
+| Jackknife por domicílio; Emater-DF | – | – | **não feito** |
+
+| Validação externa condicional à RA (permutação dentro da RA) e eta² da RA | `29` | `validacao_condicional_RA_29*.csv`, `eta2_RA_escores_29.csv` | implementado |
+| Híbrido M2 (`ctx`, `renda`, `dur`; água e esgoto como em M0), K = 3, 4, 5 | `variantes.tsv` | `M2_semEscadas_K3/K4/K5`; análise em `docs/criticas_e_modelo_hibrido.md` | implementado; definido depois de ver `L_sem_agua` |

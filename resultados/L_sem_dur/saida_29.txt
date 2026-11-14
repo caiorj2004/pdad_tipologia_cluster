@@ -1,0 +1,15 @@
+             desfecho   H_obs  p_perm_dentro_RA  n_segmentos_em_RA_multi
+ebia_insegur_qualquer  5.5236            0.1962                       42
+       ebia_mod_grave  9.4637            0.0114                       42
+     beneficio_social  5.5625            0.3473                       42
+             cadunico 15.9261            0.0212                       42
+ escritura_registrada  7.4438            0.0592                       42
+           doc_formal  1.5520            0.5633                       42
+         outorga_agua  4.5012            0.4649                       42
+                               componente  eta2_RA  eta2_RA_ajustado
+                  D1_Bens_Duraveis_MC_PC1    0.843             0.710
+                D2_Humano_Trabalho_MC_PC1    0.732             0.505
+D3_Fisico_Habitacional_Territorial_MC_PC1    0.563             0.193
+D3_Fisico_Habitacional_Territorial_MC_PC2    0.542             0.154
+      D4_Tecnologico_Conectividade_MC_PC1    0.761             0.560
+{'cond29_n_desfechos_p_menor_005': 2, 'cond29_p_min': 0.011397720455908818, 'eta29_RA_medio': 0.6881667932279765, 'eta29_RA_max': 0.8430129559147483, 'eta29_RA_ajust_medio': 0.4243079259593411, 'cond29_p_ebia_insegur_qualquer': 0.19616076784643072, 'cond29_p_ebia_mod_grave': 0.011397720455908818, 'cond29_p_beneficio_social': 0.3473305338932214, 'cond29_p_cadunico': 0.021195760847830435, 'cond29_p_escritura_registrada': 0.0591881623675265, 'cond29_p_doc_formal': 0.5632873425314937, 'cond29_p_outorga_agua': 0.46490701859628075}

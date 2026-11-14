@@ -1,0 +1,1 @@
+variante=M2_semEscadas_K5 V2=ctx,renda,dur K=5 WINSOR_P=0.99 COMP=ilr N_BOOT=200 NINIT_BOOT=30

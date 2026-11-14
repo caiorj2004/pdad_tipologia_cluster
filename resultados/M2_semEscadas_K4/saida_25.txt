@@ -1,0 +1,27 @@
+(1) MULTINÍVEL (subpopulação fixa, RA aleatória; indicadores padronizados):
+             indicador  fracao_subpop(fixo)  fracao_RA(aleatorio)  fracao_residuo  CCI_RA_dado_subpop  p_perm_RA
+          água em rede                0.018                 0.000           0.982               0.000      0.653
+      banda larga fixa                0.028                 0.214           0.758               0.220      0.218
+escolaridade do adulto                0.013                 0.653           0.333               0.662      0.010
+          ln(renda pc)                0.069                 0.000           0.931               0.000      0.465
+
+(2) MORAN I POR RA (bruto x ajustado pela média da subpopulação):
+             indicador                    versao  RAs  vinculos  I_Moran  p_perm
+          água em rede                     bruto   23        42    0.192   0.048
+          água em rede ajustado por subpopulação   23        42    0.209   0.057
+      banda larga fixa                     bruto   23        42   -0.022   0.441
+      banda larga fixa ajustado por subpopulação   23        42   -0.075   0.551
+escolaridade do adulto                     bruto   23        42    0.042   0.261
+escolaridade do adulto ajustado por subpopulação   23        42    0.026   0.277
+          ln(renda pc)                     bruto   23        42   -0.200   0.897
+          ln(renda pc) ajustado por subpopulação   23        42   -0.162   0.806
+
+(3) VALIDAÇÃO EXTERNA ORDENADA (posição do grupo na escala de renda x indicador, 49 segmentos):
+            indicador  rho_Spearman  p_perm
+ebia_insegur_qualquer        -0.144   0.326
+       ebia_mod_grave        -0.145   0.302
+     beneficio_social        -0.298   0.035
+             cadunico        -0.359   0.012
+ escritura_registrada         0.041   0.776
+           doc_formal        -0.200   0.171
+         outorga_agua         0.115   0.436

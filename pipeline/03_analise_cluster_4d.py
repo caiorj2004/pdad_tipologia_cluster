@@ -58,6 +58,7 @@ USAR_PCT_ESTAB = False                            # [CORREÇÃO 4] True recoloca
 V2 = set(x for x in os.environ.get("V2", "ctx,agua,esgoto,renda,dur").split(",") if x)
 K_FINAL = int(os.environ.get("K_FINAL", "3"))   # K=3: maior silhueta entre K>=3, estabilidade 0,66, menor grupo com 8 segmentos (ver Etapas 5 e 5.2)
 WINSOR_P = float(os.environ.get("WINSOR_P", "0.99"))   # percentil de winsorização da renda (1.0 = sem winsorização)
+AGUA_RAWILR = os.environ.get("AGUA_RAWILR", "0") == "1"   # M2b: água = razões log-isométricas das 3 fontes originais (rede, poço artesiano, poço/cisterna), sem a escada normativa
 COMP = os.environ.get("COMP", "ilr")                    # transformação composicional de água/esgoto: "ilr" (2 coordenadas) ou "clr" (3 colunas)
 K_CANDIDATOS = range(2, 9)
 N_PERM_NULO = 500                                 # permutações por K nos testes nulos
@@ -65,7 +66,7 @@ N_SUBAMOSTRAS = 200                               # subamostras (80%) por K na e
 SEED = 42
 RNG = np.random.default_rng(SEED)
 CL = f"Cluster_K{K_FINAL}"
-NOMES_GRUPOS = {0: "A — Urbanização formal consolidada", 1: "B — Urbanização parcial", 2: "C — Saneamento e vias precários"} if K_FINAL == 3 else {i: f"Grupo {i}" for i in range(K_FINAL)}   # nomes substantivos (ordem: da infraestrutura mais à menos consolidada)
+NOMES_GRUPOS = ({0: "A — Urbanização formal consolidada", 1: "B — Saneamento e vias precários", 2: "C — Urbanização parcial"} if os.environ.get("GRUPOS_NOMES") == "m2" else {0: "A — Urbanização formal consolidada", 1: "B — Urbanização parcial", 2: "C — Saneamento e vias precários"}) if K_FINAL == 3 else {i: f"Grupo {i}" for i in range(K_FINAL)}   # nomes substantivos (ordem: da infraestrutura mais à menos consolidada)
 FIG_DIR = Path(os.environ.get("TCC_FIG", "figuras")); FIG_DIR.mkdir(parents=True, exist_ok=True)   # PNGs e CSVs de saída
 
 def salvar(nome):
@@ -311,6 +312,13 @@ def derivar_variaveis_modelo(M):
     else:
         M["agua_ilr_adequacao"], M["agua_ilr_tipo"] = ilr_3partes(M["agua_nivel_rede"], M["agua_nivel_ind"], M["agua_nivel_prec"], n)
         M["esgoto_ilr_adequacao"], M["esgoto_ilr_tipo"] = ilr_3partes(M["esgoto_nivel_rede"], M["esgoto_nivel_ind"], M["esgoto_nivel_prec"], n)
+    if AGUA_RAWILR:
+        # composição das três fontes originais (parte = fração dos domicílios do segmento que declaram a fonte), fechada a 1;
+        # zeros por suavização aditiva (+0,5 domicílio por parte), como na escada; fontes não modeladas (córrego, caminhão-pipa etc.) ficam fora da composição
+        R = np.vstack([M["agua_rede"], M["agua_poco_artesiano"], M["agua_poco_cisterna"]]).T * n[:, None]
+        R = (R + 0.5); R = R / R.sum(axis=1, keepdims=True)
+        M["agua_raw_ilr_rede_vs_poco"] = np.sqrt(2 / 3) * np.log(R[:, 0] / np.sqrt(R[:, 1] * R[:, 2]))   # rede vs. média geométrica dos poços
+        M["agua_raw_ilr_art_vs_cist"] = np.log(R[:, 1] / R[:, 2]) / np.sqrt(2)                           # poço artesiano vs. poço/cisterna
     M["log_renda_media"] = M["log_renda_hh"]
     return M
 matriz_mor_A = media_ponderada_vetorizada(df_mor, CHAVES, VAR_MOR, PESO_MOR)
@@ -338,7 +346,7 @@ D1_VARS = (["log_renda_media" if "renda" in V2 else "log_renda_domiciliar_pc", "
            + ([] if "dur" in V2 else ["possui_secadora"]) + ["possui_tv", "possui_ar_condicionado", "possui_microondas"])
 D2_VARS = ["escolaridade_adulto", "trabalhou_30d", "tem_ctps", "contribui_previdencia"] + ([] if "ctx" in V2 else ["ivs_df"])
 D3_VARS = (["comodos_por_pessoa", "banheiros_por_pessoa"]
-           + ((["agua_clr_rede", "agua_clr_ind", "agua_clr_prec"] if COMP == "clr" else ["agua_ilr_adequacao", "agua_ilr_tipo"]) if "agua" in V2 else ["agua_rede", "agua_poco_artesiano", "agua_poco_cisterna"])
+           + ((["agua_clr_rede", "agua_clr_ind", "agua_clr_prec"] if COMP == "clr" else ["agua_ilr_adequacao", "agua_ilr_tipo"]) if "agua" in V2 else (["agua_raw_ilr_rede_vs_poco", "agua_raw_ilr_art_vs_cist"] if AGUA_RAWILR else ["agua_rede", "agua_poco_artesiano", "agua_poco_cisterna"]))
            + ["captacao_chuva", "caixa_agua"]
            + ((["esgoto_clr_rede", "esgoto_clr_ind", "esgoto_clr_prec"] if COMP == "clr" else ["esgoto_ilr_adequacao", "esgoto_ilr_tipo"]) if "esgoto" in V2 else ["solucao_sanitaria_estruturada"])
            + ["acesso_energetico_estruturado", "destino_com_coleta_direta", "rua_pavimentada", "iluminacao_publica", "drenagem", "ponto_onibus"]

@@ -9,7 +9,7 @@ d = pd.read_csv(os.path.join(R, 'comparacao_variantes.csv'), index_col=0)
 ordem = ['M0_antigo_K3','M0_antigo_K4','M0_antigo_K5','M1_revisado_K3','M1_revisado_K4','M1_revisado_K5',
          'A_so_ctx','A_so_agua','A_so_esgoto','A_so_renda','A_so_dur','L_sem_ctx','L_sem_agua','L_sem_esgoto','L_sem_renda','L_sem_dur',
          'S_winsor95','S_winsor100','S_clr','E_agua_cisterna_precaria','E_agua_nascente_individual','E_agua_gambiarra_na_rede','E_esgoto_rudimentar_individual',
-         'M0_antigo_K5_b500n50','M0_antigo_K5_bootEstratoRegra','M1_revisado_K3_b500n50','M1_revisado_K3_bootEstratoRegra']
+         'M2_semEscadas_K3','M2_semEscadas_K4','M2_semEscadas_K5','M0_antigo_K5_b500n50','M0_antigo_K5_bootEstratoRegra','M1_revisado_K3_b500n50','M1_revisado_K3_bootEstratoRegra']
 ordem = [o for o in ordem if o in d.index]; d = d.loc[ordem]
 def f(x, n=3):
     if isinstance(x, str): return x
@@ -40,6 +40,12 @@ o.append(tab('T6. Confusão territorial', ['AMI_RA_obs','AMI_RA_p_atrib','AMI_se
     ['AMI RA','p (atrib. domicílios)','p (perm. segmentos)','AMI subpop','p (atrib.)','p (perm.)','pares mesma RA no mesmo grupo','esperado','p','pares mesma subpop no mesmo grupo','esperado','p','join count obs.','esperado','p']))
 o.append(tab('T7. Validação externa (Kruskal-Wallis por segmento, p) e ordenada', [c for c in d.columns if c.startswith('VE_KW')] + ['IVS_KW_p','ordenada_n_p<0.05','ordenada_rho_medio_abs'],
     [c.replace('VE_KW_p_','') for c in d.columns if c.startswith('VE_KW')] + ['IVS-DF','nº desfechos ordenados p<0,05','|rho| médio']))
+o.append(tab('T9. Validação externa sob incerteza da partição (programa 28)', ['ext28_n_desfechos_p_ref_menor_005','ext28_n_desfechos_mediana_p_menor_005','ext28_pct_replicas_p005_media','ext28_epsilon2_mediano_medio'],
+    ['desfechos com p<0,05 (partição de referência)','desfechos com p mediano<0,05 (réplicas)','% médio de réplicas com p<0,05','epsilon² mediano médio'],
+    'De 7 desfechos (Kruskal-Wallis entre grupos, 49 segmentos). Desfechos fixos; só a partição varia, com os rótulos de cada réplica do bootstrap. Sem correção para comparações múltiplas.'))
+o.append(tab('T10. Validação externa condicional à RA (permutação dentro da RA) e eta² da RA (programa 29)', ['cond29_n_desfechos_p_menor_005','cond29_p_min','cond29_p_ebia_mod_grave','cond29_p_beneficio_social','cond29_p_cadunico','cond29_p_escritura_registrada','eta29_RA_medio','eta29_RA_ajust_medio'],
+    ['desfechos com p<0,05 dentro da RA','menor p','p EBIA mod./grave','p benefício social','p CadÚnico','p escritura','eta² RA médio (escores)','eta² RA ajustado por gl'],
+    'Permutação dos rótulos só entre segmentos da mesma RA (5000 sorteios). O eta² bruto da RA vale ≈ 0,46 sob independência (23 RAs, 49 segmentos); o ajustado desconta isso.'))
 # partições: ARI entre variantes
 L = {}
 for v in d.index:
