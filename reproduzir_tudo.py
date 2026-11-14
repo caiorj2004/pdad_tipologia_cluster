@@ -24,11 +24,11 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent; PIPE = RAIZ / 'pipeline'
-ETAPAS = [('03', '03_analise_cluster_4d.py'), ('16', '16_robustez_amostral_e_pesos.py'), ('18', '18_variancia_ami_espacial.py'),
+ETAPAS = [('03', '03_analise_cluster_4d.py'), ('09', '09_kruskal_wallis_escores.py'), ('12', '12_robustez_tandem.py'), ('16', '16_robustez_amostral_e_pesos.py'), ('18', '18_variancia_ami_espacial.py'),
           ('19', '19_validacao_externa.py'), ('21', '21_stress_estrutural.py'), ('23', '23_deixa_uma_RA_refazendo_pca.py'),
-          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py'), ('26', '26_decomposicao_domiciliar_mista.py'), ('28', '28_validacao_externa_incerteza_particao.py')]
+          ('24', '24_nulos_bootstrap_metades_territorial.py'), ('25', '25_multinivel_moran_ajustado_validacao_ordenada.py'), ('26', '26_decomposicao_domiciliar_mista.py'), ('28', '28_validacao_externa_incerteza_particao.py'), ('29', '29_validacao_condicional_RA_e_eta2.py')]
 FIGURAS_TCC = ['04_comparacao_metodos.py', '05_ward_dendrograma.py', '06_ward_bateria.py', '07_estabilidade_cruzada.py', '08_variaveis_apoio.py',
-               '09_kruskal_wallis_escores.py', '10_tabelas_e_figuras.py', '11_mapas_indicadores.py', '12_robustez_tandem.py', '13_ra_grupos_componentes.py',
+               '10_tabelas_e_figuras.py', '11_mapas_indicadores.py', '13_ra_grupos_componentes.py',
                '20_figuras_perfil_validacao.py']
 PRINCIPAIS = ['M0_antigo_K5', 'M1_revisado_K3']
 COM_FIGURAS_TCC = ('M1_revisado_K3', 'M2_semEscadas_K3')   # variantes para as quais --figuras-tcc gera tabelas e figuras do texto

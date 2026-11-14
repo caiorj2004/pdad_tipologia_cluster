@@ -1,0 +1,56 @@
+{
+ "K": 5,
+ "n_segmentos": 49,
+ "n_componentes": 5,
+ "S1_pct_sementes_no_otimo": 0.01,
+ "S1_ARI_medio_semente_unica": 0.456,
+ "S1_ARI_min_semente_unica": 0.235,
+ "S1_ARI_ref_vs_otimo": 1.0,
+ "S1_pct_ninit10_no_otimo": 0.09,
+ "S2_spearman_n_dist_Kfinal": -0.515,
+ "S2_p_Kfinal": 0.0,
+ "S2_spearman_n_dist_global": -0.376,
+ "S2_p_global": 0.008,
+ "S2_dist_med_peq": 3.58,
+ "S2_dist_med_grande": 1.721,
+ "S2_p_mw": 0.0,
+ "S3_largura_media_IC_n<12": 0.51,
+ "S4_aparado6_ARI": 0.627,
+ "S4_aparado6_pct_n<20": 0.5,
+ "S4_aparado10_ARI": 0.385,
+ "S4_aparado10_pct_n<20": 0.5,
+ "S5_pureza_media_Kfinal": 0.537,
+ "S5_pct_peso>0.8_Kfinal": 0.143,
+ "S5_ARI_argmax_vs_kmeans": 0.173,
+ "S5_var_explicada_Kfinal": 0.87,
+ "S6_ARI_medio_sem_uma_RA": 0.607,
+ "S6_ARI_min_sem_uma_RA": 0.314,
+ "S6_RA_critica": "Samambaia",
+ "S6_ARI_medio_sem_uma_subpop": 0.706,
+ "S6_ARI_min_sem_uma_subpop": 0.645,
+ "S7_ARI_medio_outros_algoritmos": 0.433,
+ "S7_ARI_min_outros_algoritmos": 0.071,
+ "S7_ARI_Ward": 0.445,
+ "S7_ARI_GMM_completo": 0.251,
+ "S7_ARI_KMeans_peso_integral": 0.445,
+ "S8_ARI_n>=10": 0.6,
+ "S8_ARI_n>=20": 0.442,
+ "S9_pares_mesma_RA": 38,
+ "S9_frac_mesmo_grupo_RA": 0.368,
+ "S9_frac_esperada_RA": 0.2,
+ "S9_p_RA": 0.013,
+ "S9_frac_mesmo_grupo_subpop": 0.223,
+ "S9_frac_esperada_subpop": 0.199,
+ "S9_p_subpop": 0.145,
+ "S10_eta2_max": 0.677,
+ "S10_eixo_dominante": "D4_Tecnologico_Conectividade_MC_PC1",
+ "S10_pct_var_1o_eixo_da_matriz": 0.55
+}
+2
+S9_p_RA: 0.012987012987012988
+S9_frac_mesmo_grupo_subpop: 0.2226027397260274
+S9_frac_esperada_subpop: 0.19934246575342468
+S9_p_subpop: 0.14485514485514486
+S10_eta2_max: 0.6769555921973425
+S10_eixo_dominante: D4_Tecnologico_Conectividade_MC_PC1
+S10_pct_var_1o_eixo_da_matriz: 0.5499352622918714
