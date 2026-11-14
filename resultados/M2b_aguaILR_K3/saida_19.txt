@@ -1,0 +1,30 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+VALIDAÇÃO EXTERNA — % dos domicílios (ponderado) por grupo, IC 95% por bootstrap
+  ebia_insegur_qualquer: G0 23.2 [21.3; 25.2] | G1 23.7 [20.8; 26.6] | G2 20.5 [18.3; 22.3]
+  ebia_mod_grave: G0 11.6 [10.2; 13.3] | G1 10.0 [7.5; 12.3] | G2 7.8 [6.6; 8.9]
+  beneficio_social: G0 24.2 [22.4; 26.0] | G1 18.8 [16.1; 21.6] | G2 18.3 [16.6; 20.2]
+  cadunico: G0 32.2 [29.9; 34.3] | G1 20.7 [18.3; 23.1] | G2 20.1 [18.4; 22.2]
+  escritura_registrada: G0 43.2 [40.9; 45.6] | G1 24.4 [21.5; 27.6] | G2 30.6 [28.0; 33.3]
+  doc_formal: G0 45.6 [43.1; 47.8] | G1 35.5 [31.5; 39.4] | G2 36.2 [33.3; 38.6]
+  outorga_agua: G0 37.3 [34.0; 40.4] | G1 41.0 [34.8; 47.0] | G2 42.2 [38.7; 45.2]
+
+EBIA: prevalência global de insegurança alimentar (qualquer): 22.2 %
+
+Nível segmento (n=49): Kruskal-Wallis entre grupos e Spearman com os escores
+  ebia_insegur_qualquer: KW H=4.18 p=0.124 | D1PC1 rho=-0.30 | D2PC1 rho=-0.10 | D3PC1 rho=-0.03 | D3PC2 rho=-0.21 | D4PC1 rho=-0.32
+  ebia_mod_grave: KW H=7.61 p=0.022 | D1PC1 rho=-0.43 | D2PC1 rho=0.00 | D3PC1 rho=-0.25 | D3PC2 rho=-0.15 | D4PC1 rho=-0.47
+  beneficio_social: KW H=8.54 p=0.014 | D1PC1 rho=-0.42 | D2PC1 rho=-0.13 | D3PC1 rho=-0.16 | D3PC2 rho=-0.39 | D4PC1 rho=-0.25
+  cadunico: KW H=17.31 p=0.000 | D1PC1 rho=-0.47 | D2PC1 rho=-0.36 | D3PC1 rho=-0.33 | D3PC2 rho=-0.57 | D4PC1 rho=-0.48
+  escritura_registrada: KW H=3.19 p=0.203 | D1PC1 rho=-0.18 | D2PC1 rho=-0.08 | D3PC1 rho=-0.33 | D3PC2 rho=0.04 | D4PC1 rho=-0.29
+  doc_formal: KW H=2.39 p=0.302 | D1PC1 rho=-0.06 | D2PC1 rho=0.01 | D3PC1 rho=-0.17 | D3PC2 rho=-0.22 | D4PC1 rho=-0.13
+  outorga_agua: KW H=5.55 p=0.062 | D1PC1 rho=0.47 | D2PC1 rho=-0.02 | D3PC1 rho=0.17 | D3PC2 rho=0.08 | D4PC1 rho=0.28
