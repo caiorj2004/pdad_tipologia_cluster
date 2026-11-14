@@ -26,3 +26,6 @@ E_agua_cisterna_precaria	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	AGUA_ESCA
 E_agua_nascente_individual	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	AGUA_ESCADA=nascente_ind
 E_agua_gambiarra_na_rede	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	AGUA_ESCADA=gambiarra_rede
 E_esgoto_rudimentar_individual	ctx,agua,esgoto,renda,dur	3	0.99	ilr	100	20	0	ESGOTO_ESCADA=rudimentar_ind
+M2_semEscadas_K3	ctx,renda,dur	3	0.99	ilr	200	30	0
+M2_semEscadas_K4	ctx,renda,dur	4	0.99	ilr	200	30	0
+M2_semEscadas_K5	ctx,renda,dur	5	0.99	ilr	200	30	0
