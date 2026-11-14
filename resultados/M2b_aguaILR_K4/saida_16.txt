@@ -1,0 +1,171 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+componentes por dimensão: {'D1_Bens_Duraveis': 1, 'D2_Humano_Trabalho': 1, 'D3_Fisico_Habitacional_Territorial': 2, 'D4_Tecnologico_Conectividade': 1} | total 5
+ARI reprodução da referência: 1.0
+
+Coligação no bootstrap por classe (núcleo/fronteira):
+           mean  median   min   max  count
+Classe                                    
+Fronteira  0.61    0.60  0.29  0.80     40
+Núcleo     0.62    0.61  0.52  0.75      9
+Spearman com o escore de co-associação por subamostras: 0.26
+
+(a) BOOTSTRAP POR DOMICÍLIOS (200 réplicas, K=4, n_init=30, nível=segmento, retenção=fixa)
+ARI vs. partição de referência: média 0.385 | mediana 0.366 | p5 0.246 | p95 0.559 | min 0.163
+Silhueta nas réplicas: média 0.232 (referência 0.177)
+
+Coligação média com o próprio grupo, por grupo (e por tamanho de amostra):
+           mean   min   max
+grupo_ref                  
+0          0.70  0.34  0.80
+1          0.54  0.29  0.64
+2          0.67  0.58  0.75
+3          0.57  0.46  0.65
+       mean   min  count
+n_cat                   
+5-9    0.55  0.46      6
+10-14  0.57  0.53      2
+15+    0.58  0.29     23
+
+Segmentos com coligação < 0,60:
+                                         segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+                      SCIA | Agricultura Familiar          1         50                    0.29
+Sol Nascente/Pôr do Sol | Características Urbanas          0         41                    0.34
+  Sol Nascente/Pôr do Sol | Assentamento/Agrovila          1         31                    0.41
+       Recanto das Emas | Agricultura Empresarial          1         28                    0.44
+             Taguatinga | Agricultura Empresarial          3          8                    0.46
+                 Samambaia | Agricultura Familiar          1          6                    0.50
+                 Park Way | Assentamento/Agrovila          3         49                    0.50
+             Planaltina | Agricultura Empresarial          1        194                    0.51
+                  Paranoá | Assentamento/Agrovila          3         41                    0.52
+                    Fercal | Agricultura Familiar          1         50                    0.52
+                 Fercal | Agricultura Empresarial          0          7                    0.53
+              Samambaia | Agricultura Empresarial          1         12                    0.53
+          Recanto das Emas | Agricultura Familiar          1         49                    0.55
+                Paranoá | Agricultura Empresarial          1         97                    0.55
+              Ceilândia | Agricultura Empresarial          3        195                    0.57
+                   Gama | Agricultura Empresarial          1        250                    0.58
+           Águas Claras | Características Urbanas          2          5                    0.58
+             Sobradinho II | Agricultura Familiar          1         22                    0.58
+          Sobradinho II | Agricultura Empresarial          1         35                    0.59
+             Lago Norte | Características Urbanas          3         51                    0.59
+     Núcleo Bandeirante | Características Urbanas          2          5                    0.59
+                  Park Way | Agricultura Familiar          3        141                    0.60
+                 Ceilândia | Agricultura Familiar          1        121                    0.60
+
+ARI médio do bootstrap por K (referência de cada K = partição de 49 segmentos com n_init=50):
+  K=2: ARI médio 0.644 (200 réplicas)
+  K=3: ARI médio 0.507 (200 réplicas)
+  K=4: ARI médio 0.385 (200 réplicas)
+  K=5: ARI médio 0.336 (200 réplicas)
+  K=6: ARI médio 0.344 (200 réplicas)
+
+(b) K-MEANS PONDERADO (mesmos 6 escores, K={K}, n_init=50)
+- sem peso (referência): ARI 1.000; tamanhos [18, 13, 10, 8]; segmentos que mudam de grupo: 0
+- raiz do peso: ARI 0.362; tamanhos [16, 14, 12, 7]; segmentos que mudam de grupo: 18
+     Brazlândia | Agricultura Familiar (ref G1, domicílios exp. 4203)
+     Ceilândia | Agricultura Empresarial (ref G3, domicílios exp. 2370)
+     Ceilândia | Agricultura Familiar (ref G1, domicílios exp. 2663)
+     Fercal | Agricultura Empresarial (ref G0, domicílios exp. 66)
+     Fercal | Assentamento/Agrovila (ref G0, domicílios exp. 60)
+     Gama | Agricultura Familiar (ref G1, domicílios exp. 735)
+     Itapoã | Agricultura Empresarial (ref G1, domicílios exp. 584)
+     Lago Norte | Características Urbanas (ref G3, domicílios exp. 218)
+     Paranoá | Agricultura Familiar (ref G0, domicílios exp. 1483)
+     Paranoá | Características Urbanas (ref G0, domicílios exp. 2295)
+     Park Way | Assentamento/Agrovila (ref G3, domicílios exp. 106)
+     Samambaia | Agricultura Empresarial (ref G1, domicílios exp. 146)
+     Samambaia | Agricultura Familiar (ref G1, domicílios exp. 132)
+     Sobradinho II | Agricultura Empresarial (ref G1, domicílios exp. 330)
+     Sobradinho II | Agricultura Familiar (ref G1, domicílios exp. 392)
+     Sol Nascente/Pôr do Sol | Características Urbanas (ref G0, domicílios exp. 681)
+     Taguatinga | Agricultura Empresarial (ref G3, domicílios exp. 97)
+     Vicente Pires | Características Urbanas (ref G0, domicílios exp. 5233)
+- peso integral: ARI 0.362; tamanhos [16, 14, 12, 7]; segmentos que mudam de grupo: 18
+     Brazlândia | Agricultura Familiar (ref G1, domicílios exp. 4203)
+     Ceilândia | Agricultura Empresarial (ref G3, domicílios exp. 2370)
+     Ceilândia | Agricultura Familiar (ref G1, domicílios exp. 2663)
+     Fercal | Agricultura Empresarial (ref G0, domicílios exp. 66)
+     Fercal | Assentamento/Agrovila (ref G0, domicílios exp. 60)
+     Gama | Agricultura Familiar (ref G1, domicílios exp. 735)
+     Itapoã | Agricultura Empresarial (ref G1, domicílios exp. 584)
+     Lago Norte | Características Urbanas (ref G3, domicílios exp. 218)
+     Paranoá | Agricultura Familiar (ref G0, domicílios exp. 1483)
+     Paranoá | Características Urbanas (ref G0, domicílios exp. 2295)
+     Park Way | Assentamento/Agrovila (ref G3, domicílios exp. 106)
+     Samambaia | Agricultura Empresarial (ref G1, domicílios exp. 146)
+     Samambaia | Agricultura Familiar (ref G1, domicílios exp. 132)
+     Sobradinho II | Agricultura Empresarial (ref G1, domicílios exp. 330)
+     Sobradinho II | Agricultura Familiar (ref G1, domicílios exp. 392)
+     Sol Nascente/Pôr do Sol | Características Urbanas (ref G0, domicílios exp. 681)
+     Taguatinga | Agricultura Empresarial (ref G3, domicílios exp. 97)
+     Vicente Pires | Características Urbanas (ref G0, domicílios exp. 5233)
+
+Domicílios expandidos por grupo de referência (%):
+0    37.1
+1    34.8
+2    11.2
+3    16.8
+
+PERFIS DOS GRUPOS COM IC 95% (bootstrap de domicílios; média ponderada por domicílios expandidos)
+                              estimativa                            ic_inf                         ic_sup                           
+grupo                                  0        1       2        3       0       1      2       3       0        1        2        3
+variavel                                                                                                                            
+agua_rede                           0.11     0.35    0.59     0.45    0.07    0.08   0.18    0.00    0.24     0.56     1.00     0.80
+contribui_previdencia               0.26     0.27    0.34     0.37    0.17    0.20   0.09    0.00    0.28     0.31     0.67     0.50
+escolaridade_adulto                 7.96     8.19    9.54     9.84    6.99    7.57   6.81    5.60    8.31     8.89    13.28    11.85
+internet_banda_larga_fixa           0.66     0.69    0.83     0.80    0.49    0.45   0.17    0.00    0.68     0.77     1.00     1.00
+ivs_df                              0.45     0.42    0.37     0.31    0.43    0.36   0.19    0.18    0.52     0.47     0.46     0.60
+possui_automovel                    0.59     0.67    0.69     0.75    0.57    0.48   0.32    0.29    0.64     0.73     1.00     1.00
+possui_computador                   0.28     0.34    0.49     0.49    0.15    0.18   0.12    0.00    0.31     0.42     0.90     0.80
+renda_domiciliar_pc               845.44  1183.99  876.37  1031.11  759.84  791.34  90.00  476.40  945.15  1589.54  1473.65  1977.56
+rua_pavimentada                     0.06     0.19    0.65     0.32    0.01    0.07   0.06    0.00    0.10     0.26     1.00     0.68
+solucao_sanitaria_estruturada       0.44     0.67    0.86     0.82    0.17    0.52   0.40    0.32    0.49     0.86     1.00     0.95
+trabalhou_30d                       0.46     0.41    0.46     0.50    0.44    0.39   0.29    0.27    0.50     0.46     0.73     0.67
+
+(c) ESTABILIDADE (ARI por subamostras de 80%) vs. NULO DE COVARIANCIA (100 conjuntos nulos)
+  K=3: observado 0.620 | nulo média 0.689 (p95 0.889) | p = 0.703
+  K=4: observado 0.508 | nulo média 0.653 (p95 0.827) | p = 0.901
+  K=5: observado 0.482 | nulo média 0.609 (p95 0.771) | p = 0.901
+
+(d) ENCOLHIMENTO EMPÍRICO-BAYES: fator médio lambda = 0.78 (segmentos com n<10: 0.57); ARI vs. referência 0.749; mudam: 6
+     Fercal | Agricultura Empresarial n=7: G0 -> G1
+     Gama | Características Urbanas n=212: G3 -> G2
+     Park Way | Agricultura Familiar n=141: G3 -> G2
+     Riacho Fundo II | Assentamento/Agrovila n=69: G3 -> G2
+     Sol Nascente/Pôr do Sol | Assentamento/Agrovila n=31: G1 -> G0
+     Taguatinga | Agricultura Empresarial n=8: G3 -> G2
+
+(d2) ENCOLHIMENTO (n efetivo de Kish, alvo = média da subpopulação, momentos): fator médio lambda = 0.83 (segmentos com n<10: 0.62); ARI vs. referência 0.564; mudam: 13
+     Ceilândia | Agricultura Empresarial n=195: G3 -> G1
+     Paranoá | Assentamento/Agrovila n=41: G3 -> G2
+     Park Way | Assentamento/Agrovila n=49: G3 -> G1
+     Planaltina | Agricultura Empresarial n=194: G1 -> G0
+     Riacho Fundo | Agricultura Familiar n=222: G2 -> G3
+     Riacho Fundo | Características Urbanas n=5: G2 -> G3
+     Riacho Fundo II | Características Urbanas n=71: G2 -> G3
+     SCIA | Agricultura Familiar n=50: G1 -> G2
+     Santa Maria | Agricultura Empresarial n=46: G2 -> G3
+     Sol Nascente/Pôr do Sol | Assentamento/Agrovila n=31: G1 -> G0
+     Sol Nascente/Pôr do Sol | Características Urbanas n=41: G0 -> G2
+     Taguatinga | Características Urbanas n=11: G2 -> G3
+     Águas Claras | Características Urbanas n=5: G2 -> G3
+
+(e) NÃO CLASSIFICÁVEIS (n<10): 6 de 49 segmentos; FRONTEIRA (coligação<0,60): 18
+Domicílios expandidos nos não classificáveis (%): 0.8 | em fronteira (%): 24.9
+                                    segmento  grupo_ref  amostra_n  junto_do_proprio_grupo
+            Fercal | Agricultura Empresarial          0          7                    0.53
+Núcleo Bandeirante | Características Urbanas          2          5                    0.59
+      Riacho Fundo | Características Urbanas          2          5                    0.65
+            Samambaia | Agricultura Familiar          1          6                    0.50
+        Taguatinga | Agricultura Empresarial          3          8                    0.46
+      Águas Claras | Características Urbanas          2          5                    0.58

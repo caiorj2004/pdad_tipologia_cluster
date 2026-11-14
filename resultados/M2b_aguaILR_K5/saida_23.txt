@@ -1,0 +1,41 @@
+Fase 1: Saneamento, pesos e agregação territorial...
+
+Domicílios: 5,075 | Moradores: 15,357
+OK Pesos corrigidos para 21 estratos (N total = 66,540).
+OK IVS-DF 2021 associado às 24 RAs da amostra (fonte: base do IPEDF).
+
+FASE 1 CONCLUÍDA: 49 segmentos territoriais válidos.
+   internet_domiciliar: min=0.286 | mediana=0.810 | max=1.000
+
+Etapa 4 — PCA por dimensão (análise paralela de Monte Carlo)...
+
+                  a01ra  n_removidos  ARI_vs_ref_restantes  n_componentes_novo  n_componentes_ref           tamanhos
+             Brazlândia            3                 0.578                   5                  5  [21, 11, 8, 3, 3]
+              Ceilândia            2                 0.446                   5                  5 [18, 12, 10, 4, 3]
+                 Fercal            3                 0.413                   5                  5 [15, 13, 11, 4, 3]
+                   Gama            3                 0.480                   5                  5  [17, 13, 7, 5, 4]
+                 Itapoã            1                 0.939                   5                  5  [14, 10, 9, 8, 7]
+             Lago Norte            1                 0.551                   5                  5 [15, 13, 12, 5, 3]
+     Núcleo Bandeirante            1                 0.879                   5                  5  [15, 10, 9, 7, 7]
+                Paranoá            4                 0.821                   5                  5   [11, 9, 9, 8, 8]
+               Park Way            2                 0.874                   5                  5  [13, 10, 8, 8, 8]
+             Planaltina            4                 0.570                   5                  5 [16, 12, 10, 4, 3]
+       Recanto das Emas            2                 0.716                   5                  5 [14, 13, 10, 5, 5]
+           Riacho Fundo            2                 0.435                   6                  5  [21, 10, 8, 5, 3]
+        Riacho Fundo II            2                 0.706                   5                  5 [16, 11, 10, 7, 3]
+                   SCIA            1                 0.672                   5                  5 [14, 11, 10, 8, 5]
+              Samambaia            3                 0.450                   5                  5 [14, 13, 11, 4, 4]
+            Santa Maria            1                 0.772                   5                  5  [17, 11, 8, 7, 5]
+             Sobradinho            2                 0.686                   5                  5  [14, 11, 9, 8, 5]
+          Sobradinho II            3                 0.617                   5                  5 [15, 11, 10, 5, 5]
+Sol Nascente/Pôr do Sol            2                 0.666                   5                  5  [21, 10, 8, 7, 1]
+          São Sebastião            3                 0.526                   5                  5 [15, 13, 11, 4, 3]
+             Taguatinga            2                 0.570                   6                  5  [23, 11, 8, 3, 2]
+          Vicente Pires            1                 0.782                   5                  5 [11, 10, 10, 9, 8]
+           Águas Claras            1                 0.498                   5                  5  [17, 13, 9, 5, 4]
+        a01subpopulacao  n_removidos  ARI_vs_ref_restantes  n_componentes_novo  n_componentes_ref          tamanhos
+Agricultura Empresarial           13                 0.572                   5                  5 [12, 12, 8, 3, 1]
+   Agricultura Familiar           12                 0.440                   5                  5 [12, 12, 5, 4, 4]
+  Assentamento/Agrovila            8                 0.753                   5                  5 [12, 12, 8, 6, 3]
+Características Urbanas           16                 0.317                   6                  5  [10, 9, 8, 5, 1]
+{'S6b_ARI_medio_sem_uma_RA': np.float64(0.6367899993069145), 'S6b_ARI_min_sem_uma_RA': np.float64(0.4129099792561252), 'S6b_RA_critica': 'Fercal', 'S6b_pct_RAs_ARI<0.5': 0.2608695652173913, 'S6b_n_componentes_varia': True, 'S6b_ARI_medio_sem_uma_subpop': np.float64(0.5204492412722005), 'S6b_ARI_min_sem_uma_subpop': np.float64(0.3165540054652668)}

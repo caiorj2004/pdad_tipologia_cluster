@@ -1,0 +1,50 @@
+segmento,grupo_ref,amostra_n,junto_do_proprio_grupo,junto_dos_outros_grupos,Segmento,Classe,Escore_subamostras,n_cat,nao_classificavel,fronteira,grupo_encolhido
+Brazlândia | Agricultura Familiar,0,191,0.724375,0.20375000000000001,Brazlândia — Agr. Familiar,Núcleo,0.95,,False,False,0
+Brazlândia | Assentamento/Agrovila,0,48,0.584375,0.2535,Brazlândia — Assentamento,Núcleo,0.9,15+,False,True,0
+Brazlândia | Características Urbanas,3,277,0.5742857142857142,0.14170731707317075,Brazlândia — Moradia e Lazer,Fronteira,0.61,,False,True,4
+Ceilândia | Agricultura Empresarial,1,195,0.52,0.2037179487179487,Ceilândia — Agr. Empresarial,Fronteira,0.72,,False,True,1
+Ceilândia | Agricultura Familiar,0,121,0.73375,0.194875,Ceilândia — Agr. Familiar,Núcleo,0.94,,False,False,0
+Fercal | Agricultura Empresarial,2,7,0.41333333333333333,0.0976190476190476,Fercal — Agr. Empresarial,Fronteira,0.5,5-9,True,False,2
+Fercal | Agricultura Familiar,4,50,0.5624999999999999,0.20029411764705882,Fercal — Agr. Familiar,Fronteira,0.71,15+,False,True,0
+Fercal | Assentamento/Agrovila,4,29,0.5614285714285714,0.19367647058823528,Fercal — Assentamento,Fronteira,0.72,15+,False,True,2
+Gama | Agricultura Empresarial,4,250,0.45964285714285713,0.2529411764705882,Gama — Agr. Empresarial,Fronteira,0.57,,False,True,0
+Gama | Agricultura Familiar,0,81,0.7237499999999999,0.20875000000000005,Gama — Agr. Familiar,Núcleo,0.96,15+,False,False,0
+Gama | Características Urbanas,1,212,0.5805555555555556,0.17423076923076924,Gama — Moradia e Lazer,Fronteira,0.73,,False,True,1
+Itapoã | Agricultura Empresarial,0,41,0.72,0.21475,Itapoã — Agr. Empresarial,Núcleo,0.95,15+,False,False,0
+Lago Norte | Características Urbanas,1,51,0.5349999999999999,0.16166666666666668,Lago Norte — Moradia e Lazer,Fronteira,0.66,15+,False,True,1
+Núcleo Bandeirante | Características Urbanas,3,5,0.44642857142857134,0.0624390243902439,Núcleo Bandeirante — Moradia e Lazer,Fronteira,0.58,5-9,True,False,4
+Paranoá | Agricultura Empresarial,4,97,0.5657142857142857,0.20897058823529413,Paranoá — Agr. Empresarial,Fronteira,0.72,15+,False,True,0
+Paranoá | Agricultura Familiar,4,205,0.6210714285714286,0.19500000000000003,Paranoá — Agr. Familiar,Núcleo,0.76,,False,False,2
+Paranoá | Assentamento/Agrovila,1,41,0.4388888888888889,0.17256410256410254,Paranoá — Assentamento,Fronteira,0.72,15+,False,True,4
+Paranoá | Características Urbanas,4,95,0.5460714285714287,0.18205882352941177,Paranoá — Moradia e Lazer,Fronteira,0.69,15+,False,True,2
+Park Way | Agricultura Familiar,1,141,0.5505555555555556,0.17935897435897433,Park Way — Agr. Familiar,Fronteira,0.71,,False,True,1
+Park Way | Assentamento/Agrovila,1,49,0.4466666666666666,0.2296153846153846,Park Way — Assentamento,Fronteira,0.54,15+,False,True,0
+Planaltina | Agricultura Empresarial,4,194,0.6124999999999999,0.20720588235294118,Planaltina — Agr. Empresarial,Fronteira,0.74,,False,False,2
+Planaltina | Agricultura Familiar,4,270,0.49607142857142855,0.25617647058823534,Planaltina — Agr. Familiar,Fronteira,0.63,,False,True,0
+Planaltina | Assentamento/Agrovila,2,124,0.7891666666666666,0.11607142857142858,Planaltina — Assentamento,Núcleo,0.81,,False,False,2
+Planaltina | Características Urbanas,2,32,0.7366666666666667,0.135,Planaltina — Moradia e Lazer,Núcleo,0.79,15+,False,False,2
+Recanto das Emas | Agricultura Empresarial,4,28,0.36071428571428577,0.2666176470588235,Recanto das Emas — Agr. Empresarial,Fronteira,0.42,15+,False,True,4
+Recanto das Emas | Agricultura Familiar,4,49,0.5867857142857142,0.215,Recanto das Emas — Agr. Familiar,Núcleo,0.75,15+,False,True,0
+Riacho Fundo | Agricultura Familiar,3,222,0.6114285714285714,0.16841463414634147,Riacho Fundo — Agr. Familiar,Fronteira,0.61,,False,False,1
+Riacho Fundo | Características Urbanas,3,5,0.5014285714285714,0.08304878048780487,Riacho Fundo — Moradia e Lazer,Fronteira,0.53,5-9,True,False,3
+Riacho Fundo II | Assentamento/Agrovila,1,69,0.5622222222222222,0.20846153846153848,Riacho Fundo II — Assentamento,Núcleo,0.77,15+,False,True,3
+Riacho Fundo II | Características Urbanas,3,71,0.5828571428571429,0.1875609756097561,Riacho Fundo II — Moradia e Lazer,Fronteira,0.57,15+,False,True,3
+SCIA | Agricultura Familiar,4,50,0.355,0.21911764705882356,SCIA — Agr. Familiar,Fronteira,0.56,15+,False,True,4
+Samambaia | Agricultura Empresarial,0,12,0.514375,0.19337500000000002,Samambaia — Agr. Empresarial,Núcleo,0.88,10-14,False,True,0
+Samambaia | Agricultura Familiar,0,6,0.485625,0.194875,Samambaia — Agr. Familiar,Núcleo,0.85,5-9,True,False,0
+Samambaia | Características Urbanas,2,19,0.7841666666666667,0.11166666666666665,Samambaia — Moradia e Lazer,Núcleo,0.81,15+,False,False,2
+Santa Maria | Agricultura Empresarial,3,46,0.597857142857143,0.10890243902439024,Santa Maria — Agr. Empresarial,Fronteira,0.57,15+,False,True,1
+Sobradinho | Agricultura Empresarial,1,79,0.5933333333333334,0.19269230769230766,Sobradinho — Agr. Empresarial,Núcleo,0.77,15+,False,True,1
+Sobradinho | Características Urbanas,2,152,0.7483333333333334,0.16404761904761905,Sobradinho — Moradia e Lazer,Fronteira,0.67,,False,False,2
+Sobradinho II | Agricultura Empresarial,0,35,0.698125,0.20975000000000002,Sobradinho II — Agr. Empresarial,Núcleo,0.95,15+,False,False,0
+Sobradinho II | Agricultura Familiar,0,22,0.634375,0.22075,Sobradinho II — Agr. Familiar,Núcleo,0.95,15+,False,False,0
+Sobradinho II | Características Urbanas,1,182,0.6155555555555555,0.17564102564102568,Sobradinho II — Moradia e Lazer,Núcleo,0.79,,False,False,1
+Sol Nascente/Pôr do Sol | Assentamento/Agrovila,4,31,0.4692857142857143,0.2111764705882353,Sol Nascente/Pôr do Sol — Assentamento,Fronteira,0.7,15+,False,True,2
+Sol Nascente/Pôr do Sol | Características Urbanas,4,41,0.3189285714285715,0.18073529411764708,Sol Nascente/Pôr do Sol — Moradia e Lazer,Fronteira,0.57,15+,False,True,4
+São Sebastião | Agricultura Empresarial,2,218,0.7991666666666667,0.13107142857142856,São Sebastião — Agr. Empresarial,Núcleo,0.82,,False,False,2
+São Sebastião | Assentamento/Agrovila,2,237,0.7458333333333332,0.15928571428571428,São Sebastião — Assentamento,Fronteira,0.68,,False,False,2
+São Sebastião | Características Urbanas,4,305,0.39285714285714285,0.17955882352941177,São Sebastião — Moradia e Lazer,Fronteira,0.44,,False,True,2
+Taguatinga | Agricultura Empresarial,1,8,0.33944444444444444,0.15564102564102564,Taguatinga — Agr. Empresarial,Fronteira,0.4,5-9,True,False,3
+Taguatinga | Características Urbanas,3,11,0.4528571428571429,0.1471951219512195,Taguatinga — Moradia e Lazer,Fronteira,0.44,10-14,False,True,3
+Vicente Pires | Características Urbanas,4,358,0.5528571428571428,0.18352941176470586,Vicente Pires — Moradia e Lazer,Fronteira,0.72,,False,True,2
+Águas Claras | Características Urbanas,3,5,0.4014285714285714,0.12085365853658536,Águas Claras — Moradia e Lazer,Fronteira,0.49,5-9,True,False,3

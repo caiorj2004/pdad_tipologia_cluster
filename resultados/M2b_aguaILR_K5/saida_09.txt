@@ -1,0 +1,59 @@
+    tipo dim                                        var        H       p    eps2       q
+0    var  D1                    log_renda_domiciliar_pc   8.5657  0.0729  0.1038  0.0981
+1    var  D1                           possui_automovel  12.1737  0.0161  0.1858  0.0242
+2    var  D1                         possui_motocicleta   7.4993  0.1117  0.0795  0.1321
+3    var  D1                           possui_geladeira   2.2533  0.6893  0.0000  0.7074
+4    var  D1                             possui_freezer   8.3569  0.0793  0.0990  0.1031
+5    var  D1                            possui_lavadora  25.9475  0.0000  0.4988  0.0001
+6    var  D1                            possui_secadora   2.7185  0.6060  0.0000  0.6387
+7    var  D1                                  possui_tv  18.3885  0.0010  0.3270  0.0019
+8    var  D1                     possui_ar_condicionado  18.4765  0.0010  0.3290  0.0019
+9    var  D1                          possui_microondas  30.6902  0.0000  0.6066  0.0000
+10   var  D2                        escolaridade_adulto  25.3575  0.0000  0.4854  0.0001
+11   var  D2                              trabalhou_30d   9.4187  0.0514  0.1232  0.0717
+12   var  D2                                   tem_ctps   8.0814  0.0886  0.0928  0.1115
+13   var  D2                      contribui_previdencia  18.1656  0.0011  0.3219  0.0020
+14   var  D2                                     ivs_df  23.4284  0.0001  0.4416  0.0003
+15   var  D3                         comodos_por_pessoa  26.3137  0.0000  0.5071  0.0001
+16   var  D3                       banheiros_por_pessoa  27.3650  0.0000  0.5310  0.0001
+17   var  D3                                  agua_rede  12.4127  0.0145  0.1912  0.0227
+18   var  D3                        agua_poco_artesiano   9.4769  0.0502  0.1245  0.0717
+19   var  D3                         agua_poco_cisterna   1.5753  0.8132  0.0000  0.8132
+20   var  D3                             captacao_chuva   4.4878  0.3440  0.0111  0.3727
+21   var  D3                                 caixa_agua   4.8725  0.3006  0.0198  0.3350
+22   var  D3              solucao_sanitaria_estruturada  19.8394  0.0005  0.3600  0.0011
+23   var  D3              acesso_energetico_estruturado  17.7278  0.0014  0.3120  0.0024
+24   var  D3                  destino_com_coleta_direta  26.1722  0.0000  0.5039  0.0001
+25   var  D3                            rua_pavimentada  22.7159  0.0001  0.4254  0.0004
+26   var  D3                         iluminacao_publica  20.0669  0.0005  0.3652  0.0010
+27   var  D3                                   drenagem  21.3862  0.0003  0.3951  0.0006
+28   var  D3                               ponto_onibus   5.8247  0.2126  0.0415  0.2439
+29   var  D3                       qtd_estabelecimentos   7.8269  0.0981  0.0870  0.1196
+30   var  D4                        internet_domiciliar  23.9228  0.0001  0.4528  0.0002
+31   var  D4                  internet_banda_larga_fixa  29.4524  0.0000  0.5785  0.0000
+32   var  D4                             internet_movel  23.6891  0.0001  0.4475  0.0003
+33   var  D4                          possui_computador  34.3625  0.0000  0.6901  0.0000
+34  comp  D1                    D1_Bens_Duraveis_MC_PC1  34.8426  0.0000  0.7010  0.0000
+35  comp  D2                  D2_Humano_Trabalho_MC_PC1  17.1819  0.0018  0.2996  0.0029
+36  comp  D3  D3_Fisico_Habitacional_Territorial_MC_PC1  28.7494  0.0000  0.5625  0.0000
+37  comp  D3  D3_Fisico_Habitacional_Territorial_MC_PC2  32.4612  0.0000  0.6468  0.0000
+38  comp  D4        D4_Tecnologico_Conectividade_MC_PC1  35.4226  0.0000  0.7141  0.0000
+sig p<.05: 26 de 39  q<.05: 26  vars: 21 de 34 ; comps q<.05: 5
+            D1_Bens_Duraveis_MC_PC1  ...   n
+Cluster_K5                           ...    
+0                             -0.29  ...   9
+1                              1.32  ...  10
+2                             -2.36  ...   7
+3                              2.10  ...   8
+4                             -0.73  ...  15
+
+[5 rows x 6 columns]
+            D1_Bens_Duraveis_MC_PC1  ...  D4_Tecnologico_Conectividade_MC_PC1
+Cluster_K5                           ...                                     
+0                             -0.16  ...                                -0.05
+1                              0.75  ...                                 0.59
+2                             -1.33  ...                                -1.41
+3                              1.19  ...                                 1.27
+4                             -0.41  ...                                -0.38
+
+[5 rows x 5 columns]
