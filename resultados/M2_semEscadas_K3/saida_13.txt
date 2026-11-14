@@ -1,0 +1,62 @@
+                         RA  Segmentos  Grupos                         Detalhe
+0                   Paranoá          4       2  AE (B); AF (B); AS (A); ML (B)
+1                Planaltina          4       2  AE (B); AF (C); AS (B); ML (B)
+2                Brazlândia          3       2          AF (C); AS (C); ML (A)
+3                      Gama          3       2          AE (C); AF (C); ML (A)
+4                 Samambaia          3       2          AE (C); AF (B); ML (B)
+5             Sobradinho II          3       2          AE (C); AF (C); ML (A)
+6                  Park Way          2       2                  AF (A); AS (C)
+7          Recanto das Emas          2       2                  AE (C); AF (B)
+8           Riacho Fundo II          2       2                  AS (C); ML (A)
+9                Sobradinho          2       2                  AE (C); ML (B)
+10               Taguatinga          2       2                  AE (C); ML (A)
+11                   Fercal          3       1          AE (B); AF (B); AS (B)
+12            São Sebastião          3       1          AE (B); AS (B); ML (B)
+13                Ceilândia          2       1                  AE (C); AF (C)
+14             Riacho Fundo          2       1                  AF (A); ML (A)
+15  Sol Nascente/Pôr do Sol          2       1                  AS (B); ML (B)
+30 segmentos em 11 RAs
+               a01ra               sub  G  D1_Bens_Duraveis_MC_PC1  D2_Humano_Trabalho_MC_PC1  D3_Fisico_Habitacional_Territorial_MC_PC1  D3_Fisico_Habitacional_Territorial_MC_PC2  D4_Tecnologico_Conectividade_MC_PC1
+14           Paranoá  Agr. Empresarial  1                    -1.30                      -0.07                                      -0.54                                       0.45                                -1.61
+15           Paranoá     Agr. Familiar  1                    -1.17                      -0.97                                      -0.90                                      -0.40                                -0.99
+16           Paranoá      Assentamento  0                     0.16                       0.94                                       3.98                                       1.27                                -0.41
+17           Paranoá   Moradia e Lazer  1                    -1.42                      -1.04                                      -1.61                                      -0.85                                -0.19
+20        Planaltina  Agr. Empresarial  1                    -0.59                      -0.39                                      -1.37                                      -0.34                                -0.59
+21        Planaltina     Agr. Familiar  2                    -0.05                      -0.39                                       0.33                                      -0.40                                 0.42
+22        Planaltina      Assentamento  1                    -3.22                      -2.19                                      -2.35                                      -1.32                                -2.46
+23        Planaltina   Moradia e Lazer  1                    -1.36                      -2.80                                      -2.11                                      -0.85                                -2.92
+0         Brazlândia     Agr. Familiar  2                     0.18                      -1.27                                      -0.89                                       1.89                                 1.10
+1         Brazlândia      Assentamento  2                    -0.45                       0.96                                      -1.20                                       0.89                                -0.13
+2         Brazlândia   Moradia e Lazer  0                     0.65                       0.11                                       4.50                                      -0.23                                 0.96
+8               Gama  Agr. Empresarial  2                    -0.81                      -0.73                                       1.42                                       0.38                                -0.21
+9               Gama     Agr. Familiar  2                     0.14                      -0.71                                      -1.63                                       2.18                                -0.60
+10              Gama   Moradia e Lazer  0                     0.81                       1.17                                       2.02                                       0.20                                 1.11
+31         Samambaia  Agr. Empresarial  2                    -1.39                      -2.93                                      -0.19                                       2.18                                 0.02
+32         Samambaia     Agr. Familiar  1                    -1.88                      -0.73                                      -2.18                                       2.40                                -1.55
+33         Samambaia   Moradia e Lazer  1                    -3.91                      -0.74                                      -2.91                                      -4.46                                -2.39
+37     Sobradinho II  Agr. Empresarial  2                     0.15                       0.34                                      -0.85                                       1.43                                 0.01
+38     Sobradinho II     Agr. Familiar  2                    -0.01                       0.94                                      -0.67                                       1.66                                -0.85
+39     Sobradinho II   Moradia e Lazer  0                     0.94                       1.82                                       1.29                                       1.11                                 1.16
+18          Park Way     Agr. Familiar  0                     1.34                       0.97                                       2.27                                      -0.05                                 0.69
+19          Park Way      Assentamento  2                     1.61                       0.72                                      -0.57                                       2.45                                -0.17
+24  Recanto das Emas  Agr. Empresarial  2                     1.84                      -0.52                                       1.35                                      -0.06                                -1.62
+25  Recanto das Emas     Agr. Familiar  1                     0.18                      -0.97                                      -1.05                                      -0.43                                -0.60
+28   Riacho Fundo II      Assentamento  2                     1.47                       0.12                                       0.32                                       0.23                                 1.06
+29   Riacho Fundo II   Moradia e Lazer  0                     1.20                       0.93                                       1.12                                      -0.94                                 1.36
+35        Sobradinho  Agr. Empresarial  2                     0.28                       2.39                                       0.76                                       0.82                                 0.24
+36        Sobradinho   Moradia e Lazer  1                    -1.44                      -0.27                                      -2.35                                      -1.67                                -1.37
+45        Taguatinga  Agr. Empresarial  2                     3.47                      -1.37                                       0.06                                       1.92                                 3.28
+46        Taguatinga   Moradia e Lazer  0                     3.54                      -0.05                                       0.45                                      -1.28                                 2.30
+               a01ra  G  D1_Bens_Duraveis_MC_PC1  D2_Humano_Trabalho_MC_PC1  D3_Fisico_Habitacional_Territorial_MC_PC1  D3_Fisico_Habitacional_Territorial_MC_PC2  D4_Tecnologico_Conectividade_MC_PC1
+18          Park Way  0                     1.34                       0.97                                       2.27                                      -0.05                                 0.69
+26      Riacho Fundo  0                     1.99                       1.68                                       2.36                                      -0.39                                 1.76
+6             Fercal  1                    -1.03                      -0.22                                       0.82                                      -0.21                                -2.19
+15           Paranoá  1                    -1.17                      -0.97                                      -0.90                                      -0.40                                -0.99
+25  Recanto das Emas  1                     0.18                      -0.97                                      -1.05                                      -0.43                                -0.60
+30              SCIA  1                    -1.26                       0.19                                       1.22                                      -1.01                                -0.02
+32         Samambaia  1                    -1.88                      -0.73                                      -2.18                                       2.40                                -1.55
+0         Brazlândia  2                     0.18                      -1.27                                      -0.89                                       1.89                                 1.10
+4          Ceilândia  2                     0.69                      -1.66                                      -0.97                                       2.72                                 0.49
+9               Gama  2                     0.14                      -0.71                                      -1.63                                       2.18                                -0.60
+21        Planaltina  2                    -0.05                      -0.39                                       0.33                                      -0.40                                 0.42
+38     Sobradinho II  2                    -0.01                       0.94                                      -0.67                                       1.66                                -0.85

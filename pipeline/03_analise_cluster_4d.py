@@ -65,7 +65,7 @@ N_SUBAMOSTRAS = 200                               # subamostras (80%) por K na e
 SEED = 42
 RNG = np.random.default_rng(SEED)
 CL = f"Cluster_K{K_FINAL}"
-NOMES_GRUPOS = {0: "A — Urbanização formal consolidada", 1: "B — Urbanização parcial", 2: "C — Saneamento e vias precários"} if K_FINAL == 3 else {i: f"Grupo {i}" for i in range(K_FINAL)}   # nomes substantivos (ordem: da infraestrutura mais à menos consolidada)
+NOMES_GRUPOS = ({0: "A — Urbanização formal consolidada", 1: "B — Saneamento e vias precários", 2: "C — Urbanização parcial"} if os.environ.get("GRUPOS_NOMES") == "m2" else {0: "A — Urbanização formal consolidada", 1: "B — Urbanização parcial", 2: "C — Saneamento e vias precários"}) if K_FINAL == 3 else {i: f"Grupo {i}" for i in range(K_FINAL)}   # nomes substantivos (ordem: da infraestrutura mais à menos consolidada)
 FIG_DIR = Path(os.environ.get("TCC_FIG", "figuras")); FIG_DIR.mkdir(parents=True, exist_ok=True)   # PNGs e CSVs de saída
 
 def salvar(nome):

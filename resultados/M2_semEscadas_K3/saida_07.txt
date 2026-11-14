@@ -1,0 +1,6 @@
+KM n_init 1 0.489 sd 0.144
+KM n_init 10 0.595 sd 0.168
+KM n_init 50 0.611 sd 0.174
+Ward 0.707 sd 0.171
+ref KM vs Ward refit 0.693
+ref Ward vs KM refit 0.58

@@ -29,12 +29,13 @@ for c,n in names.items():
     t+=f"{n} & "+" & ".join(f2(m.loc[g,c]) for g in range(3))+f" & {f1(r.H)} & {fp(r.p)} & {f2(r.eps2)} \\\\\n"
 t+=r"""\hline
 \end{tabular}}
-\par\footnotesize Fonte: elaboração própria. Média dos escores dos segmentos de cada grupo (grupos A a C; $n$ = 17, 24 e 8 segmentos). Os escores têm média zero e desvio-padrão de 1,2 a 2,2 entre os 49 segmentos, e o sinal de cada componente é arbitrário (a leitura segue as cargas da Seção~\ref{sec:res_pca}). $H$: estatística de Kruskal-Wallis (4 graus de liberdade); $\varepsilon^2$: tamanho de efeito. Os $p$-valores são descritivos, porque os grupos foram formados com os mesmos componentes (Seção~\ref{sec:metodo_robustez}); todos permanecem abaixo de 0,001 após a correção de Benjamini-Hochberg.
+\par\footnotesize Fonte: elaboração própria. Média dos escores dos segmentos de cada grupo (grupos A a C). Os escores têm média zero e desvio-padrão de 1,2 a 2,2 entre os 49 segmentos, e o sinal de cada componente é arbitrário (a leitura segue as cargas da Seção~\ref{sec:res_pca}). $H$: estatística de Kruskal-Wallis (4 graus de liberdade); $\varepsilon^2$: tamanho de efeito. Os $p$-valores são descritivos, porque os grupos foram formados com os mesmos componentes (Seção~\ref{sec:metodo_robustez}); todos permanecem abaixo de 0,01 após a correção de Benjamini-Hochberg.
 \end{table}
 """
 open('tab_escores.tex','w').write(t)
 # heatmap em desvios-padrão
-z=(m/sd); NOMES=["A — Urbanização consolidada","B — Urbanização parcial","C — Infraestrutura precária"]; _n=list(d.groupby("Cluster_K3").size()) if "d" in dir() else [17,24,8]; z.index=[f"{NOMES[i]} (n={n})" for i,n in zip(range(3),_n)]
+z=(m/sd); import os as _os
+NOMES=(["A — Urbanização consolidada","B — Infraestrutura precária","C — Urbanização parcial"] if _os.environ.get("GRUPOS_NOMES")=="m2" else ["A — Urbanização consolidada","B — Urbanização parcial","C — Infraestrutura precária"]); _n=list(d.groupby("Cluster_K3").size()) if "d" in dir() else [17,24,8]; z.index=[f"{NOMES[i]} (n={n})" for i,n in zip(range(3),_n)]
 fig,ax=plt.subplots(figsize=(8,3.6)); im=ax.imshow(z.values,cmap='RdBu',vmin=-2,vmax=2,aspect='auto')
 ax.set_xticks(range(z.shape[1])); ax.set_xticklabels([v.split(' (')[0] for v in names.values()],fontsize=9); ax.set_yticks(range(3)); ax.set_yticklabels(z.index,fontsize=9)
 for i in range(3):
@@ -94,7 +95,7 @@ def tab(by,order,heads,cap,lab_,note):
     return t
 nota="Fonte: elaboração própria a partir da PDAD Rural 2022. Proporções ponderadas pelo peso corrigido, entre as respostas válidas (``sim'' ou ``não''); respostas ``não sabe'' e ``não se aplica'' excluídas. Os programas são categorias excludentes entre os domicílios que receberam incentivo (as demais respostas são ``outro'' e ``não sabe''). $^{a}$ Base de menos de 30 domicílios beneficiários: leitura apenas indicativa."
 t1=tab('a01subpopulacao',['Agricultura Familiar','Agricultura Empresarial','Assentamento/Agrovila','Características Urbanas'],['Agr. Familiar','Agr. Empresarial','Assentamento','Moradia e Lazer'],'Apoio à produção, acesso a programas e a mercado, por subpopulação','tab:apoio_sub',nota)
-t2=tab('Cluster_K3',[0,1,2],['A','B','C'],'Apoio à produção, acesso a programas e a mercado, por grupo da tipologia','tab:apoio_grupo',nota+" G2 tem apenas 23 domicílios com resposta válida e 2 beneficiários.")
+t2=tab('Cluster_K3',[0,1,2],['A','B','C'],'Apoio à produção, acesso a programas e a mercado, por grupo da tipologia','tab:apoio_grupo',nota+""+("" if _os.environ.get("GRUPOS_NOMES")=="m2" else " G2 tem apenas 23 domicílios com resposta válida e 2 beneficiários."))
 open('tab_apoio_sub.tex','w').write(t1); open('tab_apoio_grupo.tex','w').write(t2)
 print(t2)
 # ---------- mapas apoio por RA

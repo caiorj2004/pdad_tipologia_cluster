@@ -41,7 +41,7 @@ for r in tq.itertuples():
     prev = r.Grupos
     tex.append(f"{r.RA} & {r.Segmentos} & {r.Grupos} & {r.Detalhe} \\\\")
 tex += ["\\hline", "\\end{tabular}",
-        "\\par\\footnotesize Fonte: elaboração própria a partir da PDAD Rural 2022 (IPEDF). AF: Agricultura Familiar; AE: Agricultura Empresarial; AS: Assentamento/Agrovila; ML: Moradia e Lazer. G0 a G4: grupos do $K$-Means ($K = 5$). As 7 RAs com um único segmento não aparecem.",
+        "\\par\\footnotesize Fonte: elaboração própria a partir da PDAD Rural 2022 (IPEDF). AF: Agricultura Familiar; AE: Agricultura Empresarial; AS: Assentamento/Agrovila; ML: Moradia e Lazer. A a C: grupos do $K$-Means ($K = 3$). As 7 RAs com um único segmento não aparecem.",
         "\\end{table}"]
 open('Tabela_ra_segmentos.tex', 'w', encoding='utf-8').write('\n'.join(tex))
 # ---- 2) mapas de calor dos escores

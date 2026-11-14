@@ -1,0 +1,21 @@
+['Segmento', 'Cluster_ref', 'n_amostra', 'Escore_subamostras', 'Escore_cenarios', 'Classe']
+ward   0  1  2  3   4
+km                   
+0     11  0  1  0   0
+1      0  5  5  0   0
+2      0  0  5  0   0
+3      0  0  0  7   0
+4      0  0  0  1  14
+                                rot  amostra_n  km  ward     Classe
+10           Gama — Moradia e Lazer        212   1     2     Núcleo
+12     Lago Norte — Moradia e Lazer         51   0     2  Fronteira
+18         Park Way — Agr. Familiar        141   1     2     Núcleo
+26     Riacho Fundo — Agr. Familiar        222   1     2     Núcleo
+35    Sobradinho — Agr. Empresarial         79   1     2  Fronteira
+39  Sobradinho II — Moradia e Lazer        182   1     2  Fronteira
+44  São Sebastião — Moradia e Lazer        305   4     3     Núcleo
+col_0      False  True 
+Classe                 
+Fronteira      3      8
+Núcleo         4     34
+[(2, np.float64(23.2)), (3, np.float64(14.06)), (4, np.float64(10.19)), (5, np.float64(9.61)), (6, np.float64(8.07)), (7, np.float64(7.94)), (8, np.float64(7.33))]

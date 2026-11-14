@@ -2,7 +2,8 @@
 # Figuras: perfis dos grupos com IC 95% (bootstrap) e validação externa. Entrada: perfis_grupos_ic.csv, validacao_externa.csv
 import pandas as pd, numpy as np, matplotlib
 matplotlib.use('Agg'); import matplotlib.pyplot as plt
-NOM = ['A — Urbanização formal\nconsolidada', 'B — Urbanização\nparcial', 'C — Saneamento e\nvias precários']; COR = ['#440154', '#21918c', '#fde725']
+import os
+NOM = ['A — Urbanização formal\nconsolidada', 'B — Saneamento e\nvias precários', 'C — Urbanização\nparcial'] if os.environ.get('GRUPOS_NOMES') == 'm2' else ['A — Urbanização formal\nconsolidada', 'B — Urbanização\nparcial', 'C — Saneamento e\nvias precários']; COR = ['#440154', '#21918c', '#fde725']
 p = pd.read_csv('perfis_grupos_ic.csv')
 rot = {'agua_rede': 'Água da rede', 'solucao_sanitaria_estruturada': 'Solução sanitária estruturada', 'rua_pavimentada': 'Rua pavimentada', 'internet_banda_larga_fixa': 'Banda larga fixa',
        'possui_computador': 'Computador', 'possui_automovel': 'Automóvel', 'trabalhou_30d': 'Trabalhou nos últimos 30 dias', 'contribui_previdencia': 'Contribui à previdência'}
