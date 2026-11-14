@@ -1,35 +1,46 @@
-# Leitura da comparação de variantes (13/11/2026) — sem eleger modelo
+# Leitura da comparação de variantes (sem eleger vencedor)
 
-Fonte: `resultados/comparacao_variantes.csv` (19 variantes). Todos os números abaixo vêm dessa tabela.
-Bootstrap: 200 réplicas e 30 inicializações para M0_antigo_K5, M0_antigo_K3, M1_revisado_K3; 100 réplicas e 20 inicializações para as demais; as duas variantes `_b500n50` usam 500 e 50.
+Base: `resultados/comparacao_variantes.{csv,md}`, 27 variantes completas (etapas 03, 16, 18, 19, 21, 23, 24, 25, 26), geradas em 2026-11-13. Esta leitura descreve o que os números mostram; **não escolhe modelo**.
 
-## 1. O que reproduz os diagnósticos da orientadora (modelo antigo, K=5)
-| Diagnóstico dela | Reprodução aqui |
-|---|---|
-| p de covariância em K=5 = 0,110 | 0,110 |
-| AMI dos rótulos com a RA 0,16 e com a subpopulação 0,06 | 0,159 e 0,061 |
-| grupo 2 com 3 segmentos e 24 domicílios (0,5%) | menor grupo com 3 segmentos e 0,53% dos domicílios |
-| Spearman tamanho × distância ao centro = −0,45 (4 variáveis, 49 segmentos) | −0,42 (matriz completa) |
+## O que é igual em todas as variantes
+- Multinível por segmento, Moran I (bruto ≈ 0,003; ajustado pela composição ≈ 0) e decomposição domiciliar (RA ≈ 5,7%, subpopulação ≈ 0,2%, segmento ≈ 12%, residual ≈ 82%) dependem dos dados, não da partição. Não discriminam modelos; descrevem o território.
+- Winsorização a 1,00 vs 0,99 vs 0,95 não muda a partição de M1 K=3 (tamanhos 24/17/8 nos três casos). A escolha de winsor não decide nada.
+- Aumentar o bootstrap de 200 para 500 réplicas (50 inicializações) mexe pouco no ARI médio (M0 K=5: 0,458 → 0,472; M1 K=3: 0,381 → 0,381). O Monte Carlo está estável.
+- Bootstrap por estrato com regra de retenção redecidada por réplica dá resultado próximo ao padrão (M1 K=3: 0,381 vs 0,373).
 
-## 2. O que vale em todas as variantes (não depende de qual modelo vença)
-1. **Nenhuma variante com K=3 supera o nulo de covariância** (p de 0,14 a 0,88). Algum K entre 2 e 8 fica significativo (p < 0,05) no modelo antigo (K=7, p=0,016), em `A_so_agua`, `A_so_dur`, `A_so_esgoto`, `A_so_renda` e em `L_sem_ctx`; o modelo revisado não tem nenhum (menor p = 0,13, em K=8).
-2. **Segmentos pequenos são mais extremos em todas as variantes**: Spearman entre n e distância ao centro de −0,42 a −0,56, e Mann-Whitney (n < 20 mais distantes) com p < 0,001 em todas. Não foi resolvido por nenhuma mudança de matriz testada.
-3. **Validação externa**: CadÚnico difere entre grupos (Kruskal-Wallis entre segmentos, p < 0,05) e o IVS-DF (fora da matriz nas variantes `ctx`) ordena os grupos (p < 0,01) em todas as variantes. A insegurança alimentar moderada ou grave difere (p < 0,05) em todas, exceto em `L_sem_agua` (p = 0,060). A escritura registrada raramente difere (p < 0,05 em 3 de 19).
-4. **A winsorização da renda não altera nada**: `S_winsor95` e `S_winsor100` produzem a mesma partição de `M1_revisado_K3` (bootstrap 0,384 e 0,385 contra 0,381).
-5. **Só K=2 é estável no bootstrap** (ARI médio de 0,58 a 0,73 em K=2 contra 0,37 a 0,57 para K=3 a 5).
+## Contra os nulos
+- Nenhum K final bate o nulo de covariância com p < 0,05 em M1. Em M0 K=5, p = 0,110. Mesmo sem esse corte, A_so_dur, A_so_renda e A_so_agua têm alguns K isolados abaixo de 0,05.
+- Contra o nulo do bootstrap, o ARI observado não passa do p95 do nulo em nenhuma variante principal (M1 K=3: 0,381 vs p95 0,687; M0 K=5: 0,458 vs 0,551). A estabilidade dos grupos não se distingue do que se obteria com ruído de mesma covariância.
+- Metades (split-half): ARI observado médio de 0,23 a 0,32, abaixo do p95 do nulo em todas.
+- Estabilidade de subamostra a 80%: de 0,48 (M1 K=4) a 0,71. K=2 é sempre mais estável (0,86 a 0,98) e tem a maior silhueta (≈ 0,31 a 0,33).
 
-## 2b. Onde os resultados divergem entre as variantes
-| Métrica | Modelo antigo (K=5) | Revisado (K=3) | Observação |
-|---|---|---|---|
-| ARI médio do bootstrap | 0,46 (0,47 com 500 réplicas) | 0,38 | variantes intermediárias de 0,38 a 0,57 |
-| Puxão da RA (pares da mesma RA no mesmo grupo, p) | 0,006 | 0,142 | recolocar IVS-DF e escala da RA no revisado (`L_sem_ctx`) leva a 0,005 e sobe o ARI do bootstrap para 0,515 |
-| Partição sem uma subpopulação (ARI médio, PCA refeito) | 0,76 | 0,45 | no revisado, tirar "Características Urbanas" leva o ARI a 0,16 |
-| Partição sem uma RA (ARI médio, PCA refeito) | 0,81 | 0,74 | RA crítica varia (Fercal, Sobradinho, Gama, Ceilândia) |
-| Ótimo do K-Means com 10 inicializações | 34% das sementes | 18% | de 7% a 73% entre variantes |
-| AMI com a RA / com a subpopulação | 0,159 / 0,061 | 0,071 / 0,072 | "mais associado à RA" vale para o antigo, não para o revisado |
+## Entre os modelos centrais
+| | M0 K=5 | M0 K=3 | M1 K=3 | M1 K=4 | M1 K=5 |
+|---|---|---|---|---|---|
+| silhueta | 0,236 | 0,221 | 0,253 | 0,224 | 0,212 |
+| ARI bootstrap médio | 0,458 | 0,558 | 0,381 | 0,396 | 0,368 |
+| ARI subamostra 80% | 0,664 | 0,658 | 0,658 | 0,480 | 0,566 |
+| menor grupo (% dom.) | 0,5 | 22,4 | 22,5 | 18,0 | 8,1 |
+| ARI deixando uma RA fora (refazendo o PCA) | 0,805* | 0,903* | 0,736 | 0,457 | 0,664 |
 
-## 3. Pontos que continuam em aberto (não decididos)
-* **Qual modelo é melhor.** Em estabilidade e separação do nulo o antigo tem números melhores; em ausência de variáveis constantes na RA e de composições colineares o revisado é mais defensável. As métricas de estabilidade melhoram quando o IVS-DF e a escala da RA voltam à matriz (`L_sem_ctx`), mas junto com o puxão da RA (item 2b).
-* **O revisado depende fortemente da subpopulação Características Urbanas** (S6b): isso pode ser um traço do território ou uma limitação da matriz.
-* **Grupo pequeno do antigo (3 segmentos)** some no revisado, mas os segmentos pequenos continuam extremos (item 2.2).
-* Testes ainda não feitos: refazer toda a bateria com o dicionário aplicado reprocessado; variante com mediana ponderada de renda (descartada por decisão do autor); variante deixando fora também os 6 segmentos não classificáveis.
+*Valores de S6b na coluna `S6b_ARI_medio_sem_uma_RA`.
+
+- M0 K=5 tem um grupo com 0,5% dos domicílios expandidos (3 segmentos). Isso é fragilidade de interpretação mesmo com métricas aceitáveis.
+- M1 K=3 tem a maior silhueta do conjunto de K final, mas o menor ARI de bootstrap entre os K=3. M0 K=3 tem bootstrap mais alto e silhueta menor. Há um trade-off, não um dominante.
+- M1 K=4 e K=5 perdem em subamostra e em deixar-uma-RA-fora.
+
+## Estrutura espacial e composição
+- AMI entre partição e RA é baixa (0,05 a 0,16); com subpopulação, em geral similar. Em M1 K=3, o AMI com RA não passa do nulo de atribuição domiciliar (p = 0,68), enquanto o de subpopulação fica perto do limiar (p = 0,06). Em M0 K=5 é o inverso (RA p = 0,05; subpop p = 0,29). Não há leitura "territorial" ou "setorial" única.
+- Correlação de Spearman entre tamanho do segmento e distância ao centro: negativa em todas as variantes (−0,33 a −0,63; p ≤ 0,02). Segmentos pequenos tendem a ficar mais longe dos centros. Isso persiste em todo o conjunto e precisa ser dito no texto.
+- Validação externa ordenada: M1 K=3 sem associação significativa; M0 K=3/K=5 e A_so_dur têm 4–5 desfechos com p < 0,05. Com 49 segmentos e vários desfechos, isso não corrige para comparações múltiplas.
+
+## Sensibilidade à construção
+- Retirar uma dimensão (L_sem_*) ou usá-la sozinha (A_so_*) altera tamanhos e estabilidade, mas nenhuma variante isolada domina em todas as métricas.
+- Variantes da escada de água e esgoto (E_*): partições K=3 parecidas (20/17/12 a 22/16/11); AMI com subpopulação varia bastante (0,015 a 0,231), o que mostra que essa métrica é sensível à definição dessas variáveis.
+- CLR vs ILR: S_clr tem silhueta 0,257 e partição 23/18/8, ligeiramente diferente de ILR.
+
+## Limites
+- 49 segmentos dão pouco poder; ausência de significância não é prova de ausência de estrutura.
+- Nenhum K=3 bate o nulo de covariância; a tipologia deve ser apresentada como descrição analítica, não como descoberta de grupos naturais.
+- Pendências fora do pipeline: validação externa sob incerteza da partição, jackknife por domicílio, comparação com a Emater.
+- Intervalos do modelo misto por variacional Bayes subestimam a incerteza; o modelo domiciliar não usa pesos.
