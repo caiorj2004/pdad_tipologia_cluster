@@ -106,7 +106,7 @@ for _, r_ in st4.iterrows():
 # ---------------- S5 arquétipos (Cutler & Breiman), via NNLS alternado
 def simplex_nnls(A, b, M=1e3):
     """min ||A x - b||, x >= 0, sum x = 1 (restrição imposta por linha com peso M)."""
-    A2 = np.vstack([A, M * np.ones((1, A.shape[1]))]); b2 = np.append(b, M); x, _ = nnls(A2, b2); return x
+    A2 = np.vstack([A, M * np.ones((1, A.shape[1]))]); b2 = np.append(b, M); x, _ = nnls(A2, b2, maxiter=200 * A2.shape[1]); return x   # maxiter maior: o padrão (3n) estourava em alguns ambientes (Windows)
 def arquetipos(X, k, n_start=20, iters=60, seed=SEED):
     r = np.random.default_rng(seed); Nn = len(X); tss = ((X - X.mean(0)) ** 2).sum(); best = (np.inf, None, None)
     for _ in range(n_start):
