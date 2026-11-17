@@ -108,6 +108,18 @@ rb = renda_por(mor, 'recebe_beneficios_sociais', WM)
 rb['categoria'] = rb['categoria'].map(lambda v: 'Recebe benefício' if str(v) in ('1', '1.0', 'True') else 'Não recebe benefício')
 salva(rb, 'pdad_renda_beneficio.csv')
 
+
+# parcela de moradores sem renda e medianas (individual, adultos 18+ e por benefício)
+v = mor[mor['renda_individual'].notna()]
+def _sem_renda(nome, x):
+    return dict(grupo=nome, n=len(x), pct_sem_renda=float(x.loc[x['renda_individual'] == 0, WM].sum() / x[WM].sum() * 100),
+                mediana=float(wq(x['renda_individual'], x[WM], .5)[0]), media=float(wmean(x['renda_individual'], x[WM])))
+ben = v['recebe_beneficios_sociais']
+salva(pd.DataFrame([_sem_renda('Todos os moradores com informação', v),
+                    _sem_renda('Adultos (18 anos ou mais)', v[v['idade_num'] >= 18]),
+                    _sem_renda('Recebem benefício social', v[ben == 1]),
+                    _sem_renda('Não recebem benefício social', v[ben == 0])]), 'pdad_renda_sem_renda.csv')
+
 vd = ['renda_domiciliar_pc', 'agua_rede', 'solucao_sanitaria_estruturada', 'rua_pavimentada', 'internet_domiciliar',
       'internet_banda_larga_fixa', 'possui_computador', 'possui_automovel']
 por_sub = pd.DataFrame({s: {v: wmean(d[v], d[W]) for v in vd} for s, d in dom.groupby(SUB)}).T
