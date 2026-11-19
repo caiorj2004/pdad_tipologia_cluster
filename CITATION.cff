@@ -8,6 +8,7 @@ authors:
     affiliation: "IESB"
     orcid: "https://orcid.org/0009-0001-5451-7975"
 version: "1.0.0"
+doi: "10.5281/zenodo.24373560"
 date-released: "2026-11-19"
 license: MIT
 repository-code: "https://github.com/caiorj2004/pdad_tipologia_cluster"
