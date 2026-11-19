@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tipologia dos Territórios Rurais do DF — TCC IESB</title>
+<meta name="description" content="Resultados do TCC: tipologia dos territórios rurais do Distrito Federal com a PDAD Rural 2022 (IESB, Ciência de Dados e IA).">
+<style>
+:root{
+  --bg:#f6f5f1; --card:#ffffff; --ink:#1d2428; --muted:#5b6770; --line:#dcd8cf; --accent:#1f4e79;
+  --gA:#1b6ca8; --gB:#b5432a; --gC:#e0a43f; --gN:#d9d6cd; --gAt:#fff; --gBt:#fff; --gCt:#1d2428;
+  --warn:#8a5a00; --warnbg:#fff4d6; --good:#2f6b3d; --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]){
+    --bg:#14181b; --card:#1c2226; --ink:#e8ecee; --muted:#9aa7af; --line:#33404a; --accent:#7fb4e3;
+    --gA:#4f9ad6; --gB:#d9694d; --gC:#e8b657; --gN:#3a444b; --gAt:#0d1417; --gBt:#0d1417; --gCt:#14181b;
+    --warn:#f0c46a; --warnbg:#3a2f12; --good:#7cc58c; --shadow:none;
+  }
+}
+:root[data-tema="escuro"]{
+  --bg:#14181b; --card:#1c2226; --ink:#e8ecee; --muted:#9aa7af; --line:#33404a; --accent:#7fb4e3;
+  --gA:#4f9ad6; --gB:#d9694d; --gC:#e8b657; --gN:#3a444b; --gAt:#0d1417; --gBt:#0d1417; --gCt:#14181b;
+  --warn:#f0c46a; --warnbg:#3a2f12; --good:#7cc58c; --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header.top{background:var(--card);border-bottom:1px solid var(--line)}
+.top .wrap{padding:18px 16px 12px}
+.inst{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+h1{font-size:clamp(22px,3.4vw,32px);line-height:1.15;margin:0 0 4px;font-weight:700}
+.sub{margin:0;color:var(--muted);font-size:15px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:10px 0 0;font-size:14px;color:var(--muted)}
+.badge{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
+:root[data-tema="escuro"] .badge,:root:not([data-tema="claro"]) .badge{color:var(--bg)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;margin-top:12px;border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch}
+nav.tabs button{appearance:none;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs button:focus-visible,.ctl button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{padding:18px 0 48px}
+section.painel[hidden]{display:none}
+.aviso{background:var(--warnbg);color:var(--warn);border-radius:10px;padding:10px 14px;font-size:14.5px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+h2{font-size:20px;margin:0 0 4px}
+h3{font-size:16px;margin:0 0 6px}
+p.lead{color:var(--muted);margin:0 0 12px;font-size:15px}
+.ctl{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.ctl button{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:14px;padding:5px 11px;border-radius:999px;cursor:pointer}
+.ctl button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root:not([data-tema="claro"]) .ctl button[aria-pressed="true"]{color:var(--bg)}
+svg text{font-family:inherit}
+#mapa{width:100%;height:auto;display:block}
+#mapa path.ra{stroke:var(--card);stroke-width:1.2;cursor:pointer;transition:opacity .12s}
+#mapa path.ra:hover{opacity:.82}
+#mapa path.ra.sel{stroke:var(--ink);stroke-width:3}
+#mapa path.fora{fill:var(--gN);opacity:.55;cursor:default}
+.leg{display:flex;flex-direction:column;gap:8px;margin:0 0 12px}
+.leg .it{display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.chip{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;font-weight:700;font-size:14px}
+.chip.A{background:var(--gA);color:var(--gAt)} .chip.B{background:var(--gB);color:var(--gBt)} .chip.C{background:var(--gC);color:var(--gCt)} .chip.N{background:var(--gN);color:var(--ink)}
+.leg small{color:var(--muted);display:block}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:600;color:var(--muted);font-size:13px;position:sticky;top:0;background:var(--card)}
+td.l,th.l{text-align:left}
+.tw{overflow-x:auto}
+.sit{font-size:12px;border-radius:6px;padding:1px 6px;border:1px solid var(--line);color:var(--muted)}
+.sit.F{color:var(--warn);border-color:var(--warn)} .sit.NC{color:var(--muted);border-style:dashed}
+.tip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:var(--bg);padding:5px 9px;border-radius:7px;font-size:13px;max-width:240px;display:none}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 16px}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kpi b{display:block;font-size:22px;line-height:1.1}
+.kpi span{color:var(--muted);font-size:13px}
+.gcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0 0 16px}
+.gcards .card{border-top-width:5px}
+.gcards .card.A{border-top-color:var(--gA)} .gcards .card.B{border-top-color:var(--gB)} .gcards .card.C{border-top-color:var(--gC)}
+.gcards .card p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.dots{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:6px 14px;align-items:center}
+.dots .nm{font-size:14px}
+.dots .nm small{color:var(--muted);display:block;font-size:12px}
+@media (max-width:640px){.dots{grid-template-columns:1fr}.dots .nm{margin-top:8px}}
+.nota{font-size:13px;color:var(--muted);margin:8px 0 0}
+.heat td{text-align:center;font-variant-numeric:tabular-nums}
+.sel-k{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 10px;font-size:14px}
+select,input[type=search]{font:inherit;font-size:14px;padding:5px 9px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:16px 0 28px;color:var(--muted);font-size:13px}
+.col2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.ok{color:var(--good);font-weight:600}
+.hl{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.tema{margin-left:auto;font-size:13px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:3px 9px;cursor:pointer}
+.row-top{display:flex;align-items:center;gap:10px}
+.hscroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="wrap">
+  <div class="row-top"><p class="inst">IESB · Ciência de Dados e Inteligência Artificial · Trabalho de Conclusão de Curso</p><button class="tema" id="tema" type="button" aria-label="Alternar tema claro/escuro">Tema</button></div>
+  <h1>Tipologia dos Territórios Rurais do Distrito Federal</h1>
+  <p class="sub">Uma análise de clustering socioespacial com a PDAD Rural 2022</p>
+  <div class="meta"><span>Autor: Caio Rosendo Jácome</span><span><span class="badge">Modelo principal: M2, K = 3</span></span><span id="tot"></span></div>
+  <nav class="tabs" role="tablist" aria-label="Seções">
+   <button role="tab" id="t-mapa" aria-selected="true" aria-controls="p-mapa">Mapa</button>
+   <button role="tab" id="t-perfil" aria-selected="false" aria-controls="p-perfil">Perfil dos grupos</button>
+   <button role="tab" id="t-modelos" aria-selected="false" aria-controls="p-modelos">Comparação dos modelos</button>
+   <button role="tab" id="t-estab" aria-selected="false" aria-controls="p-estab">Estabilidade</button>
+  </nav>
+ </div>
+</header>
+
+<main class="wrap">
+
+<section class="painel" id="p-mapa" role="tabpanel" aria-labelledby="t-mapa">
+ <div class="aviso"><b>Como ler.</b> Os três grupos são um recorte <i>descritivo</i> de um gradiente de urbanização formal, e não tipos naturais: nenhum número de grupos separa os dados melhor do que dados sem estrutura com a mesma covariância (aba Estabilidade). O modelo M2 foi definido depois de ver os resultados do M1 e, por isso, não é apresentado como “o melhor”.</div>
+ <div class="grid2">
+  <div class="card">
+   <h2>Grupos por Região Administrativa</h2>
+   <p class="lead">Cada RA reúne de um a quatro segmentos (subpopulações). Escolha como colorir o mapa e toque em uma RA para ver seus segmentos.</p>
+   <div class="ctl" id="ctl-col" role="group" aria-label="Colorir por"></div>
+   <svg id="mapa" role="img" aria-label="Mapa das Regiões Administrativas do Distrito Federal coloridas pelo grupo da tipologia"></svg>
+   <p class="nota">Cinza: RAs fora da PDAD Rural 2022. Listras claras: RA com segmentos em mais de um grupo (a cor é a do grupo com mais domicílios expandidos).</p>
+  </div>
+  <div>
+   <div class="card" style="margin-bottom:16px">
+    <h3>Grupos</h3>
+    <div class="leg" id="leg"></div>
+   </div>
+   <div class="card" id="detalhe-ra" aria-live="polite">
+    <h3>Região Administrativa</h3>
+    <p class="lead" style="margin:0">Selecione uma RA no mapa ou na lista.</p>
+    <div class="sel-k"><label for="sel-ra">RA:</label><select id="sel-ra"></select></div>
+    <div id="ra-corpo"></div>
+   </div>
+  </div>
+ </div>
+ <div class="card" style="margin-top:16px">
+  <h2>Os 49 segmentos</h2>
+  <p class="lead">Segmento = RA × subpopulação. <b>Colig.</b> é a fração das 200 réplicas do <i>bootstrap</i> em que o segmento fica com os demais do seu grupo. Segmentos com menos de 10 domicílios na amostra são não classificáveis (NC); coligação abaixo de 0,60 indica fronteira (F).</p>
+  <div class="sel-k"><label for="f-grupo">Grupo:</label><select id="f-grupo"><option value="">Todos</option><option>A</option><option>B</option><option>C</option></select>
+   <label for="f-busca">Buscar:</label><input id="f-busca" type="search" placeholder="RA ou subpopulação"></div>
+  <div class="tw"><table id="tab-seg"></table></div>
+ </div>
+</section>
+
+<section class="painel" id="p-perfil" role="tabpanel" aria-labelledby="t-perfil" hidden>
+ <div class="kpi" id="kpi-g"></div>
+ <div class="gcards" id="gcards"></div>
+ <div class="card" style="margin-bottom:16px">
+  <h2>Perfil dos domicílios por grupo</h2>
+  <p class="lead">Estimativas ponderadas pelo desenho amostral, com intervalo de 95% por <i>bootstrap</i> de domicílios. Cada linha tem a sua própria escala.</p>
+  <div id="perfil-dots" class="dots"></div>
+ </div>
+ <div class="col2">
+  <div class="card">
+   <h2>Validação externa</h2>
+   <p class="lead">Desfechos que não entraram na construção dos grupos (% de domicílios, com IC de 95%).</p>
+   <div id="valid-dots" class="dots"></div>
+   <p class="nota">Os testes de Kruskal-Wallis entre grupos são descritivos: com 49 segmentos e a partição estimada nos mesmos dados, os valores de <i>p</i> não têm leitura inferencial estrita.</p>
+  </div>
+  <div class="card">
+   <h2>Escores médios por dimensão</h2>
+   <p class="lead">Escore médio dos segmentos de cada grupo nos componentes principais do M2 (D3 tem dois componentes). Valores positivos: mais bens, trabalho, urbanização e conectividade.</p>
+   <div class="tw"><table class="heat" id="tab-esc"></table></div>
+  </div>
+ </div>
+</section>
+
+<section class="painel" id="p-modelos" role="tabpanel" aria-labelledby="t-modelos" hidden>
+ <div class="aviso">Quatro especificações da matriz foram comparadas: <b>M0</b> (original), <b>M1</b> (revisada, com água e esgoto em escada de serviço), <b>M2</b> (principal) e <b>M2b</b> (água como razões log-isométricas). Todas passaram pela mesma bateria de testes.</div>
+ <div class="card" style="margin-bottom:16px">
+  <h2>Indicadores lado a lado</h2>
+  <p class="lead">A coluna destacada é o modelo principal. Nenhuma especificação domina as demais em todos os indicadores.</p>
+  <div class="tw"><table id="tab-mod"></table></div>
+  <div class="sel-k" style="margin-top:12px"><label for="sel-kmod">Mesma comparação com outros K:</label>
+   <select id="sel-kmod"><option value="4">K = 4</option><option value="5">K = 5</option></select></div>
+  <div class="tw"><table id="tab-mod-k"></table></div>
+ </div>
+ <div class="card">
+  <h2>Quanto as partições concordam</h2>
+  <p class="lead">Índice de Rand ajustado (ARI) entre as partições dos 49 segmentos: 1 = idênticas, 0 = concordância esperada ao acaso.</p>
+  <div class="tw"><table class="heat" id="tab-ari"></table></div>
+  <p class="nota">O M2b dá quase a mesma partição do M2 (ARI 0,90) e não melhora a robustez; por isso entra só como sensibilidade. O M1 (escada de serviço) é a especificação mais distinta: seu ARI com as demais fica entre 0,27 e 0,40. M0 (K=3), M2 e M2b são próximas entre si (0,78 a 0,90).</p>
+ </div>
+</section>
+
+<section class="painel" id="p-estab" role="tabpanel" aria-labelledby="t-estab" hidden>
+ <div class="aviso"><b>Resultado central.</b> A estabilidade observada <i>não excede</i> a de dados gerados sem grupos e com a mesma covariância. Por isso os grupos são lidos como hipóteses a investigar, e não como categorias definitivas.</div>
+ <div class="col2">
+  <div class="card"><h2>Estabilidade contra o nulo</h2><p class="lead">ARI médio observado e o de dados nulos (barra: média do nulo; traço: percentil 95).</p><div id="g-nulo"></div></div>
+  <div class="card"><h2>Escolha de K</h2><p class="lead">Silhueta e estabilidade do K-Means em cada K (M2). Nenhum K se destaca de forma clara.</p><div id="g-k"></div></div>
+ </div>
+ <div class="card" style="margin-top:16px"><h2>Coligação de cada segmento</h2><p class="lead">Fração das réplicas do <i>bootstrap</i> em que o segmento permanece com os demais do seu grupo. A linha tracejada marca 0,60 (abaixo, fronteira).</p><div id="g-colig"></div></div>
+ <div class="col2" style="margin-top:16px">
+  <div class="card"><h2>Retirando uma RA por vez</h2><p class="lead">ARI entre a partição refeita (com a PCA recalculada) e a de referência nos segmentos restantes.</p><div id="g-ra"></div></div>
+  <div class="card"><h2>Retirando uma subpopulação</h2><p class="lead">Mesmo procedimento, removendo uma subpopulação inteira.</p><div id="g-sub"></div>
+   <h3 style="margin-top:14px">Divisão em metades</h3><p class="lead" style="margin:0">ARI médio entre metades de domicílios de cada segmento: <b id="met-obs"></b>, contra <b id="met-nulo"></b> no nulo (p95 <span id="met-p95"></span>).</p></div>
+ </div>
+</section>
+
+</main>
+<footer><div class="wrap">
+ Dados: PDAD Rural 2022 (IPEDF). Código, resultados de todas as variantes e instruções de reprodução em <a href="https://github.com/caiorj2004/pdad_tipologia_cluster">github.com/caiorj2004/pdad_tipologia_cluster</a>. Os números desta página são lidos dos arquivos versionados em <code>resultados/</code>.
+</div></footer>
+<div class="tip" id="tip"></div>
+
+<script id="dados" type="application/json">/*DADOS*/</script>
+<script>
+"use strict";
+const D = JSON.parse(document.getElementById('dados').textContent);
+const $ = (s, r=document) => r.querySelector(s);
+const fmt = (x, d=0) => Number(x).toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d});
+const NS = 'http://www.w3.org/2000/svg';
+const GN = {A:'Urbanização formal consolidada', B:'Saneamento e vias precários', C:'Urbanização parcial'};
+const GCOR = {A:'var(--gA)', B:'var(--gB)', C:'var(--gC)'};
+const SITN = {E:'Estável', F:'Fronteira', NC:'Não classificável'};
+const SUBS = ['Agr. Familiar','Assentamento','Moradia e Lazer','Agr. Empresarial'];
+function el(tag, at={}, kids=[]) { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); kids.forEach(c => e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c)); return e; }
+function h(tag, at={}, html='') { const e = document.createElement(tag); for (const k in at) e.setAttribute(k, at[k]); e.innerHTML = html; return e; }
+
+/* ---------------- tema e abas ---------------- */
+const raiz = document.documentElement;
+$('#tema').onclick = () => { const escuro = getComputedStyle(raiz).getPropertyValue('--bg').trim() === '#14181b'; raiz.dataset.tema = escuro ? 'claro' : 'escuro'; };
+const abas = ['mapa','perfil','modelos','estab'];
+function abrir(id, foco) {
+  abas.forEach(a => { const sel = a === id; $('#t-'+a).setAttribute('aria-selected', sel); $('#p-'+a).hidden = !sel; if (sel && foco) $('#t-'+a).focus(); });
+  history.replaceState(null, '', '#'+id);
+}
+abas.forEach((a,i) => { const b = $('#t-'+a); b.onclick = () => abrir(a);
+  b.onkeydown = e => { if (e.key==='ArrowRight') abrir(abas[(i+1)%abas.length], true); if (e.key==='ArrowLeft') abrir(abas[(i+abas.length-1)%abas.length], true); }; });
+window.addEventListener('hashchange', () => { const id = location.hash.slice(1); if (abas.includes(id)) abrir(id); });
+
+$('#tot').textContent = `${fmt(D.totais.n_seg)} segmentos em ${D.totais.n_ra} RAs · 5.075 domicílios na amostra · 66.540 expandidos`;
+
+/* ---------------- tooltip ---------------- */
+const tip = $('#tip');
+function mostrarTip(e, txt) { tip.textContent = txt; tip.style.display = 'block'; const x = Math.min(e.clientX + 14, innerWidth - 250), y = e.clientY + 14; tip.style.left = x+'px'; tip.style.top = y+'px'; }
+function esconderTip() { tip.style.display = 'none'; }
+
+/* ---------------- legenda e mapa ---------------- */
+const leg = $('#leg');
+D.grupos.forEach(g => leg.appendChild(h('div', {class:'it'}, `<span class="chip ${g.id}">${g.id}</span><div><b>${g.nome}</b><small>${g.n_seg} segmentos · ${fmt(g.pct_dom,1)}% dos domicílios expandidos</small></div>`)));
+leg.appendChild(h('div', {class:'it'}, `<span class="chip N">–</span><div><b>Sem segmento</b><small>RA fora da PDAD Rural, ou sem a subpopulação escolhida</small></div>`));
+
+const modos = [['pred','Grupo predominante'], ...SUBS.map(s => [s, s])];
+let modo = 'pred', raSel = null;
+const ctl = $('#ctl-col');
+modos.forEach(([k, nome]) => { const b = h('button', {type:'button', 'aria-pressed': k==='pred'}, nome); b.onclick = () => { modo = k; [...ctl.children].forEach(c => c.setAttribute('aria-pressed', c === b)); pintar(); }; ctl.appendChild(b); });
+
+const svg = $('#mapa');
+svg.setAttribute('viewBox', `0 0 ${D.mapa.w} ${D.mapa.h}`);
+const defs = el('defs', {}, [el('pattern', {id:'lis', width:9, height:9, patternUnits:'userSpaceOnUse', patternTransform:'rotate(45)'}, [el('rect', {width:9, height:9, fill:'none'}), el('line', {x1:0, y1:0, x2:0, y2:9, stroke:'#ffffff', 'stroke-opacity':'.32', 'stroke-width':2})])]);
+svg.appendChild(defs);
+const camadas = D.ras.map((r, i) => {
+  const base = el('path', {d:r.d, class: r.pdad ? 'ra' : 'fora', 'data-i':i});
+  if (r.pdad) { base.setAttribute('tabindex', 0); base.setAttribute('role', 'button'); base.setAttribute('aria-label', r.nome);
+    base.onmouseenter = e => mostrarTip(e, r.nome); base.onmousemove = e => mostrarTip(e, r.nome); base.onmouseleave = esconderTip;
+    base.onclick = () => escolherRA(i); base.onkeydown = e => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); escolherRA(i); } }; }
+  svg.appendChild(base);
+  let lis = null;
+  if (r.pdad && r.grupos.length > 1) { lis = el('path', {d:r.d, fill:'url(#lis)', 'pointer-events':'none'}); svg.appendChild(lis); }
+  return {base, lis, r};
+});
+function grupoDaRA(r) {
+  if (!r.pdad) return null;
+  if (modo === 'pred') return r.pred;
+  const s = r.segmentos.find(x => x.sub === modo); return s ? s.grupo : null;
+}
+function pintar() {
+  camadas.forEach(({base, lis, r}) => {
+    if (!r.pdad) return;
+    const g = grupoDaRA(r); base.style.fill = g ? GCOR[g] : 'var(--gN)';
+    if (lis) lis.style.display = modo === 'pred' ? '' : 'none';
+    base.classList.toggle('sel', raSel === r.nome);
+  });
+}
+const selRA = $('#sel-ra');
+selRA.appendChild(h('option', {value:''}, '— escolher —'));
+D.ras.map((r,i) => [r,i]).filter(([r]) => r.pdad).sort((a,b) => a[0].nome.localeCompare(b[0].nome,'pt-BR')).forEach(([r,i]) => selRA.appendChild(h('option', {value:i}, r.nome)));
+selRA.onchange = () => selRA.value !== '' && escolherRA(+selRA.value);
+function escolherRA(i) {
+  const r = D.ras[i]; raSel = r.nome; selRA.value = i; pintar();
+  const tot = r.segmentos.reduce((a,s) => a + s.dom, 0);
+  let t = `<p class="lead" style="margin:0 0 8px"><b>${r.nome}</b>: ${r.segmentos.length} segmento${r.segmentos.length>1?'s':''}, ${fmt(tot)} domicílios expandidos${r.grupos.length>1 ? ', em mais de um grupo' : ''}.</p><div class="tw"><table><tr><th class="l">Subpopulação</th><th>Grupo</th><th>n</th><th>Renda pc</th><th>Colig.</th></tr>`;
+  r.segmentos.forEach(s => t += `<tr><td class="l">${s.sub}</td><td><span class="chip ${s.grupo}" style="width:22px;height:22px;font-size:12px">${s.grupo}</span></td><td>${fmt(s.n)}</td><td>R$ ${fmt(s.renda)}</td><td>${fmt(s.colig,2)} <span class="sit ${s.sit}">${s.sit==='E'?'Est.':s.sit}</span></td></tr>`);
+  $('#ra-corpo').innerHTML = t + '</table></div>';
+}
+pintar();
+
+/* ---------------- tabela de segmentos ---------------- */
+function tabelaSeg() {
+  const g = $('#f-grupo').value, q = $('#f-busca').value.trim().toLowerCase();
+  const linhas = D.segmentos.filter(s => (!g || s.grupo === g) && (!q || (s.ra+' '+s.sub).toLowerCase().includes(q)));
+  $('#tab-seg').innerHTML = `<thead><tr><th class="l">RA</th><th class="l">Subpopulação</th><th>n</th><th>Dom. exp.</th><th>Renda pc (R$)</th><th>Esc. (anos)</th><th>Água rede</th><th>Banda larga</th><th>Grupo</th><th>Colig.</th><th class="l">Situação</th></tr></thead><tbody>` +
+   linhas.map(s => `<tr><td class="l">${s.ra}</td><td class="l">${s.sub}</td><td>${fmt(s.n)}</td><td>${fmt(s.dom)}</td><td>${fmt(s.renda)}</td><td>${fmt(s.esc,1)}</td><td>${s.agua}%</td><td>${s.banda}%</td><td><span class="chip ${s.grupo}" style="width:22px;height:22px;font-size:12px">${s.grupo}</span></td><td>${fmt(s.colig,2)}</td><td class="l"><span class="sit ${s.sit}">${SITN[s.sit]}</span></td></tr>`).join('') + '</tbody>';
+}
+$('#f-grupo').onchange = tabelaSeg; $('#f-busca').oninput = tabelaSeg; tabelaSeg();
+
+/* ---------------- perfil ---------------- */
+$('#kpi-g').innerHTML = D.grupos.map(g => `<div><b>${g.id} · ${fmt(g.pct_dom,1)}%</b><span>${g.n_seg} segmentos, ${fmt(g.dom)} domicílios expandidos</span></div>`).join('');
+const DESC = {A:'Maior cobertura de rede de água (61%), solução sanitária estruturada (82%), banda larga (82%) e escolaridade; metade das ruas pavimentadas. A maioria dos segmentos é de Moradia e Lazer.',
+              B:'Menor acesso a água da rede (16%) e a rua pavimentada (7%); os escores mais baixos em todas as dimensões. Reúne o maior número de segmentos e de domicílios, e todas as subpopulações.',
+              C:'Maior renda per capita (R$ 1.257) com infraestrutura pública parcial (água da rede 30%, rua pavimentada 23%) e boas condições internas da moradia. Predominam Agricultura Empresarial e Familiar.'};
+$('#gcards').innerHTML = D.grupos.map(g => `<div class="card ${g.id}"><h3><span class="chip ${g.id}">${g.id}</span> ${g.nome}</h3><b>${g.n_seg} segmentos · ${fmt(g.pct_dom,1)}% dos domicílios</b><p>${DESC[g.id]}</p></div>`).join('');
+
+const VARS = [
+  ['renda_domiciliar_pc','Renda domiciliar per capita','R$',v=>'R$ '+fmt(v)],
+  ['escolaridade_adulto','Escolaridade do adulto','anos',v=>fmt(v,1)+' anos'],
+  ['agua_rede','Água da rede geral','%',v=>fmt(v*100)+'%'],
+  ['solucao_sanitaria_estruturada','Solução sanitária estruturada','%',v=>fmt(v*100)+'%'],
+  ['rua_pavimentada','Rua pavimentada','%',v=>fmt(v*100)+'%'],
+  ['internet_banda_larga_fixa','Banda larga fixa','%',v=>fmt(v*100)+'%'],
+  ['possui_computador','Possui computador','%',v=>fmt(v*100)+'%'],
+  ['possui_automovel','Possui automóvel','%',v=>fmt(v*100)+'%'],
+  ['trabalhou_30d','Trabalhou nos últimos 30 dias','%',v=>fmt(v*100)+'%'],
+  ['contribui_previdencia','Contribui para a previdência','%',v=>fmt(v*100)+'%'],
+  ['ivs_df','IVS-DF da RA (fora do modelo)','índice',v=>fmt(v,2)]];
+const VALID = [
+  ['ebia_insegur_qualquer','Insegurança alimentar (qualquer nível)'],['ebia_mod_grave','Insegurança alimentar moderada ou grave'],
+  ['beneficio_social','Recebe benefício social'],['cadunico','Inscrito no CadÚnico'],
+  ['escritura_registrada','Imóvel com escritura registrada'],['doc_formal','Documento formal do imóvel'],['outorga_agua','Outorga de água']];
+
+function dotplot(alvo, linhas, fonte, fmtv) {
+  const cont = $(alvo); cont.innerHTML = '';
+  const cw = cont.clientWidth || 600, colW = Math.max(240, cw - (matchMedia('(max-width:640px)').matches ? 0 : 244));
+  linhas.forEach(([k, nome]) => {
+    const vals = D.grupos.map(g => ({g:g.id, v:fonte(g)[k]})).filter(x => x.v);
+    if (!vals.length) return;
+    const lo = Math.min(...vals.map(x => x.v[1])), hi = Math.max(...vals.map(x => x.v[2])), pad = (hi - lo) * .08 || 1, a = lo - pad, b = hi + pad, W = Math.round(colW), H = 52;
+    const X = v => 8 + (v - a) / (b - a) * (W - 16);
+    const s = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img', 'aria-label':nome + ': ' + vals.map(x => `${x.g} ${fmtv(k, x.v[0])}`).join(', '), style:'width:'+W+'px;max-width:100%;height:auto'});
+    s.appendChild(el('line', {x1:8, x2:W-8, y1:H/2, y2:H/2, stroke:'var(--line)', 'stroke-width':1}));
+    vals.forEach((x, i) => { const y = 13 + i * 13;
+      s.appendChild(el('line', {x1:X(x.v[1]), x2:X(x.v[2]), y1:y, y2:y, stroke:GCOR[x.g], 'stroke-width':3, 'stroke-linecap':'round', opacity:.55}));
+      const c = el('circle', {cx:X(x.v[0]), cy:y, r:5.5, fill:GCOR[x.g], stroke:'var(--card)', 'stroke-width':1.5});
+      c.onmouseenter = c.onmousemove = e => mostrarTip(e, `Grupo ${x.g}: ${fmtv(k, x.v[0])} (IC ${fmtv(k, x.v[1])} a ${fmtv(k, x.v[2])})`); c.onmouseleave = esconderTip; s.appendChild(c);
+      s.appendChild(el('text', {x:X(x.v[0]) + (X(x.v[0]) > W - 60 ? -9 : 9), y:y + 4, 'font-size':11, fill:'var(--ink)', 'text-anchor': X(x.v[0]) > W - 60 ? 'end' : 'start'}, [fmtv(k, x.v[0])])); });
+    cont.appendChild(h('div', {class:'nm'}, nome)); const w = h('div'); w.appendChild(s); cont.appendChild(w);
+  });
+}
+function desenharDots() { if ($('#p-perfil').hidden) return;
+  dotplot('#perfil-dots', VARS.map(v => [v[0], v[1]]), g => g.perfil, (k, v) => VARS.find(x => x[0] === k)[3](v));
+  dotplot('#valid-dots', VALID, g => g.valid, (k, v) => fmt(v,1) + '%'); }
+addEventListener('resize', desenharDots); $('#t-perfil').addEventListener('click', desenharDots);
+
+const DIMS = [['D1_Bens_Duraveis_MC_PC1','Bens duráveis'],['D2_Humano_Trabalho_MC_PC1','Humano e trabalho'],['D3_Fisico_Habitacional_Territorial_MC_PC1','Físico: urbanização formal (PC1)'],['D3_Fisico_Habitacional_Territorial_MC_PC2','Físico: condição interna da moradia (PC2)'],['D4_Tecnologico_Conectividade_MC_PC1','Conectividade']];
+function corDiv(v, m) { const t = Math.max(-1, Math.min(1, v / m)); return t >= 0 ? `color-mix(in srgb, var(--gA) ${Math.round(t*55)}%, var(--card))` : `color-mix(in srgb, var(--gB) ${Math.round(-t*55)}%, var(--card))`; }
+$('#tab-esc').innerHTML = '<thead><tr><th class="l">Dimensão</th>' + D.grupos.map(g => `<th>${g.id}</th>`).join('') + '</tr></thead><tbody>' +
+  DIMS.map(([k, n]) => '<tr><td class="l">' + n + '</td>' + D.grupos.map(g => `<td style="background:${corDiv(g.escores[k], 2.7)}">${fmt(g.escores[k],2)}</td>`).join('') + '</tr>').join('') + '</tbody>';
+
+/* ---------------- comparação dos modelos ---------------- */
+const IND = [
+  ['Variáveis / componentes retidos', m => `${m.vars} / ${m.comp}`],
+  ['Segmentos por grupo', m => m.tamanhos.replace(/[\[\]]/g,'')],
+  ['Menor grupo (% dos domicílios expandidos)', m => fmt(m.menor,1)],
+  ['Silhueta', m => fmt(m.silh,3)],
+  ['p do nulo de covariância', m => fmt(m.p_cov,3)],
+  ['ARI, subamostras de 80%', m => fmt(m.ari_sub,2)],
+  ['ARI médio, bootstrap de domicílios', m => fmt(m.boot,2)],
+  ['p do ARI do bootstrap contra o nulo', m => fmt(m.boot_p,2)],
+  ['Domicílios em segmentos de fronteira (%)', m => fmt(m.front,1)],
+  ['ARI sem uma RA (PCA refeita)', m => fmt(m.sem_ra,2)],
+  ['ARI sem uma subpopulação (PCA refeita)', m => fmt(m.sem_sub,2)],
+  ['Correlação de Spearman: tamanho × distância ao centro', m => fmt(m.spear,2)],
+  ['Desfechos externos com p < 0,05 entre grupos (de 7)', m => m.ve],
+  ['Desfechos com associação ordenada pela renda, p < 0,05 (de 7)', m => m.ord],
+  ['Desfechos significativos dentro da RA, permutação (de 7)', m => m.cond]];
+function tabelaMod(alvo, ms, destaque) {
+  $(alvo).innerHTML = '<thead><tr><th class="l">Indicador</th>' + ms.map(m => `<th class="${m.id===destaque?'hl':''}">${m.rotulo}${m.id===destaque?' †':''}</th>`).join('') + '</tr></thead><tbody>' +
+    IND.map(([n, f]) => '<tr><td class="l">' + n + '</td>' + ms.map(m => `<td class="${m.id===destaque?'hl':''}">${f(m)}</td>`).join('') + '</tr>').join('') + '</tbody>';
+}
+tabelaMod('#tab-mod', D.modelos, 'M2_semEscadas_K3');
+function porK() { const k = $('#sel-kmod').value; tabelaMod('#tab-mod-k', D.extras.filter(m => m.id.endsWith('K'+k)), 'M2_semEscadas_K'+k); }
+$('#sel-kmod').onchange = porK; porK();
+const AR = D.ari, NOMES = {M0_antigo_K3:'M0, K=3', M0_antigo_K5:'M0, K=5', M1_revisado_K3:'M1, K=3', M2_semEscadas_K3:'M2, K=3', M2b_aguaILR_K3:'M2b, K=3'};
+$('#tab-ari').innerHTML = '<thead><tr><th></th>' + AR.cols.map(c => `<th>${NOMES[c]}</th>`).join('') + '</tr></thead><tbody>' +
+  AR.m.map((l, i) => `<tr><td>${NOMES[AR.cols[i]]}</td>` + l.map((v, j) => `<td style="background:color-mix(in srgb, var(--gA) ${Math.round(v*60)}%, var(--card))">${i===j?'–':fmt(v,2)}</td>`).join('') + '</tr>').join('') + '</tbody>';
+
+/* ---------------- estabilidade ---------------- */
+function barras(alvo, itens, opt) {
+  const W = 520, lh = opt.lh || 30, H = itens.length * lh + 28, L = opt.L || 150, mx = opt.max || 1;
+  const s = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img', 'aria-label':opt.rotulo, style:'width:100%;height:auto'});
+  const X = v => L + v / mx * (W - L - 20);
+  [0, .25, .5, .75, 1].filter(t => t * mx <= mx).forEach(t => { const x = X(t * mx); s.appendChild(el('line', {x1:x, x2:x, y1:6, y2:H-20, stroke:'var(--line)', 'stroke-width':1})); s.appendChild(el('text', {x, y:H-6, 'font-size':11, fill:'var(--muted)', 'text-anchor':'middle'}, [fmt(t*mx, 2)])); });
+  itens.forEach((it, i) => { const y = 10 + i * lh;
+    s.appendChild(el('text', {x:L-8, y:y+lh/2-3, 'font-size':12, fill:'var(--ink)', 'text-anchor':'end'}, [it.nome]));
+    it.barras.forEach((b, j) => { const yy = y + 3 + j * (b.h || 9);
+      const r = el('rect', {x:X(0), y:yy, width:Math.max(1, X(b.v) - X(0)), height:(b.h || 9) - 2, rx:2, fill:b.cor});
+      r.onmouseenter = r.onmousemove = e => mostrarTip(e, b.tip); r.onmouseleave = esconderTip; s.appendChild(r); });
+    if (it.p95 != null) s.appendChild(el('line', {x1:X(it.p95), x2:X(it.p95), y1:y+1, y2:y+lh-5, stroke:'var(--ink)', 'stroke-width':2, 'stroke-dasharray':'3 2'}));
+  });
+  $(alvo).appendChild(s);
+}
+const E = D.estab;
+barras('#g-nulo', [
+  {nome:'Bootstrap de domicílios', p95:E.boot.nulo_p95, barras:[{v:E.boot.obs, cor:'var(--gA)', h:12, tip:`Observado: ${fmt(E.boot.obs,2)}`}, {v:E.boot.nulo, cor:'var(--gN)', h:12, tip:`Nulo (média): ${fmt(E.boot.nulo,2)}; p95 ${fmt(E.boot.nulo_p95,2)}`}]},
+  ...E.cov.map(c => ({nome:`Subamostras 80% · K=${c.K}`, p95:c.p95, barras:[{v:c.obs, cor:'var(--gA)', h:12, tip:`K=${c.K}: observado ${fmt(c.obs,2)} (p = ${fmt(c.p,2)})`}, {v:c.nulo, cor:'var(--gN)', h:12, tip:`K=${c.K}: nulo ${fmt(c.nulo,2)}; p95 ${fmt(c.p95,2)}`}]})),
+  {nome:'Metades de domicílios', p95:E.metades.nulo_p95, barras:[{v:E.metades.obs, cor:'var(--gA)', h:12, tip:`Observado: ${fmt(E.metades.obs,2)}`}, {v:E.metades.nulo, cor:'var(--gN)', h:12, tip:`Nulo: ${fmt(E.metades.nulo,2)}`}]}
+], {L:170, lh:34, max:1, rotulo:'ARI observado e do nulo'});
+$('#g-nulo').appendChild(h('p', {class:'nota'}, '<span class="chip A" style="width:14px;height:14px;border-radius:3px"></span> observado &nbsp; <span class="chip N" style="width:14px;height:14px;border-radius:3px"></span> média do nulo &nbsp; traço: p95 do nulo. Em nenhum caso o observado passa do p95 (p ≥ 0,34).'));
+(function () {
+  const W = 520, H = 250, L = 40, R = 14, T = 14, B = 34, ks = E.kmeans;
+  const s = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img', 'aria-label':'Silhueta e estabilidade por K', style:'width:100%;height:auto'});
+  const X = k => L + (k - 2) / (ks.length - 1) * (W - L - R), Y = v => T + (1 - v) * (H - T - B);
+  [0, .25, .5, .75, 1].forEach(t => { s.appendChild(el('line', {x1:L, x2:W-R, y1:Y(t), y2:Y(t), stroke:'var(--line)'})); s.appendChild(el('text', {x:L-6, y:Y(t)+4, 'font-size':11, fill:'var(--muted)', 'text-anchor':'end'}, [fmt(t,2)])); });
+  ks.forEach(k => s.appendChild(el('text', {x:X(k.K), y:H-16, 'font-size':12, fill:'var(--ink)', 'text-anchor':'middle'}, ['K=' + k.K])));
+  [['est','Estabilidade (ARI)','var(--gA)'], ['silh','Silhueta','var(--gB)']].forEach(([f, nome, cor], j) => {
+    s.appendChild(el('polyline', {points:ks.map(k => X(k.K) + ',' + Y(k[f])).join(' '), fill:'none', stroke:cor, 'stroke-width':2.5}));
+    ks.forEach(k => { const c = el('circle', {cx:X(k.K), cy:Y(k[f]), r:4.5, fill:cor, stroke:'var(--card)', 'stroke-width':1.5}); c.onmouseenter = c.onmousemove = e => mostrarTip(e, `K=${k.K} · ${nome}: ${fmt(k[f], f==='silh'?3:2)}`); c.onmouseleave = esconderTip; s.appendChild(c); });
+  });
+  $('#g-k').appendChild(s);
+  $('#g-k').appendChild(h('p', {class:'nota'}, '<b style="color:var(--gA)">Azul</b>: estabilidade (ARI); <b style="color:var(--gB)">vermelho</b>: silhueta. A estabilidade cai com K e a silhueta fica entre 0,22 e 0,32. K = 3 é uma escolha de interpretação, não um ótimo estatístico.'));
+})();
+(function () {
+  const it = E.colig, W = 880, L = 4, H = 200, T = 10, B = 44, n = it.length, bw = (W - L) / n;
+  const s = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img', 'aria-label':'Coligação por segmento', style:'width:100%;height:auto'});
+  const Y = v => T + (1 - v) * (H - T - B);
+  [0, .5, 1].forEach(t => s.appendChild(el('line', {x1:L, x2:W, y1:Y(t), y2:Y(t), stroke:'var(--line)'})));
+  s.appendChild(el('line', {x1:L, x2:W, y1:Y(.6), y2:Y(.6), stroke:'var(--ink)', 'stroke-dasharray':'5 4'}));
+  s.appendChild(el('text', {x:W-2, y:Y(.6)-4, 'font-size':11, fill:'var(--ink)', 'text-anchor':'end'}, ['0,60']));
+  it.forEach((d, i) => { const r = el('rect', {x:L + i*bw + 1, y:Y(d.c), width:bw - 2, height:Y(0) - Y(d.c), rx:2, fill:GCOR[d.g], opacity:d.sit === 'NC' ? .35 : 1, stroke: d.sit === 'F' ? 'var(--ink)' : 'none', 'stroke-width':1.2});
+    r.onmouseenter = r.onmousemove = e => mostrarTip(e, `${d.seg} · grupo ${d.g} · coligação ${fmt(d.c,2)} · n=${d.n} · ${SITN[d.sit]}`); r.onmouseleave = esconderTip; s.appendChild(r); });
+  $('#g-colig').appendChild(s);
+  $('#g-colig').appendChild(h('p', {class:'nota'}, `Barras ordenadas da menor para a maior coligação, coloridas pelo grupo. Borda escura: fronteira (${it.filter(x => x.sit==='F').length}). Opacas claras: não classificáveis, n < 10 (${it.filter(x => x.sit==='NC').length}). Os demais ${it.filter(x => x.sit==='E').length} segmentos são estáveis.`));
+})();
+barras('#g-ra', E.sem_ra.map(r => ({nome:r.ra, barras:[{v:r.ari, cor: r.ari < .5 ? 'var(--gB)' : 'var(--gA)', h:14, tip:`Sem ${r.ra}: ARI ${fmt(r.ari,2)}`}]})), {L:150, lh:19, max:1, rotulo:'ARI sem uma RA'});
+barras('#g-sub', E.sem_sub.map(r => ({nome:r.sub, barras:[{v:r.ari, cor:'var(--gA)', h:14, tip:`Sem ${r.sub}: ARI ${fmt(r.ari,2)}`}]})), {L:150, lh:26, max:1, rotulo:'ARI sem uma subpopulação'});
+$('#met-obs').textContent = fmt(E.metades.obs,2); $('#met-nulo').textContent = fmt(E.metades.nulo,2); $('#met-p95').textContent = fmt(E.metades.nulo_p95,2);
+
+const ini = location.hash.slice(1); if (abas.includes(ini)) abrir(ini);
+desenharDots();
+</script>
+</body>
+</html>
