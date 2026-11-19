@@ -15,7 +15,7 @@
       "type": "Supervisor"
     }
   ],
-  "description": "Código em Python, bases tratadas e saídas de todas as variantes de modelagem do TCC \"Tipologia dos Territórios Rurais do Distrito Federal: Uma Análise de Clustering Socioespacial com a PDAD Rural 2022\" (IESB, Ciência de Dados e IA). Os microdados da PDAD Rural 2022 e o IVS-DF são do IPEDF, cuja reprodução é permitida pelo instituto.",
+  "description": "Código em Python, bases tratadas e saídas de todas as variantes de modelagem do TCC \"Tipologia dos Territórios Rurais do Distrito Federal: Uma Análise de Clustering Socioespacial com a PDAD Rural 2022\" (IESB, Ciência de Dados e IA). Os microdados da PDAD Rural 2022 e o IVS-DF são do IPEDF, cujo uso para fins acadêmicos e científicos é permitido pelo instituto, com citação da fonte.",
   "license": "mit",
   "language": "por",
   "keywords": [

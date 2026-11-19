@@ -91,5 +91,5 @@ Auditoria contra a avaliação: `docs/auditoria_pipeline_vs_avaliacao.md`. A col
 ## Licença e como citar
 
 * O código e a documentação estão sob a licença MIT (arquivo `LICENSE`).
-* Os microdados da PDAD Rural 2022 e o IVS-DF são do IPEDF; as planilhas em `dados/` são cópias tratadas e **continuam sendo dados do IPEDF (a reprodução é permitida pelo instituto; cite a fonte)**.
+* Os microdados da PDAD Rural 2022 e o IVS-DF são do IPEDF; as planilhas em `dados/` são cópias tratadas e **continuam sendo dados do IPEDF (o IPEDF permite o uso para fins acadêmicos e científicos, com citação da fonte: https://www.ipe.df.gov.br/perguntas-sobre-dados-e-pesquisas-do-ipedf-codeplan, pergunta 4)**.
 * Para citar, use o `CITATION.cff` (o GitHub oferece o botão "Cite this repository") ou o DOI do arquivamento no Zenodo, indicado abaixo quando disponível.
