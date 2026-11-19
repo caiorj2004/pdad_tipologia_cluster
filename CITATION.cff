@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Se usar este material, cite-o como abaixo."
+title: "Tipologia dos Territórios Rurais do Distrito Federal: código, dados tratados e saídas (PDAD Rural 2022)"
+type: software
+authors:
+  - family-names: "Jácome"
+    given-names: "Caio Rosendo"
+    affiliation: "IESB"
+    orcid: "https://orcid.org/0009-0001-5451-7975"
+version: "1.0.0"
+date-released: "2026-11-19"
+license: MIT
+repository-code: "https://github.com/caiorj2004/pdad_tipologia_cluster"
+abstract: "Código em Python, bases tratadas e saídas de todas as variantes de modelagem do TCC 'Tipologia dos Territórios Rurais do Distrito Federal: Uma Análise de Clustering Socioespacial com a PDAD Rural 2022' (IESB, Ciência de Dados e IA). Os microdados da PDAD Rural 2022 são do IPEDF e seguem os termos do instituto."
+keywords:
+  - agricultura familiar
+  - PDAD Rural 2022
+  - análise de agrupamentos
+  - Distrito Federal
+  - meios de vida sustentáveis
+language: por
