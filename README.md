@@ -6,7 +6,7 @@
 ![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-green)
 
 Trabalho de Conclusão de Curso em Ciência de Dados e Inteligência Artificial (IESB, 2026), desenvolvido no grupo de pesquisa **Agrotec DF**, financiado pela FAPDF.
-Autor: Caio Rosendo Jácome · Orientação: Prof. Sérgio da Costa Côrtes.
+Autor: Caio Rosendo Jácome · Supervisão do TCC: Profª Simone de Araújo Góes Assis · Orientação no curso: Prof. Sérgio da Costa Côrtes.
 
 **🌐 Resultados interativos: https://caiorj2004.github.io/pdad_tipologia_cluster/**
 
