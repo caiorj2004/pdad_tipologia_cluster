@@ -1,4 +1,40 @@
-# Tipologia dos territórios rurais do DF — PDAD Rural 2022 (reprodutibilidade e testes de estresse)
+# Tipologia dos territórios rurais do DF — PDAD Rural 2022
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24373560.svg)](https://doi.org/10.5281/zenodo.24373560)
+[![Site](https://img.shields.io/badge/site-resultados%20interativos-1f4e79)](https://caiorj2004.github.io/pdad_tipologia_cluster/)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB)
+![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-green)
+
+Trabalho de Conclusão de Curso em Ciência de Dados e Inteligência Artificial (IESB, 2026), desenvolvido no grupo de pesquisa **Agrotec DF**, financiado pela FAPDF.
+Autor: Caio Rosendo Jácome · Orientação: Prof. Sérgio da Costa Côrtes.
+
+**🌐 Resultados interativos: https://caiorj2004.github.io/pdad_tipologia_cluster/**
+
+## Em resumo
+
+**Pergunta.** As médias do rural do Distrito Federal escondem realidades muito diferentes: assentamentos, chácaras de lazer e agricultura empresarial convivem na mesma Região Administrativa (RA). É possível construir uma tipologia desses territórios a partir dos dados oficiais, e ela segue as divisões administrativas ou as atravessa?
+
+**Dados.** Microdados da PDAD Rural 2022 (IPEDF): 5.075 domicílios, com pesos amostrais, agregados em **49 segmentos territoriais** (RA × subpopulação: agricultura familiar, agricultura empresarial, assentamento/agrovila, moradia e lazer) em 23 RAs, descritos por **30 indicadores em 4 dimensões** inspiradas no *Sustainable Livelihoods Framework* (bens duráveis e renda; capital humano e trabalho; capital físico, habitação e território; conectividade).
+
+**Método.** PCA por dimensão + K-Means, com a partição posta à prova:
+nulos que preservam a covariância, bootstrap de domicílios que refaz o pipeline inteiro (ARI), comparação com Ward e outros algoritmos, testes de estresse e ablação da matriz,
+estatística espacial (Moran, LISA, join count) e modelos mistos (MixedLM, logit misto) para medir quanto a divisão administrativa explica.
+
+**Resultados.**
+* Três perfis: **A — urbanização formal consolidada** (12 segmentos), **B — saneamento e vias precários** (20) e **C — urbanização parcial** (17).
+* A tipologia **atravessa as RAs**: 11 das 23 RAs abrigam mais de um grupo, e 68–97% da variação dos indicadores de água, esgoto e pavimentação está *dentro* dos segmentos.
+* O grupo B concentra mais vulnerabilidade social (inscrição no CadÚnico de 32% contra 20%; insegurança alimentar moderada ou grave de 11,6% contra 8–9%; variáveis fora do modelo), e 75% dos domicílios de agricultura familiar estão no grupo C.
+* **Leitura honesta:** nenhuma solução supera o nulo de covariância e a estabilidade no bootstrap de domicílios (ARI médio 0,54) não é maior que a de dados sem grupos. Os grupos são lidos como recortes de um **gradiente** e como hipóteses para política pública, não como tipos naturais.
+
+![Tipologia por subpopulação: segmentos coloridos pelo grupo A, B ou C](resultados/M2_semEscadas_K3/figuras/mapa_clusters_por_subpopulacao.png)
+
+**O que o repositório demonstra:** pipeline reprodutível com um comando (`python reproduzir_tudo.py`), sementes fixas e variantes declaradas em um arquivo; tratamento de microdados oficiais com pesos amostrais; validação de clustering além da silhueta; e transparência sobre o que os dados sustentam e o que não sustentam.
+
+**Stack:** Python · pandas · NumPy · scikit-learn · SciPy · statsmodels · GeoPandas · PySAL (libpysal, esda) · Matplotlib.
+
+---
+
+## Detalhes técnicos (reprodutibilidade e avaliação)
 
 Repositório de apoio ao TCC *Tipologia dos Territórios Rurais do Distrito Federal: Uma Análise de Clustering Socioespacial com a PDAD Rural 2022* (IESB, Ciência de Dados e IA).
 Ele contém o código, os dados e as saídas necessárias para reproduzir **cada modelo** discutido no TCC e para **testá-los sob estresse com a mesma bateria**, conforme a avaliação crítica de 12/11/2026.
@@ -10,6 +46,7 @@ Ele contém o código, os dados e as saídas necessárias para reproduzir **cada
 ```
 dados/gold/            microdados corrigidos (saída do programa 01) + IVS-DF (IPEDF)
 dados/                 versão anterior das planilhas (sem as correções dos códigos 66666 etc.) e shapefile das RAs
+dados/silver/          planilha-dicionário do IPEDF (entrada do programa 01)
 legado/                scripts originais dos modelos 4D e 5D (Colab); mantidos para consulta
 pipeline/              programas numerados e executores (veja abaixo)
 resultados/<variante>/ saídas de cada variante (texto e CSV; figuras só de M1_revisado_K3 e M2_semEscadas_K3)
@@ -24,6 +61,12 @@ python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt          # versões originais do projeto (Colab, 2025)
 # Testado em Python 3.13 com: pandas 3.0, numpy 2.5, scikit-learn 1.9, scipy 1.18, statsmodels 0.15, geopandas 1.2 (ver requirements-testado.txt)
 
+python reproduzir_tudo.py --modo teste          # verificação rápida da instalação (~5 min)
+python reproduzir_tudo.py --modo principal      # modelos centrais + figuras do TCC
+python reproduzir_tudo.py --modo completo       # todas as variantes (algumas horas)
+python reproduzir_tudo.py --saneamento          # refaz também o programa 01 a partir de dados/silver/ e compara com dados/gold/
+
+# ou, pelos executores em shell:
 bash pipeline/rodar_variante.sh M1_revisado_K3   # uma variante (cerca de 8 min)
 bash pipeline/rodar_todas.sh 2                   # todas as variantes de pipeline/variantes.tsv, 2 em paralelo
 python pipeline/22_comparar_variantes.py         # consolida em resultados/comparacao_variantes.md
@@ -50,7 +93,7 @@ Flags do modelo (`V2`): `ctx` (IVS-DF e escala da RA saem da matriz), `agua` e `
 
 | Programa | Função |
 |---|---|
-| `01_saneamento_pdadr_2022.py` | saneamento da planilha-dicionário do IPEDF → `dados/gold/*.xlsx`. **Requer `Dicionario_aplicado_PDADR_2022.xlsx` (não incluído; peça ao autor ou ao IPEDF).** As saídas já estão em `dados/gold/`. |
+| `01_saneamento_pdadr_2022.py` | saneamento da planilha-dicionário do IPEDF → `dados/gold/*.xlsx`. Lê `dados/silver/Dicionario_aplicado_PDADR_2022.xlsx` (incluída no repositório; rode com `python reproduzir_tudo.py --saneamento`). As saídas já estão em `dados/gold/`; detalhes em `docs/reproducao_saneamento.md`. |
 | `02_analise_exploratoria_ponderada.py` | análise exploratória ponderada |
 | `03_analise_cluster_4d.py` | **modelo**: agregação por segmento, PCA por dimensão, K-Means, nulos, co-associação, Moran/LISA. Parâmetros por variáveis de ambiente (`V2`, `K_FINAL`, `WINSOR_P`, `COMP`) |
 | `04`–`13` | comparação de métodos, Ward, estabilidade cruzada, variáveis de apoio, Kruskal-Wallis, tabelas, mapas, robustez em tandem, perfis por RA |
@@ -72,6 +115,7 @@ Flags do modelo (`V2`): `ctx` (IVS-DF e escala da RA saem da matriz), `agua` e `
 
 * `dados/gold/pdadr_domicilios.xlsx` e `pdadr_moradores.xlsx`: microdados da PDAD Rural 2022 (IPEDF) com as correções de códigos administrativos (66666, 77777, 88888, 99999 e variantes) documentadas no programa 01. São as planilhas usadas nos resultados do TCC.
 * `dados/pdadr_*.xlsx` (raiz): **versão anterior**, sem essas correções; mantida só porque os scripts de `legado/` as leem.
+* `dados/silver/Dicionario_aplicado_PDADR_2022.xlsx`: planilha-dicionário do IPEDF (domicílios 5.075 × 140 e moradores 15.357 × 150), entrada do programa 01.
 * `dados/gold/Base_dados-IVS.xlsx`: IVS-DF (IPEDF); usado **apenas para descrição** no modelo revisado.
 * `dados/regioes_administrativas.zip`: limites das RAs.
 
@@ -79,7 +123,7 @@ Fonte dos dados: IPEDF, PDAD Rural 2022 (https://www.ipe.df.gov.br/).
 
 ## Limitações conhecidas
 
-* O programa 01 não roda sem a planilha-dicionário (silver), que não está no repositório.
+* O programa 01, executado isoladamente, procura a planilha no caminho do Colab; fora do `reproduzir_tudo.py`, informe o caminho com `PDADR_SILVER=dados/silver/Dicionario_aplicado_PDADR_2022.xlsx`.
 * A mediana ponderada de renda por segmento não foi implementada (a avaliação aceita a média de ln com winsorização).
 * O K-Means aparado e a análise de arquétipos são implementações próprias, não os pacotes `tclust` e `archetypes` do R.
 * Na validação deixa-uma-RA-fora, o PCA é mantido fixo (só o K-Means é refeito).

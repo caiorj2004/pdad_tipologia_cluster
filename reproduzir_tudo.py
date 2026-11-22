@@ -3,7 +3,7 @@
 """Executa o pipeline do TCC de ponta a ponta com UM comando.
 
     python reproduzir_tudo.py --modo teste        # verificação rápida da instalação (~5 min)
-    python reproduzir_tudo.py --modo principal    # os dois modelos centrais: M0_antigo_K5 (avaliado) e M1_revisado_K3 (revisado) + figuras do TCC
+    python reproduzir_tudo.py --modo principal    # modelos centrais: M0_antigo_K5 (avaliado), M1_revisado_K3 (revisado) e M2_semEscadas_K3 (principal do texto) + figuras do TCC
     python reproduzir_tudo.py --modo completo     # todas as variantes de pipeline/variantes.tsv (algumas horas) + comparação
 
 Opções úteis:
@@ -30,7 +30,7 @@ ETAPAS = [('03', '03_analise_cluster_4d.py'), ('09', '09_kruskal_wallis_escores.
 FIGURAS_TCC = ['04_comparacao_metodos.py', '05_ward_dendrograma.py', '06_ward_bateria.py', '07_estabilidade_cruzada.py', '08_variaveis_apoio.py',
                '10_tabelas_e_figuras.py', '11_mapas_indicadores.py', '13_ra_grupos_componentes.py',
                '20_figuras_perfil_validacao.py']
-PRINCIPAIS = ['M0_antigo_K5', 'M1_revisado_K3']
+PRINCIPAIS = ['M0_antigo_K5', 'M1_revisado_K3', 'M2_semEscadas_K3']
 COM_FIGURAS_TCC = ('M1_revisado_K3', 'M2_semEscadas_K3')   # variantes para as quais --figuras-tcc gera tabelas e figuras do texto
 
 def ler_variantes():
