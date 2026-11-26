@@ -46,7 +46,7 @@ Ele contém o código, os dados e as saídas necessárias para reproduzir **cada
 ```
 dados/gold/            microdados corrigidos (saída do programa 01) + IVS-DF (IPEDF)
 dados/                 versão anterior das planilhas (sem as correções dos códigos 66666 etc.) e shapefile das RAs
-dados/silver/          planilha-dicionário do IPEDF (entrada do programa 01)
+dados/silver/          planilha-dicionário aplicado do IPEDF (entrada do programa 01) e dicionário de variáveis
 legado/                scripts originais dos modelos 4D e 5D (Colab); mantidos para consulta
 pipeline/              programas numerados e executores (veja abaixo)
 resultados/<variante>/ saídas de cada variante (texto e CSV; figuras só de M1_revisado_K3 e M2_semEscadas_K3)
@@ -116,6 +116,7 @@ Flags do modelo (`V2`): `ctx` (IVS-DF e escala da RA saem da matriz), `agua` e `
 * `dados/gold/pdadr_domicilios.xlsx` e `pdadr_moradores.xlsx`: microdados da PDAD Rural 2022 (IPEDF) com as correções de códigos administrativos (66666, 77777, 88888, 99999 e variantes) documentadas no programa 01. São as planilhas usadas nos resultados do TCC.
 * `dados/pdadr_*.xlsx` (raiz): **versão anterior**, sem essas correções; mantida só porque os scripts de `legado/` as leem.
 * `dados/silver/Dicionario_aplicado_PDADR_2022.xlsx`: planilha-dicionário do IPEDF (domicílios 5.075 × 140 e moradores 15.357 × 150), entrada do programa 01.
+* `dados/silver/Dicionario_de_variaveis_PDADR_2022.xlsx`: dicionário de variáveis do questionário (IPEDF). Abas `domicilios` (432 linhas) e `moradores` (686): coluna, descrição da coluna, valor e descrição do valor; abas `anexo_1` a `anexo_12`: tabelas de códigos (RA, setor, país, UF, município etc.). Serve de consulta; **nenhum programa o lê**. Não confundir com o dicionário aplicado, que contém os microdados.
 * `dados/gold/Base_dados-IVS.xlsx`: IVS-DF (IPEDF); usado **apenas para descrição** no modelo revisado.
 * `dados/regioes_administrativas.zip`: limites das RAs.
 
